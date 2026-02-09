@@ -201,22 +201,42 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
           {sender[0]}
         </div>
       )}
-      <div style={{display: 'flex', alignItems: 'center', gap: 10}}>
-        {[0, 1, 2].map(i => (
-          <div
-            key={i}
-            style={{
-              width: 16,
-              height: 16,
-              borderRadius: '50%',
-              backgroundColor: COLORS.textMuted,
-              opacity: interpolate(
-                (frame + i * 6) % 24,
-                [0, 12, 24],
-                [0.3, 1, 0.3]
-              ),
-            }}
-          />
+      {/* Slack-style typing dots: bounce + fade with staggered timing */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: 6,
+        backgroundColor: COLORS.messageBg,
+        padding: '12px 16px',
+        borderRadius: 18,
+      }}>
+        {[0, 1, 2].map(i => {
+          // Staggered animation: each dot is 5 frames behind
+          const dotFrame = (frame + i * 5) % 30;
+          const bounce = interpolate(
+            dotFrame,
+            [0, 10, 20, 30],
+            [0, -6, 0, 0],
+            { extrapolateRight: 'clamp' }
+          );
+          const opacity = interpolate(
+            dotFrame,
+            [0, 10, 20, 30],
+            [0.4, 1, 0.4, 0.4],
+            { extrapolateRight: 'clamp' }
+          );
+          return (
+            <div
+              key={i}
+              style={{
+                width: 10,
+                height: 10,
+                borderRadius: '50%',
+                backgroundColor: COLORS.textMuted,
+                transform: `translateY(${bounce}px)`,
+                opacity,
+              }}
+            />
         ))}
       </div>
     </div>
