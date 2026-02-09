@@ -54,7 +54,6 @@ export const PROFILE_COLORS: Record<string, string> = {
 // Profile images (use staticFile paths)
 export const PROFILE_IMAGES: Record<string, string> = {
   'Leti': 'images/mochi-pfp.png', // me (Mochi)
-  'Leti': '#3498DB',
 };
 
 // Margin to align with typing box
