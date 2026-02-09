@@ -6,7 +6,7 @@ import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} 
 const MESSAGES: Message[] = [
   {
     id: 18,
-    sender: 'Leti',
+    sender: 'Mochi',
     role: 'AI',
     text: 'soooo when do we need this video by?',
     isBot: true,
@@ -24,7 +24,7 @@ const MESSAGES: Message[] = [
   },
   {
     id: 20,
-    sender: 'Leti',
+    sender: 'Mochi',
     role: 'AI',
     text: "you've got to be KIDDING ME—",
     isBot: true,

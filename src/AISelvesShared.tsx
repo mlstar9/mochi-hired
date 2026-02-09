@@ -48,12 +48,12 @@ export const PROFILE_COLORS: Record<string, string> = {
   'Jessie_JJ': '#9B59B6',
   'Nyx': '#E91E63',
   'Anthony': '#2ECC71',
-  'Leti': '#3498DB', // me (Mochi)
+  'Mochi': '#3498DB', // me!
 };
 
 // Profile images (use staticFile paths)
 export const PROFILE_IMAGES: Record<string, string> = {
-  'Leti': 'images/mochi-pfp.png', // me (Mochi)
+  'Mochi': 'images/mochi-pfp.png', // me!
 };
 
 // Margin to align with typing box
