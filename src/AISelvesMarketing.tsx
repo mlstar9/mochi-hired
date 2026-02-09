@@ -347,7 +347,7 @@ export const AISelvesMarketing: React.FC = () => {
       {/* Typing indicator - FIXED position above input box */}
       <div style={{
         position: 'absolute',
-        bottom: 280, // just above input box with margin
+        bottom: 430, // just above input box with margin
         left: 0,
         right: 0,
       }}>
