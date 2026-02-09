@@ -1,4 +1,5 @@
 import {Composition, registerRoot} from 'remotion';
+import {AISelvesComplete, TOTAL_DURATION} from './AISelvesComplete';
 import {AISelvesShot1} from './AISelvesShot1';
 import {AISelvesShot2} from './AISelvesShot2';
 import {AISelvesShot3} from './AISelvesShot3';
@@ -24,6 +25,14 @@ import {PikaAISelfDemo} from './PikaAISelfDemo';
 const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="AISelvesComplete"
+        component={AISelvesComplete}
+        durationInFrames={TOTAL_DURATION} // ~67s all shots
+        fps={24}
+        width={1920}
+        height={1080}
+      />
       <Composition
         id="AISelvesShot1"
         component={AISelvesShot1}
