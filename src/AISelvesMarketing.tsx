@@ -286,7 +286,7 @@ export const AISelvesMarketing: React.FC = () => {
   
   // Calculate which messages are visible and chat offset
   let chatOffset = 0;
-  const NUDGE_PX = 50; // nudge distance per message
+  const NUDGE_PX = 120; // nudge distance per message
   const NUDGE_FRAMES = 10; // 10 frames at 24fps
   
   const visibleMessages = SHOT1_MESSAGES.filter(msg => frame >= msg.appearFrame);

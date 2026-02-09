@@ -1,5 +1,5 @@
 import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
-import {Message, COLORS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
+import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
 
 // Shot 6: Anthony's Report
 // Messages 11-14
@@ -46,7 +46,7 @@ const MESSAGES: Message[] = [
 export const AISelvesShot6: React.FC = () => {
   const frame = useCurrentFrame();
   
-  const NUDGE_PX = 50;
+  const NUDGE_PX = 120;
   const NUDGE_FRAMES = 10;
   
   let chatOffset = 0;
@@ -71,7 +71,7 @@ export const AISelvesShot6: React.FC = () => {
   return (
     <AbsoluteFill style={{
       backgroundColor: COLORS.bg,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: FONTS.mono,
     }}>
       {/* LAYER 1: Base UI */}
       <AbsoluteFill style={{

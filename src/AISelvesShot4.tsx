@@ -1,5 +1,5 @@
 import {AbsoluteFill, useCurrentFrame, interpolate, Img, staticFile} from 'remotion';
-import {Message, COLORS, MessageBubble, TypingIndicator, TypingInputBox, EmojiReaction, SIDE_MARGIN} from './AISelvesShared';
+import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, EmojiReaction, SIDE_MARGIN} from './AISelvesShared';
 
 // Shot 4: Nyx Selfie Drop + Reactions
 // Message 10 + reactions
@@ -57,7 +57,7 @@ export const AISelvesShot4: React.FC = () => {
   return (
     <AbsoluteFill style={{
       backgroundColor: COLORS.bg,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: FONTS.mono,
     }}>
       {/* LAYER 1: Base UI */}
       <AbsoluteFill style={{

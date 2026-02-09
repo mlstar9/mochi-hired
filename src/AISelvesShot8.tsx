@@ -1,5 +1,5 @@
 import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
-import {Message, COLORS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
+import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
 
 // Shot 8: Deadline Bomb
 // Messages 18-20 - Leti asks, Semi says "tonight", Leti reacts
@@ -37,7 +37,7 @@ const MESSAGES: Message[] = [
 export const AISelvesShot8: React.FC = () => {
   const frame = useCurrentFrame();
   
-  const NUDGE_PX = 50;
+  const NUDGE_PX = 120;
   const NUDGE_FRAMES = 10;
   
   let chatOffset = 0;
@@ -77,7 +77,7 @@ export const AISelvesShot8: React.FC = () => {
   return (
     <AbsoluteFill style={{
       backgroundColor: COLORS.bg,
-      fontFamily: 'system-ui, -apple-system, sans-serif',
+      fontFamily: FONTS.mono,
     }}>
       {/* LAYER 1: Base UI */}
       <AbsoluteFill style={{

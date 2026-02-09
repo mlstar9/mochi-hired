@@ -1,4 +1,8 @@
-import {useCurrentFrame, interpolate} from 'remotion';
+import {useCurrentFrame, interpolate, staticFile} from 'remotion';
+
+// Font face declarations (load via CSS in remotion.config.ts or use staticFile)
+// Primary: Telka-Extended (headings, bold text)
+// Mono: SpaceMono (chat text, UI)
 
 // Types
 export interface Message {
@@ -13,19 +17,26 @@ export interface Message {
   imageUrl?: string;
 }
 
-// Colors
+// Pika Brand Colors
 export const COLORS = {
-  bg: '#1a1a1a',
+  bg: '#111111', // pika black
   channelBg: '#111111',
-  messageBg: '#222222',
+  messageBg: '#1a1a1a',
   text: '#ffffff',
   textMuted: '#888888',
   textDark: '#666666',
   accent: '#C2BEFF', // pika purple
-  accentYellow: '#FEFBCF',
-  botBadge: '#5865F2',
-  inputBg: '#222222',
-  inputBorder: '#444444',
+  accentYellow: '#FEFBCF', // pika yellow
+  accentBeige: '#FDF7EF', // pika beige
+  botBadge: '#C2BEFF', // use pika purple for bot badge
+  inputBg: '#1a1a1a',
+  inputBorder: '#333333',
+};
+
+// Pika Brand Fonts
+export const FONTS = {
+  primary: "'Telka-Extended', sans-serif", // headings, bold text
+  mono: "'Space Mono', 'SpaceMono', monospace", // chat text, UI
 };
 
 // Profile pics - placeholder colors
@@ -43,7 +54,7 @@ export const PROFILE_COLORS: Record<string, string> = {
 // Margin to align with typing box
 export const SIDE_MARGIN = 48;
 
-// Message component - scaled 2x
+// Message component - scaled 2x, Pika brand fonts
 export const MessageBubble: React.FC<{
   message: Message;
   opacity: number;
@@ -68,6 +79,7 @@ export const MessageBubble: React.FC<{
         color: 'white',
         fontWeight: 'bold',
         fontSize: 36,
+        fontFamily: FONTS.primary,
       }}>
         {message.sender[0]}
       </div>
@@ -79,35 +91,40 @@ export const MessageBubble: React.FC<{
           <span style={{
             color: COLORS.text,
             fontWeight: 'bold',
-            fontSize: 32,
+            fontSize: 28,
+            fontFamily: FONTS.primary,
           }}>
             {message.sender}
           </span>
           {message.isBot && (
             <span style={{
               backgroundColor: COLORS.botBadge,
-              color: 'white',
-              padding: '4px 10px',
+              color: '#111111',
+              padding: '4px 12px',
               borderRadius: 6,
-              fontSize: 18,
+              fontSize: 16,
               fontWeight: 'bold',
+              fontFamily: FONTS.mono,
+              letterSpacing: 1,
             }}>
-              BOT
+              AI
             </span>
           )}
           <span style={{
             color: COLORS.textMuted,
-            fontSize: 24,
+            fontSize: 20,
+            fontFamily: FONTS.mono,
           }}>
             {message.role}
           </span>
         </div>
         
-        {/* Message text - 2x size */}
+        {/* Message text - SpaceMono for chat */}
         <div style={{
           color: COLORS.text,
-          fontSize: 32,
-          lineHeight: 1.4,
+          fontSize: 28,
+          lineHeight: 1.5,
+          fontFamily: FONTS.mono,
         }}>
           {message.text}
         </div>
@@ -165,32 +182,33 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
   );
 };
 
-// Slack typing input box - scaled 2x, aligned with messages
+// Slack typing input box - scaled 2x, aligned with messages, Pika fonts
 export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) => {
   return (
     <div style={{
       margin: `0 ${SIDE_MARGIN}px ${SIDE_MARGIN}px ${SIDE_MARGIN}px`,
       backgroundColor: COLORS.inputBg,
-      border: `2px solid ${COLORS.inputBorder}`,
-      borderRadius: 16,
+      border: `1px solid ${COLORS.inputBorder}`,
+      borderRadius: 12,
       overflow: 'hidden',
     }}>
       {/* Formatting toolbar */}
       <div style={{
         display: 'flex',
-        gap: 8,
-        padding: '12px 20px',
-        borderBottom: `2px solid ${COLORS.inputBorder}`,
+        gap: 4,
+        padding: '10px 16px',
+        borderBottom: `1px solid ${COLORS.inputBorder}`,
       }}>
         {['B', 'I', 'U', 'S', '🔗', '☰', '•', '1.', '</>'].map((icon, i) => (
           <div key={i} style={{
-            width: 40,
-            height: 40,
+            width: 36,
+            height: 36,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: COLORS.textMuted,
-            fontSize: 22,
+            fontSize: 18,
+            fontFamily: FONTS.mono,
             fontWeight: icon === 'B' ? 'bold' : 'normal',
             fontStyle: icon === 'I' ? 'italic' : 'normal',
             textDecoration: icon === 'U' ? 'underline' : icon === 'S' ? 'line-through' : 'none',
@@ -202,9 +220,10 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
       
       {/* Input area */}
       <div style={{
-        padding: '20px 24px',
+        padding: '16px 20px',
         color: COLORS.textDark,
-        fontSize: 28,
+        fontSize: 24,
+        fontFamily: FONTS.mono,
       }}>
         Message #{channelName}
       </div>
@@ -214,33 +233,33 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '12px 20px',
+        padding: '10px 16px',
       }}>
-        <div style={{display: 'flex', gap: 16}}>
+        <div style={{display: 'flex', gap: 12}}>
           {['+', 'Aa', '😊', '@', '📎', '🎤'].map((icon, i) => (
             <div key={i} style={{
-              width: 40,
-              height: 40,
+              width: 36,
+              height: 36,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: COLORS.textMuted,
-              fontSize: 26,
+              fontSize: 22,
             }}>
               {icon}
             </div>
           ))}
         </div>
         <div style={{
-          width: 48,
-          height: 48,
-          backgroundColor: COLORS.inputBorder,
+          width: 40,
+          height: 40,
+          backgroundColor: COLORS.accent,
           borderRadius: 8,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: COLORS.textMuted,
-          fontSize: 24,
+          color: '#111111',
+          fontSize: 20,
         }}>
           ▶
         </div>

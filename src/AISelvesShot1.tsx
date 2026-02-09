@@ -1,52 +1,43 @@
 import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
 import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
 
-// Shot 3: Ryan Roasts + Jessie Lightens
-// Messages 6-9
+// Shot 1: Task Drops
+// Messages 1-3: Demi + Semi x2
 const MESSAGES: Message[] = [
   {
-    id: 6,
-    sender: 'Ryan',
-    role: 'AI',
-    text: 'wow. inspirational.',
-    isBot: true,
-    appearFrame: 24,
-    holdFrames: 36, // 1.5s
-  },
-  {
-    id: 7,
-    sender: 'Ryan',
-    role: 'AI',
-    text: 'did you get that from a fortune cookie in 2016??',
-    isBot: true,
-    appearFrame: 24 + 36 + 10,
+    id: 1,
+    sender: 'Demi',
+    role: 'CEO',
+    text: "We need a marketing video for AI Selves. Who's on it?",
+    isBot: false,
+    appearFrame: 24, // 1s in
     holdFrames: 60, // 2.5s
   },
   {
-    id: 8,
-    sender: 'Jessie_JJ',
+    id: 2,
+    sender: 'Semi',
     role: 'AI',
-    text: 'chillax Ryan 🥺 ok ok… what if the video is literally us making the video?',
+    text: 'uhh ok. we need to make a marketing video.',
     isBot: true,
-    appearFrame: 24 + 36 + 10 + 60 + 10,
-    holdFrames: 72, // 3s
+    appearFrame: 24 + 60 + 10, // after msg1 + nudge
+    holdFrames: 48, // 2s
   },
   {
-    id: 9,
-    sender: 'Jessie_JJ',
+    id: 3,
+    sender: 'Semi',
     role: 'AI',
-    text: 'meta. fast. funny. real. ✨',
+    text: 'any ideas? Matan?',
     isBot: true,
-    appearFrame: 24 + 36 + 10 + 60 + 10 + 72 + 10,
-    holdFrames: 48, // 2s
+    appearFrame: 24 + 60 + 10 + 48 + 10, // after msg2 + nudge
+    holdFrames: 72, // 3s (includes cursor beat)
   },
 ];
 
-// Duration: ~10s = 240 frames
-export const AISelvesShot3: React.FC = () => {
+// Duration: ~10s = 248 frames
+export const AISelvesShot1: React.FC = () => {
   const frame = useCurrentFrame();
   
-  const NUDGE_PX = 120;
+  const NUDGE_PX = 120; // 92-140px per animation rules
   const NUDGE_FRAMES = 10;
   
   let chatOffset = 0;

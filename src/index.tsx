@@ -1,5 +1,5 @@
 import {Composition, registerRoot} from 'remotion';
-import {AISelvesMarketing} from './AISelvesMarketing';
+import {AISelvesShot1} from './AISelvesShot1';
 import {AISelvesShot2} from './AISelvesShot2';
 import {AISelvesShot3} from './AISelvesShot3';
 import {AISelvesShot4} from './AISelvesShot4';
@@ -26,7 +26,7 @@ const RemotionRoot: React.FC = () => {
     <>
       <Composition
         id="AISelvesShot1"
-        component={AISelvesMarketing}
+        component={AISelvesShot1}
         durationInFrames={248} // ~10s shot 1
         fps={24}
         width={1920}
