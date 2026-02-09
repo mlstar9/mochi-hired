@@ -17,20 +17,21 @@ export interface Message {
   imageUrl?: string;
 }
 
-// Pika Brand Colors
+// Slack Dark Mode Colors (authentic)
 export const COLORS = {
-  bg: '#111111', // pika black
-  channelBg: '#111111',
-  messageBg: '#1a1a1a',
-  text: '#ffffff',
-  textMuted: '#888888',
-  textDark: '#666666',
-  accent: '#C2BEFF', // pika purple
-  accentYellow: '#FEFBCF', // pika yellow
-  accentBeige: '#FDF7EF', // pika beige
-  botBadge: '#C2BEFF', // use pika purple for bot badge
-  inputBg: '#1a1a1a',
-  inputBorder: '#333333',
+  bg: '#1a1d21', // slack dark mode background
+  channelBg: '#1a1d21',
+  messageBg: '#222529',
+  text: '#d1d2d3', // slack foreground
+  textBold: '#ffffff', // names, headings
+  textMuted: '#ababad', // timestamps, secondary
+  textDark: '#616061',
+  accent: '#1d9bd1', // slack blue
+  accentGreen: '#2eb67d', // slack green (online)
+  botBadge: '#4a154b', // slack aubergine
+  inputBg: '#222529',
+  inputBorder: '#565856',
+  hover: '#222529',
 };
 
 // Fonts
@@ -62,7 +63,7 @@ export const PROFILE_IMAGES: Record<string, string> = {
 // Margin to align with typing box
 export const SIDE_MARGIN = 48;
 
-// Message component - scaled 2x, Pika brand fonts
+// Message component - Slack style
 export const MessageBubble: React.FC<{
   message: Message;
   opacity: number;
@@ -72,35 +73,35 @@ export const MessageBubble: React.FC<{
   return (
     <div style={{
       display: 'flex',
-      gap: 24,
-      padding: `16px ${SIDE_MARGIN}px`,
+      gap: 16,
+      padding: `8px ${SIDE_MARGIN}px`,
       opacity,
     }}>
-      {/* Profile pic - 2x size */}
+      {/* Avatar - Slack uses rounded rect (4px radius), not circles */}
       {hasImage ? (
         <Img
           src={staticFile(PROFILE_IMAGES[message.sender])}
           style={{
-            width: 80,
-            height: 80,
-            borderRadius: 12,
+            width: 72,
+            height: 72,
+            borderRadius: 8, // Slack-style rounded rect
             objectFit: 'cover',
             flexShrink: 0,
           }}
         />
       ) : (
         <div style={{
-          width: 80,
-          height: 80,
-          borderRadius: 12,
-          backgroundColor: PROFILE_COLORS[message.sender] || '#666',
+          width: 72,
+          height: 72,
+          borderRadius: 8, // Slack-style rounded rect
+          backgroundColor: PROFILE_COLORS[message.sender] || '#616061',
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
           fontWeight: 'bold',
-          fontSize: 36,
+          fontSize: 32,
           fontFamily: FONTS.slack,
         }}>
           {message.sender[0]}
@@ -109,12 +110,12 @@ export const MessageBubble: React.FC<{
       
       {/* Content */}
       <div style={{flex: 1}}>
-        {/* Header */}
-        <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8}}>
+        {/* Header - Slack style: name bold, then APP badge if bot, then timestamp */}
+        <div style={{display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 4}}>
           <span style={{
-            color: COLORS.text,
-            fontWeight: 'bold',
-            fontSize: 28,
+            color: COLORS.textBold,
+            fontWeight: '900',
+            fontSize: 30,
             fontFamily: FONTS.slack,
           }}>
             {message.sender}
@@ -122,31 +123,32 @@ export const MessageBubble: React.FC<{
           {message.isBot && (
             <span style={{
               backgroundColor: COLORS.botBadge,
-              color: '#111111',
-              padding: '4px 12px',
-              borderRadius: 6,
-              fontSize: 16,
+              color: '#ffffff',
+              padding: '2px 6px',
+              borderRadius: 4,
+              fontSize: 20,
               fontWeight: 'bold',
               fontFamily: FONTS.slack,
-              letterSpacing: 1,
+              textTransform: 'uppercase',
+              letterSpacing: 0.5,
             }}>
-              AI
+              App
             </span>
           )}
           <span style={{
             color: COLORS.textMuted,
-            fontSize: 20,
+            fontSize: 22,
             fontFamily: FONTS.slack,
           }}>
             {message.role}
           </span>
         </div>
         
-        {/* Message text - SpaceMono for chat */}
+        {/* Message text - Slack style */}
         <div style={{
           color: COLORS.text,
-          fontSize: 28,
-          lineHeight: 1.5,
+          fontSize: 30,
+          lineHeight: 1.46,
           fontFamily: FONTS.slack,
         }}>
           {message.text}
@@ -156,7 +158,7 @@ export const MessageBubble: React.FC<{
   );
 };
 
-// Typing indicator - scaled 2x
+// Typing indicator - Slack style
 export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({sender, visible}) => {
   const frame = useCurrentFrame();
   if (!visible) return null;
@@ -166,34 +168,34 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
   return (
     <div style={{
       display: 'flex',
-      gap: 24,
-      padding: `16px ${SIDE_MARGIN}px`,
-      opacity: 0.7,
+      gap: 16,
+      padding: `8px ${SIDE_MARGIN}px`,
+      opacity: 0.8,
     }}>
       {hasImage ? (
         <Img
           src={staticFile(PROFILE_IMAGES[sender])}
           style={{
-            width: 80,
-            height: 80,
-            borderRadius: 12,
+            width: 72,
+            height: 72,
+            borderRadius: 8,
             objectFit: 'cover',
             flexShrink: 0,
           }}
         />
       ) : (
         <div style={{
-          width: 80,
-          height: 80,
-          borderRadius: 12,
-          backgroundColor: PROFILE_COLORS[sender] || '#666',
+          width: 72,
+          height: 72,
+          borderRadius: 8,
+          backgroundColor: PROFILE_COLORS[sender] || '#616061',
           flexShrink: 0,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: 'white',
           fontWeight: 'bold',
-          fontSize: 36,
+          fontSize: 32,
         }}>
           {sender[0]}
         </div>
