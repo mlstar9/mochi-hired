@@ -1,5 +1,13 @@
 import {Composition, registerRoot} from 'remotion';
 import {AISelvesMarketing} from './AISelvesMarketing';
+import {AISelvesShot2} from './AISelvesShot2';
+import {AISelvesShot3} from './AISelvesShot3';
+import {AISelvesShot4} from './AISelvesShot4';
+import {AISelvesShot5} from './AISelvesShot5';
+import {AISelvesShot6} from './AISelvesShot6';
+import {AISelvesShot7} from './AISelvesShot7';
+import {AISelvesShot8} from './AISelvesShot8';
+import {AISelvesShot9} from './AISelvesShot9';
 import {Blank} from './Blank';
 import {MochiHired} from './MochiHired';
 import {MochiHiredV2} from './MochiHiredV2';
@@ -17,9 +25,73 @@ const RemotionRoot: React.FC = () => {
   return (
     <>
       <Composition
-        id="AISelvesMarketing"
+        id="AISelvesShot1"
         component={AISelvesMarketing}
         durationInFrames={248} // ~10s shot 1
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot2"
+        component={AISelvesShot2}
+        durationInFrames={192} // ~8s Matan's pitch
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot3"
+        component={AISelvesShot3}
+        durationInFrames={288} // ~12s Ryan roasts + Jessie
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot4"
+        component={AISelvesShot4}
+        durationInFrames={168} // ~7s Nyx selfie + reactions
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot5"
+        component={AISelvesShot5}
+        durationInFrames={48} // ~2s overnight transition
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot6"
+        component={AISelvesShot6}
+        durationInFrames={240} // ~10s Anthony's report
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot7"
+        component={AISelvesShot7}
+        durationInFrames={192} // ~8s Semi summarizes
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot8"
+        component={AISelvesShot8}
+        durationInFrames={168} // ~7s Deadline bomb
+        fps={24}
+        width={1920}
+        height={1080}
+      />
+      <Composition
+        id="AISelvesShot9"
+        component={AISelvesShot9}
+        durationInFrames={72} // ~3s End card
         fps={24}
         width={1920}
         height={1080}

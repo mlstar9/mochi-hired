@@ -1,0 +1,116 @@
+import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
+import {Message, COLORS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
+
+// Shot 3: Ryan Roasts + Jessie Lightens
+// Messages 6-9
+const MESSAGES: Message[] = [
+  {
+    id: 6,
+    sender: 'Ryan',
+    role: 'AI',
+    text: 'wow. inspirational.',
+    isBot: true,
+    appearFrame: 24,
+    holdFrames: 36, // 1.5s
+  },
+  {
+    id: 7,
+    sender: 'Ryan',
+    role: 'AI',
+    text: 'did you get that from a fortune cookie in 2016??',
+    isBot: true,
+    appearFrame: 24 + 36 + 10,
+    holdFrames: 60, // 2.5s
+  },
+  {
+    id: 8,
+    sender: 'Jessie_JJ',
+    role: 'AI',
+    text: 'chillax Ryan 🥺 ok ok… what if the video is literally us making the video?',
+    isBot: true,
+    appearFrame: 24 + 36 + 10 + 60 + 10,
+    holdFrames: 72, // 3s
+  },
+  {
+    id: 9,
+    sender: 'Jessie_JJ',
+    role: 'AI',
+    text: 'meta. fast. funny. real. ✨',
+    isBot: true,
+    appearFrame: 24 + 36 + 10 + 60 + 10 + 72 + 10,
+    holdFrames: 48, // 2s
+  },
+];
+
+// Duration: ~10s = 240 frames
+export const AISelvesShot3: React.FC = () => {
+  const frame = useCurrentFrame();
+  
+  const NUDGE_PX = 50;
+  const NUDGE_FRAMES = 10;
+  
+  let chatOffset = 0;
+  const visibleMessages = MESSAGES.filter(msg => frame >= msg.appearFrame);
+  
+  visibleMessages.forEach((msg, idx) => {
+    if (idx > 0) {
+      const nudgeProgress = interpolate(
+        frame,
+        [msg.appearFrame, msg.appearFrame + NUDGE_FRAMES],
+        [0, 1],
+        {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+      );
+      chatOffset += NUDGE_PX * nudgeProgress;
+    }
+  });
+  
+  const nextMessage = MESSAGES.find(msg => frame < msg.appearFrame && frame >= msg.appearFrame - 20);
+  const showTyping = nextMessage !== undefined;
+  const typingSender = nextMessage?.sender || '';
+  
+  return (
+    <AbsoluteFill style={{
+      backgroundColor: COLORS.bg,
+      fontFamily: 'system-ui, -apple-system, sans-serif',
+    }}>
+      {/* LAYER 1: Base UI */}
+      <AbsoluteFill style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+      }}>
+        <div style={{marginBottom: 16}}>
+          <TypingIndicator sender={typingSender} visible={showTyping} />
+        </div>
+        <TypingInputBox channelName="marketing" />
+      </AbsoluteFill>
+      
+      {/* LAYER 2: Chat bubbles */}
+      <AbsoluteFill style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        paddingBottom: 280,
+        transform: `translateY(-${chatOffset}px)`,
+      }}>
+        {MESSAGES.map(msg => {
+          const isVisible = frame >= msg.appearFrame;
+          const appearProgress = interpolate(
+            frame,
+            [msg.appearFrame, msg.appearFrame + 8],
+            [0, 1],
+            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+          );
+          
+          return (
+            <MessageBubble
+              key={msg.id}
+              message={msg}
+              opacity={isVisible ? appearProgress : 0}
+            />
+          );
+        })}
+      </AbsoluteFill>
+    </AbsoluteFill>
+  );
+};
