@@ -313,15 +313,29 @@ export const AISelvesMarketing: React.FC = () => {
     <AbsoluteFill style={{
       backgroundColor: COLORS.bg,
       fontFamily: 'system-ui, -apple-system, sans-serif',
-      display: 'flex',
-      flexDirection: 'column',
     }}>
-      {/* Messages container */}
-      <div style={{
-        flex: 1,
+      {/* LAYER 1: Base UI - typing indicator + input box (fixed) */}
+      <AbsoluteFill style={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
+      }}>
+        {/* Typing indicator - fixed position */}
+        <div style={{marginBottom: 16}}>
+          <TypingIndicator sender={typingSender} visible={showTyping} />
+        </div>
+        
+        {/* Slack typing input box at bottom */}
+        <TypingInputBox channelName="marketing" />
+      </AbsoluteFill>
+      
+      {/* LAYER 2: Chat bubbles (on top, with nudging) */}
+      <AbsoluteFill style={{
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'flex-end',
+        paddingBottom: 280, // above the UI layer
+        transform: `translateY(-${chatOffset}px)`,
       }}>
         {SHOT1_MESSAGES.map(msg => {
           const isVisible = frame >= msg.appearFrame;
@@ -340,20 +354,7 @@ export const AISelvesMarketing: React.FC = () => {
             />
           );
         })}
-      </div>
-      
-      {/* Typing indicator - FIXED position above input box */}
-      <div style={{
-        position: 'absolute',
-        bottom: 280, // just above input box with margin
-        left: 0,
-        right: 0,
-      }}>
-        <TypingIndicator sender={typingSender} visible={showTyping} />
-      </div>
-      
-      {/* Slack typing input box at bottom */}
-      <TypingInputBox channelName="marketing" />
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
