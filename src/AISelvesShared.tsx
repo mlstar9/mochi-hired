@@ -33,10 +33,13 @@ export const COLORS = {
   inputBorder: '#333333',
 };
 
-// Pika Brand Fonts
+// Fonts
 export const FONTS = {
-  primary: "'Telka-Extended', sans-serif", // headings, bold text
-  mono: "'Space Mono', 'SpaceMono', monospace", // chat text, UI
+  // Pika brand (for end card only)
+  primary: "'Telka-Extended', sans-serif",
+  mono: "'Space Mono', 'SpaceMono', monospace",
+  // Slack default font (for chat UI)
+  slack: "Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif",
 };
 
 // Profile pics - colors and images
@@ -98,7 +101,7 @@ export const MessageBubble: React.FC<{
           color: 'white',
           fontWeight: 'bold',
           fontSize: 36,
-          fontFamily: FONTS.primary,
+          fontFamily: FONTS.slack,
         }}>
           {message.sender[0]}
         </div>
@@ -112,7 +115,7 @@ export const MessageBubble: React.FC<{
             color: COLORS.text,
             fontWeight: 'bold',
             fontSize: 28,
-            fontFamily: FONTS.primary,
+            fontFamily: FONTS.slack,
           }}>
             {message.sender}
           </span>
@@ -124,7 +127,7 @@ export const MessageBubble: React.FC<{
               borderRadius: 6,
               fontSize: 16,
               fontWeight: 'bold',
-              fontFamily: FONTS.mono,
+              fontFamily: FONTS.slack,
               letterSpacing: 1,
             }}>
               AI
@@ -133,7 +136,7 @@ export const MessageBubble: React.FC<{
           <span style={{
             color: COLORS.textMuted,
             fontSize: 20,
-            fontFamily: FONTS.mono,
+            fontFamily: FONTS.slack,
           }}>
             {message.role}
           </span>
@@ -144,7 +147,7 @@ export const MessageBubble: React.FC<{
           color: COLORS.text,
           fontSize: 28,
           lineHeight: 1.5,
-          fontFamily: FONTS.mono,
+          fontFamily: FONTS.slack,
         }}>
           {message.text}
         </div>
@@ -243,7 +246,7 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
             justifyContent: 'center',
             color: COLORS.textMuted,
             fontSize: 18,
-            fontFamily: FONTS.mono,
+            fontFamily: FONTS.slack,
             fontWeight: icon === 'B' ? 'bold' : 'normal',
             fontStyle: icon === 'I' ? 'italic' : 'normal',
             textDecoration: icon === 'U' ? 'underline' : icon === 'S' ? 'line-through' : 'none',
@@ -258,7 +261,7 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
         padding: '16px 20px',
         color: COLORS.textDark,
         fontSize: 24,
-        fontFamily: FONTS.mono,
+        fontFamily: FONTS.slack,
       }}>
         Message #{channelName}
       </div>

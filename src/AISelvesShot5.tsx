@@ -63,7 +63,7 @@ export const AISelvesShot5: React.FC = () => {
         color: COLORS.accent,
         fontSize: 64,
         marginTop: 48,
-        fontFamily: FONTS.mono,
+        fontFamily: FONTS.slack,
         opacity: textOpacity,
         letterSpacing: 8,
       }}>

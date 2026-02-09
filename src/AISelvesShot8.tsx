@@ -77,7 +77,7 @@ export const AISelvesShot8: React.FC = () => {
   return (
     <AbsoluteFill style={{
       backgroundColor: COLORS.bg,
-      fontFamily: FONTS.mono,
+      fontFamily: FONTS.slack,
     }}>
       {/* LAYER 1: Base UI */}
       <AbsoluteFill style={{
