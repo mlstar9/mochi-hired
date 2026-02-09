@@ -69,24 +69,27 @@ export const AISelvesShot1: React.FC = () => {
         <ChannelHeader channelName="marketing" memberCount={8} />
       </div>
       
-      {/* LAYER 1: Base UI */}
+      {/* LAYER 1: Input box + Typing indicator (fixed at bottom) */}
       <AbsoluteFill style={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        <div style={{marginBottom: 16}}>
-          <TypingIndicator sender={typingSender} visible={showTyping} />
-        </div>
+        {showTyping && (
+          <div style={{marginBottom: 8}}>
+            <TypingIndicator sender={typingSender} visible={true} />
+          </div>
+        )}
         <TypingInputBox channelName="marketing" />
       </AbsoluteFill>
       
-      {/* LAYER 2: Chat bubbles */}
+      {/* LAYER 2: Chat bubbles - positioned to sit just above typing indicator */}
       <AbsoluteFill style={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 230,
+        // Base padding clears input (185px) + typing area when visible (95px) + small gap (5px)
+        paddingBottom: showTyping ? 295 : 200,
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {MESSAGES.map(msg => {
