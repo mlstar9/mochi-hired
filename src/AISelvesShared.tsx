@@ -47,7 +47,7 @@ export const FONTS = {
 export const PROFILE_COLORS: Record<string, string> = {
   'Demi': '#FF6B6B',
   'Semi': '#4ECDC4',
-  'Matan': '#45B7D1',
+  'Raccoon 2.0': '#45B7D1', // Matan's AI
   'Ryan': '#F39C12',
   'Jessie_JJ': '#9B59B6',
   'Nyx': '#E91E63',
