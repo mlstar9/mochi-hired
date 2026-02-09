@@ -72,7 +72,7 @@ export const AISelvesShot9: React.FC = () => {
         <Img
           src={staticFile('images/pika-logo.png')}
           style={{
-            width: '80%', // 80% of comp width = 1536px
+            width: '100%', // full comp width
             height: 'auto',
             objectFit: 'contain',
           }}
