@@ -286,12 +286,12 @@ export const AISelvesMarketing: React.FC = () => {
   
   // Calculate which messages are visible and chat offset
   let chatOffset = 0;
-  const BUBBLE_HEIGHT = 140; // height of one message bubble (scaled 2x)
+  const NUDGE_PX = 50; // nudge distance per message
   const NUDGE_FRAMES = 10; // 10 frames at 24fps
   
   const visibleMessages = SHOT1_MESSAGES.filter(msg => frame >= msg.appearFrame);
   
-  // Calculate offset based on messages shown
+  // Calculate offset based on messages shown (messages nudge up)
   visibleMessages.forEach((msg, idx) => {
     if (idx > 0) {
       const nudgeProgress = interpolate(
@@ -300,7 +300,7 @@ export const AISelvesMarketing: React.FC = () => {
         [0, 1],
         {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
       );
-      chatOffset += BUBBLE_HEIGHT * nudgeProgress;
+      chatOffset += NUDGE_PX * nudgeProgress;
     }
   });
   
@@ -316,13 +316,13 @@ export const AISelvesMarketing: React.FC = () => {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* Messages container */}
+      {/* Messages container - nudges up */}
       <div style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 24,
+        paddingBottom: 120, // space for typing indicator
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {SHOT1_MESSAGES.map(msg => {
@@ -342,8 +342,15 @@ export const AISelvesMarketing: React.FC = () => {
             />
           );
         })}
-        
-        {/* Typing indicator */}
+      </div>
+      
+      {/* Typing indicator - FIXED position above input box */}
+      <div style={{
+        position: 'absolute',
+        bottom: 220, // fixed height above typing box (reference from frame 12)
+        left: 0,
+        right: 0,
+      }}>
         <TypingIndicator sender={typingSender} visible={showTyping} />
       </div>
       
