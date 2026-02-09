@@ -1,0 +1,78 @@
+{
+  "name": "Esports Punk (Pika)",
+  "description": "Chaotic maximalist esports energy with Pika brand colors. Lavender + cream, street art vibes, aggressive layering.",
+  "reference": "League of Legends - Run the Rift",
+  
+  "colors": {
+    "primary": "#C2BEFF",
+    "secondary": "#FEFBCF",
+    "accent": "#FDF7EF",
+    "background": "#111111",
+    "text": "#FFFFFF",
+    "purple": "#C2BEFF",
+    "yellow": "#FEFBCF",
+    "beige": "#FDF7EF",
+    "black": "#111111",
+    "palette": ["#C2BEFF", "#FEFBCF", "#FDF7EF", "#111111", "#FFFFFF"]
+  },
+  
+  "gradients": {
+    "none": "solid colors preferred",
+    "radial_burst": "radial-gradient(circle, #C2BEFF 0%, #111111 70%)"
+  },
+  
+  "typography": {
+    "primary_font": "brush script, marker style (handwritten energy)",
+    "secondary_font": "bold condensed sans-serif (Impact, Bebas)",
+    "style": "mixed - brush + bold sans together",
+    "treatments": [
+      "tilted/rotated angles",
+      "paint splatter accents",
+      "outline with fill mix",
+      "repeated as tiled background pattern"
+    ],
+    "letter_spacing": "tight",
+    "text_transform": "uppercase"
+  },
+  
+  "effects": {
+    "scan_lines": false,
+    "glitch_blocks": false,
+    "paint_splatters": true,
+    "organic_blobs": true,
+    "noise_texture": "grungy",
+    "chrome": "metallic accents on key elements"
+  },
+  
+  "decorations": {
+    "elements": [
+      "paint splatters (purple, yellow)",
+      "warning tape (Pika branded)",
+      "organic blob shapes",
+      "radial burst patterns",
+      "zebra stripes"
+    ],
+    "patterns": [
+      "repeated text tiled diagonally",
+      "radial zoom lines",
+      "confetti particles",
+      "chrome stars"
+    ]
+  },
+  
+  "animation": {
+    "transitions": ["smash cuts", "wipe with splatter", "zoom burst", "shake impact"],
+    "text_reveals": ["slam in", "paint splash reveal", "rapid fire words"],
+    "pacing": "very fast, chaotic, 0.3-1s per scene",
+    "easing": "aggressive overshoot"
+  },
+  
+  "composition": {
+    "style": "maximalist layered",
+    "text_placement": "dynamic, off-center, overlapping",
+    "depth": "multiple layers, foreground splashes"
+  },
+  
+  "mood": ["aggressive", "hype", "chaotic", "energetic", "rebellious"],
+  "keywords": ["esports", "punk", "street art", "maximalist", "hype", "pika"]
+}

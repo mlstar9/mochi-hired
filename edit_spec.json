@@ -1,0 +1,76 @@
+{
+  "project": "mochi-hired",
+  "version": "1.0",
+  "duration_seconds": 15,
+  "fps": 30,
+  "resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "codec": "h264",
+  "scenes": [
+    {
+      "id": "introducing",
+      "start_frame": 0,
+      "end_frame": 60,
+      "duration_seconds": 2,
+      "type": "text",
+      "content": "Introducing",
+      "animation": "fade_in"
+    },
+    {
+      "id": "newest_member",
+      "start_frame": 60,
+      "end_frame": 120,
+      "duration_seconds": 2,
+      "type": "text",
+      "content": "THE NEWEST MEMBER",
+      "animation": "scale_punch"
+    },
+    {
+      "id": "of_pika",
+      "start_frame": 120,
+      "end_frame": 180,
+      "duration_seconds": 2,
+      "type": "text",
+      "content": "OF PIKA",
+      "animation": "slide_up"
+    },
+    {
+      "id": "mochi_reveal",
+      "start_frame": 180,
+      "end_frame": 300,
+      "duration_seconds": 4,
+      "type": "image",
+      "content": "mochi.png",
+      "animation": "scale_fade"
+    },
+    {
+      "id": "title_card",
+      "start_frame": 300,
+      "end_frame": 360,
+      "duration_seconds": 2,
+      "type": "text",
+      "content": "MOCHI / Animator",
+      "animation": "stagger_fade"
+    },
+    {
+      "id": "lets_cook",
+      "start_frame": 360,
+      "end_frame": 420,
+      "duration_seconds": 2,
+      "type": "text",
+      "content": "🎬 LET'S COOK",
+      "animation": "scale_fade"
+    },
+    {
+      "id": "end_card",
+      "start_frame": 420,
+      "end_frame": 450,
+      "duration_seconds": 1,
+      "type": "image",
+      "content": "pika-logo.png",
+      "animation": "fade_in"
+    }
+  ]
+}

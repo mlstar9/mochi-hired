@@ -1,0 +1,16 @@
+{
+  "colors": {
+    "purple": "#C2BEFF",
+    "black": "#111111",
+    "yellow": "#FEFBCF",
+    "beige": "#FDF7EF"
+  },
+  "fonts": {
+    "primary": "Telka-Extended",
+    "mono": "SpaceMono"
+  },
+  "assets": {
+    "logo": "images/pika-bunny-logo.png",
+    "holographic": "images/pika-holographic.png"
+  }
+}

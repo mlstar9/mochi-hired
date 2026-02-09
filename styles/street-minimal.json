@@ -1,0 +1,87 @@
+{
+  "name": "Street Minimal (Pika)",
+  "description": "Clean graphic street style with Pika brand colors. Bold typography with hand-drawn accents. Confident and punchy.",
+  "reference": "True Damage - GIANTS",
+  
+  "colors": {
+    "primary": "#C2BEFF",
+    "secondary": "#FFFFFF",
+    "accent": "#FEFBCF",
+    "background": "#111111",
+    "background_alt": "#C2BEFF",
+    "text": "#FFFFFF",
+    "text_alt": "#111111",
+    "purple": "#C2BEFF",
+    "yellow": "#FEFBCF",
+    "beige": "#FDF7EF",
+    "black": "#111111",
+    "palette": ["#C2BEFF", "#FEFBCF", "#FDF7EF", "#111111", "#FFFFFF"]
+  },
+  
+  "gradients": {
+    "none": "solid colors only - no gradients"
+  },
+  
+  "typography": {
+    "primary_font": "bold condensed italic sans-serif (Oswald, Bebas Neue, Impact)",
+    "secondary_font": "same family, different weight",
+    "style": "bold italic condensed",
+    "size": "massive, fills frame",
+    "treatments": [
+      "solid fill (white on black, black on purple/beige)",
+      "slight drop shadow",
+      "dynamic scaling (mix huge + small)",
+      "stacked/overlapping layouts"
+    ],
+    "letter_spacing": "tight (-0.02em)",
+    "text_transform": "uppercase"
+  },
+  
+  "effects": {
+    "scan_lines": false,
+    "glitch_blocks": false,
+    "hand_drawn_overlay": true,
+    "torn_paper_edges": true,
+    "subtle_shadow": "offset drop shadow on text",
+    "chrome": "metallic stars and icons"
+  },
+  
+  "decorations": {
+    "hand_drawn": [
+      "crowns",
+      "X marks",
+      "arrows",
+      "shields",
+      "checkmarks",
+      "scribbles inside large letters",
+      "underlines",
+      "circles",
+      "Pika rabbit doodles"
+    ],
+    "style": "black marker on purple/beige, or purple on black",
+    "elements": [
+      "torn paper edge frames",
+      "small triangles",
+      "dots",
+      "chrome stars",
+      "iridescent bubbles"
+    ]
+  },
+  
+  "animation": {
+    "transitions": ["hard cuts", "scale punch", "slide in"],
+    "text_reveals": ["pop in", "scale up with shadow", "wipe reveal"],
+    "pacing": "punchy, 0.5-1.5s holds, quick cuts between",
+    "easing": "snappy ease-out"
+  },
+  
+  "composition": {
+    "style": "clean graphic",
+    "text_placement": "centered or dynamic stacked",
+    "negative_space": "used intentionally",
+    "recurring_motifs": "repeat key words/phrases"
+  },
+  
+  "mood": ["confident", "bold", "clean", "punchy", "elegant"],
+  "keywords": ["minimal", "graphic", "street", "doodle", "bold", "pika"]
+}

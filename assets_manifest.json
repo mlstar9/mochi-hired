@@ -1,0 +1,42 @@
+{
+  "project": "mochi-hired",
+  "assets": {
+    "images": [
+      {
+        "id": "mochi_portrait",
+        "path": "public/images/mochi.png",
+        "type": "png",
+        "usage": "character reveal scene"
+      },
+      {
+        "id": "pika_logo",
+        "path": "public/images/pika-logo.png",
+        "type": "png",
+        "usage": "end card"
+      }
+    ],
+    "fonts": [
+      {
+        "id": "telka_extended_bold",
+        "path": "public/fonts/Telka-Extended-Bold.woff2",
+        "family": "Telka Extended",
+        "weight": 700,
+        "usage": "headlines"
+      },
+      {
+        "id": "space_mono_regular",
+        "path": "public/fonts/SpaceMono-Regular.ttf",
+        "family": "Space Mono",
+        "weight": 400,
+        "usage": "body text, labels"
+      }
+    ],
+    "audio": []
+  },
+  "output": {
+    "path": "out/mochi-hired.mp4",
+    "format": "mp4",
+    "codec": "h264",
+    "size_bytes": 1572864
+  }
+}

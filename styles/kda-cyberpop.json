@@ -1,0 +1,62 @@
+{
+  "name": "KDA Cyberpop (Pika)",
+  "description": "Sleek cyberpunk K-pop aesthetic with Pika brand colors. Holographic gradients, futuristic typography, Y2K vibes.",
+  "reference": "K/DA - THE BADDEST",
+  
+  "colors": {
+    "primary": "#C2BEFF",
+    "secondary": "#FDF7EF",
+    "accent": "#FEFBCF",
+    "background": "#111111",
+    "text": "#FFFFFF",
+    "purple": "#C2BEFF",
+    "yellow": "#FEFBCF",
+    "beige": "#FDF7EF",
+    "black": "#111111",
+    "palette": ["#C2BEFF", "#FDF7EF", "#FEFBCF", "#111111", "#FFFFFF"]
+  },
+  
+  "gradients": {
+    "holographic": "linear-gradient(135deg, #FDF7EF 0%, #C2BEFF 50%, #FEFBCF 100%)",
+    "iridescent": "linear-gradient(45deg, #FDF7EF, #C2BEFF, #FEFBCF, #FDF7EF)",
+    "dark_fade": "linear-gradient(180deg, #111111 0%, #1A1A1A 100%)"
+  },
+  
+  "typography": {
+    "primary_font": "Telka Extended, Bebas Neue, Impact",
+    "secondary_font": "Space Mono, Courier New",
+    "style": "bold condensed sans-serif",
+    "treatments": [
+      "outline only (stroke, no fill)",
+      "holographic gradient fill",
+      "mixed outline + filled letters",
+      "repeated/scattered in background at varying opacity"
+    ],
+    "letter_spacing": "tight (-0.03em to -0.05em)",
+    "text_transform": "uppercase"
+  },
+  
+  "effects": {
+    "scan_lines": true,
+    "glitch_blocks": true,
+    "chromatic_aberration": "subtle",
+    "film_grain": "light",
+    "glow": "soft bloom on purple",
+    "chrome": "metallic/holographic texture overlays"
+  },
+  
+  "decorations": {
+    "elements": ["diamond shapes", "thin line frames", "geometric corners", "small arrows", "chrome stars", "iridescent bubbles"],
+    "patterns": ["repeated text at low opacity", "grid lines", "tech UI elements"]
+  },
+  
+  "animation": {
+    "transitions": ["hard cuts", "mask reveals", "scale punch", "glitch flicker"],
+    "text_reveals": ["letter by letter", "block mask wipe", "scale from center"],
+    "pacing": "fast cuts, 0.5-1.5s per scene",
+    "easing": "sharp ease-out"
+  },
+  
+  "mood": ["futuristic", "sleek", "confident", "elegant", "luxurious"],
+  "keywords": ["cyberpunk", "Y2K", "holographic", "chrome", "iridescent", "pika"]
+}

@@ -1,0 +1,84 @@
+{
+  "name": "Pika Clean (DEFAULT)",
+  "description": "Clean, minimal product video style inspired by Google/Gemini. Smooth easing, breathing room, premium feel. USE THIS BY DEFAULT.",
+  "reference": "Google Gemini product videos (Search, Canvas, Nano Banana)",
+  "default": true,
+  
+  "colors": {
+    "primary": "#C2BEFF",
+    "secondary": "#FDF7EF",
+    "accent": "#FEFBCF",
+    "background": "#111111",
+    "background_light": "#FDF7EF",
+    "text": "#FFFFFF",
+    "text_dark": "#111111",
+    "purple": "#C2BEFF",
+    "yellow": "#FEFBCF",
+    "beige": "#FDF7EF",
+    "black": "#111111",
+    "palette": ["#C2BEFF", "#FEFBCF", "#FDF7EF", "#111111", "#FFFFFF"]
+  },
+  
+  "gradients": {
+    "subtle_purple": "linear-gradient(180deg, #111111 0%, #1a1a2e 100%)",
+    "warm_beige": "linear-gradient(180deg, #FDF7EF 0%, #FEFBCF 100%)"
+  },
+  
+  "typography": {
+    "primary_font": "Telka-Extended",
+    "secondary_font": "SpaceMono",
+    "style": "clean, minimal",
+    "treatments": [
+      "large bold headings",
+      "minimal text - few words, big impact",
+      "color accent on key words (purple)",
+      "let text breathe"
+    ],
+    "letter_spacing": "normal to slightly tight",
+    "text_transform": "mixed (not all caps)"
+  },
+  
+  "effects": {
+    "scan_lines": false,
+    "glitch_blocks": false,
+    "soft_shadows": true,
+    "subtle_glow": "purple tint on key elements",
+    "depth": "floating cards with soft shadows"
+  },
+  
+  "decorations": {
+    "elements": [
+      "Pika bunny logo",
+      "rounded corners (12-16px)",
+      "soft purple glow accents",
+      "clean geometric shapes"
+    ],
+    "patterns": ["minimal - white space is intentional"]
+  },
+  
+  "animation": {
+    "transitions": ["crossfade", "smooth zoom", "slide with ease-out"],
+    "text_reveals": ["fade + scale in (0.95 → 1)", "slide up + fade"],
+    "pacing": "let moments breathe, 3-5s per scene minimum",
+    "durations": {
+      "ui_elements": "300-500ms",
+      "scene_holds": "2-3s minimum",
+      "transitions": "300-500ms"
+    },
+    "easing": {
+      "enter": "ease-out or spring (fast in, slow settle)",
+      "exit": "ease-in (slow start, fast out)",
+      "default": "cubic-bezier(0.16, 1, 0.3, 1)"
+    }
+  },
+  
+  "composition": {
+    "style": "clean, minimal, premium",
+    "text_placement": "centered or clean alignment",
+    "negative_space": "intentional breathing room",
+    "ui_mockups": "zoomed-in details, cursor interactions, floating cards"
+  },
+  
+  "mood": ["premium", "clean", "confident", "trustworthy", "modern"],
+  "keywords": ["minimal", "clean", "google", "gemini", "product", "pika", "default"]
+}
