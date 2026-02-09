@@ -109,7 +109,7 @@ export const AISelvesShot7: React.FC = () => {
                   top: -20,
                   fontSize: 18,
                   color: COLORS.accent,
-                  opacity: appearProgress,
+                  opacity: entranceProgress,
                 }}>
                   📩 Direct Message to Demi
                 </div>
