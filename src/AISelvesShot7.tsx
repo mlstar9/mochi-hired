@@ -90,7 +90,7 @@ export const AISelvesShot7: React.FC = () => {
       }}>
         {MESSAGES.map(msg => {
           const isVisible = frame >= msg.appearFrame;
-          const appearProgress = interpolate(
+          const entranceProgress = interpolate(
             frame,
             [msg.appearFrame, msg.appearFrame + 8],
             [0, 1],
@@ -116,7 +116,8 @@ export const AISelvesShot7: React.FC = () => {
               )}
               <MessageBubble
                 message={msg}
-                opacity={isVisible ? appearProgress : 0}
+                opacity={isVisible ? 1 : 0}
+              entranceProgress={entranceProgress}
               />
             </div>
           );

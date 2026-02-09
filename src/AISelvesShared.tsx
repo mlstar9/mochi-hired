@@ -64,19 +64,25 @@ export const PROFILE_IMAGES: Record<string, string> = {
 // Margin to align with typing box
 export const SIDE_MARGIN = 48;
 
-// Message component - Slack style
+// Message component - Slack style with entrance animation
 export const MessageBubble: React.FC<{
   message: Message;
   opacity: number;
-}> = ({message, opacity}) => {
+  entranceProgress?: number; // 0-1, controls slide-up + fade
+}> = ({message, opacity, entranceProgress = 1}) => {
   const hasImage = PROFILE_IMAGES[message.sender];
+  
+  // Slack-style entrance: subtle slide up (10px) + fade
+  const slideY = interpolate(entranceProgress, [0, 1], [10, 0], { extrapolateRight: 'clamp' });
+  const fadeOpacity = opacity * entranceProgress;
   
   return (
     <div style={{
       display: 'flex',
       gap: 16,
       padding: `8px ${SIDE_MARGIN}px`,
-      opacity,
+      opacity: fadeOpacity,
+      transform: `translateY(${slideY}px)`,
     }}>
       {/* Avatar - Slack uses rounded rect (4px radius), not circles */}
       {hasImage ? (
