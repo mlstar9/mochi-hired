@@ -1,4 +1,4 @@
-import {useCurrentFrame, interpolate, staticFile} from 'remotion';
+import {useCurrentFrame, interpolate, staticFile, Img} from 'remotion';
 
 // Font face declarations (load via CSS in remotion.config.ts or use staticFile)
 // Primary: Telka-Extended (headings, bold text)
@@ -39,7 +39,7 @@ export const FONTS = {
   mono: "'Space Mono', 'SpaceMono', monospace", // chat text, UI
 };
 
-// Profile pics - placeholder colors
+// Profile pics - colors and images
 export const PROFILE_COLORS: Record<string, string> = {
   'Demi': '#FF6B6B',
   'Semi': '#4ECDC4',
@@ -48,6 +48,12 @@ export const PROFILE_COLORS: Record<string, string> = {
   'Jessie_JJ': '#9B59B6',
   'Nyx': '#E91E63',
   'Anthony': '#2ECC71',
+  'Leti': '#3498DB', // me (Mochi)
+};
+
+// Profile images (use staticFile paths)
+export const PROFILE_IMAGES: Record<string, string> = {
+  'Leti': 'images/mochi-pfp.png', // me (Mochi)
   'Leti': '#3498DB',
 };
 
@@ -59,6 +65,8 @@ export const MessageBubble: React.FC<{
   message: Message;
   opacity: number;
 }> = ({message, opacity}) => {
+  const hasImage = PROFILE_IMAGES[message.sender];
+  
   return (
     <div style={{
       display: 'flex',
@@ -67,22 +75,35 @@ export const MessageBubble: React.FC<{
       opacity,
     }}>
       {/* Profile pic - 2x size */}
-      <div style={{
-        width: 80,
-        height: 80,
-        borderRadius: 12,
-        backgroundColor: PROFILE_COLORS[message.sender] || '#666',
-        flexShrink: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 36,
-        fontFamily: FONTS.primary,
-      }}>
-        {message.sender[0]}
-      </div>
+      {hasImage ? (
+        <Img
+          src={staticFile(PROFILE_IMAGES[message.sender])}
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 12,
+            objectFit: 'cover',
+            flexShrink: 0,
+          }}
+        />
+      ) : (
+        <div style={{
+          width: 80,
+          height: 80,
+          borderRadius: 12,
+          backgroundColor: PROFILE_COLORS[message.sender] || '#666',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: 36,
+          fontFamily: FONTS.primary,
+        }}>
+          {message.sender[0]}
+        </div>
+      )}
       
       {/* Content */}
       <div style={{flex: 1}}>
@@ -138,6 +159,8 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
   const frame = useCurrentFrame();
   if (!visible) return null;
   
+  const hasImage = PROFILE_IMAGES[sender];
+  
   return (
     <div style={{
       display: 'flex',
@@ -145,21 +168,34 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
       padding: `16px ${SIDE_MARGIN}px`,
       opacity: 0.7,
     }}>
-      <div style={{
-        width: 80,
-        height: 80,
-        borderRadius: 12,
-        backgroundColor: PROFILE_COLORS[sender] || '#666',
-        flexShrink: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        color: 'white',
-        fontWeight: 'bold',
-        fontSize: 36,
-      }}>
-        {sender[0]}
-      </div>
+      {hasImage ? (
+        <Img
+          src={staticFile(PROFILE_IMAGES[sender])}
+          style={{
+            width: 80,
+            height: 80,
+            borderRadius: 12,
+            objectFit: 'cover',
+            flexShrink: 0,
+          }}
+        />
+      ) : (
+        <div style={{
+          width: 80,
+          height: 80,
+          borderRadius: 12,
+          backgroundColor: PROFILE_COLORS[sender] || '#666',
+          flexShrink: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: 'white',
+          fontWeight: 'bold',
+          fontSize: 36,
+        }}>
+          {sender[0]}
+        </div>
+      )}
       <div style={{display: 'flex', alignItems: 'center', gap: 10}}>
         {[0, 1, 2].map(i => (
           <div
