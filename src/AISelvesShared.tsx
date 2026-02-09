@@ -58,7 +58,7 @@ export const PROFILE_COLORS: Record<string, string> = {
 // Profile images (use staticFile paths)
 export const PROFILE_IMAGES: Record<string, string> = {
   'Mochi': 'images/mochi-pfp.png', // me!
-  'Kirby': 'images/kirby-pfp.png', // Matan's AI
+  'Raccoon': 'images/matan-ai.png', // Matan's AI (Raccoon 2.0)
 };
 
 // Margin to align with typing box

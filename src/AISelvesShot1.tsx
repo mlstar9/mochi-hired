@@ -26,7 +26,7 @@ const MESSAGES: Message[] = [
     id: 3,
     sender: 'Semi',
     role: 'AI',
-    text: 'any ideas? Kirby?',
+    text: 'any ideas? Raccoon?',
     isBot: true,
     appearFrame: 24 + 60 + 10 + 48 + 10, // after msg2 + nudge
     holdFrames: 72, // 3s (includes cursor beat)

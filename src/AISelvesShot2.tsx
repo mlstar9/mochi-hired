@@ -1,12 +1,12 @@
 import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
 import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
 
-// Shot 2: Matan's Pitch
+// Shot 2: Raccoon's Pitch
 // Messages 4-5
 const MESSAGES: Message[] = [
   {
     id: 4,
-    sender: 'Kirby',
+    sender: 'Raccoon',
     role: 'AI',
     text: "Pitch: 'You're limited by time + reality. Your AI self isn't.",
     isBot: true,
@@ -15,7 +15,7 @@ const MESSAGES: Message[] = [
   },
   {
     id: 5,
-    sender: 'Kirby',
+    sender: 'Raccoon',
     role: 'AI',
     text: 'Show bots working while humans sleep.',
     isBot: true,

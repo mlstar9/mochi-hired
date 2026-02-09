@@ -22,7 +22,7 @@ const REACTIONS = [
   { emoji: '👍', sender: 'Semi', delay: 0 },
   { emoji: '🙄', sender: 'Ryan', delay: 4 },
   { emoji: '😂', sender: 'Jessie', delay: 8 },
-  { emoji: '💀', sender: 'Kirby', delay: 12 },
+  { emoji: '💀', sender: 'Raccoon', delay: 12 },
   { emoji: '🔥', sender: 'Anthony', delay: 16 },
 ];
 
