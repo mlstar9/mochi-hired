@@ -1,4 +1,5 @@
 import {Composition, registerRoot} from 'remotion';
+import {AISelvesMarketing} from './AISelvesMarketing';
 import {Blank} from './Blank';
 import {MochiHired} from './MochiHired';
 import {MochiHiredV2} from './MochiHiredV2';
@@ -15,6 +16,14 @@ import {PikaAISelfDemo} from './PikaAISelfDemo';
 const RemotionRoot: React.FC = () => {
   return (
     <>
+      <Composition
+        id="AISelvesMarketing"
+        component={AISelvesMarketing}
+        durationInFrames={248} // ~10s shot 1
+        fps={24}
+        width={1920}
+        height={1080}
+      />
       <Composition
         id="Blank"
         component={Blank}
