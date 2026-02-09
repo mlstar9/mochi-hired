@@ -316,14 +316,12 @@ export const AISelvesMarketing: React.FC = () => {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* Messages container - nudges up */}
+      {/* Messages container */}
       <div style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 200, // 200px from bottom
-        transform: `translateY(-${chatOffset}px)`,
       }}>
         {SHOT1_MESSAGES.map(msg => {
           const isVisible = frame >= msg.appearFrame;
