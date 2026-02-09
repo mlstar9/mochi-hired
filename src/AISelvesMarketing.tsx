@@ -25,33 +25,33 @@ const COLORS = {
   inputBorder: '#444444',
 };
 
-// Slack typing input box
+// Slack typing input box - scaled 2x, aligned with messages
 const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) => {
   return (
     <div style={{
-      margin: '0 24px 24px 24px',
+      margin: `0 ${SIDE_MARGIN}px ${SIDE_MARGIN}px ${SIDE_MARGIN}px`,
       backgroundColor: COLORS.inputBg,
-      border: `1px solid ${COLORS.inputBorder}`,
-      borderRadius: 12,
+      border: `2px solid ${COLORS.inputBorder}`,
+      borderRadius: 16,
       overflow: 'hidden',
     }}>
       {/* Formatting toolbar */}
       <div style={{
         display: 'flex',
-        gap: 4,
-        padding: '8px 12px',
-        borderBottom: `1px solid ${COLORS.inputBorder}`,
+        gap: 8,
+        padding: '12px 20px',
+        borderBottom: `2px solid ${COLORS.inputBorder}`,
       }}>
-        {['B', 'I', 'U', 'S', '🔗', '⋮≡', '•≡', '1≡', '</>'].map((icon, i) => (
+        {['B', 'I', 'U', 'S', '🔗', '☰', '•', '1.', '</>'].map((icon, i) => (
           <div key={i} style={{
-            width: 28,
-            height: 28,
+            width: 40,
+            height: 40,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             color: COLORS.textMuted,
-            fontSize: 14,
-            fontWeight: icon === 'B' ? 'bold' : icon === 'I' ? 'normal' : 'normal',
+            fontSize: 22,
+            fontWeight: icon === 'B' ? 'bold' : 'normal',
             fontStyle: icon === 'I' ? 'italic' : 'normal',
             textDecoration: icon === 'U' ? 'underline' : icon === 'S' ? 'line-through' : 'none',
           }}>
@@ -62,9 +62,9 @@ const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) => {
       
       {/* Input area */}
       <div style={{
-        padding: '12px 16px',
+        padding: '20px 24px',
         color: COLORS.textDark,
-        fontSize: 16,
+        fontSize: 28,
       }}>
         Message #{channelName}
       </div>
@@ -74,33 +74,33 @@ const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) => {
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '8px 12px',
+        padding: '12px 20px',
       }}>
-        <div style={{display: 'flex', gap: 8}}>
+        <div style={{display: 'flex', gap: 16}}>
           {['+', 'Aa', '😊', '@', '📎', '🎤'].map((icon, i) => (
             <div key={i} style={{
-              width: 28,
-              height: 28,
+              width: 40,
+              height: 40,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: COLORS.textMuted,
-              fontSize: 16,
+              fontSize: 26,
             }}>
               {icon}
             </div>
           ))}
         </div>
         <div style={{
-          width: 32,
-          height: 32,
+          width: 48,
+          height: 48,
           backgroundColor: COLORS.inputBorder,
-          borderRadius: 6,
+          borderRadius: 8,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
           color: COLORS.textMuted,
-          fontSize: 16,
+          fontSize: 24,
         }}>
           ▶
         </div>
@@ -121,7 +121,10 @@ const PROFILE_COLORS: Record<string, string> = {
   'Leti': '#3498DB',
 };
 
-// Message component
+// Margin to align with typing box
+const SIDE_MARGIN = 48;
+
+// Message component - scaled 2x
 const MessageBubble: React.FC<{
   message: Message;
   opacity: number;
@@ -129,15 +132,15 @@ const MessageBubble: React.FC<{
   return (
     <div style={{
       display: 'flex',
-      gap: 16,
-      padding: '12px 24px',
+      gap: 24,
+      padding: `16px ${SIDE_MARGIN}px`,
       opacity,
     }}>
-      {/* Profile pic */}
+      {/* Profile pic - 2x size */}
       <div style={{
-        width: 48,
-        height: 48,
-        borderRadius: 8,
+        width: 80,
+        height: 80,
+        borderRadius: 12,
         backgroundColor: PROFILE_COLORS[message.sender] || '#666',
         flexShrink: 0,
         display: 'flex',
@@ -145,7 +148,7 @@ const MessageBubble: React.FC<{
         justifyContent: 'center',
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 36,
       }}>
         {message.sender[0]}
       </div>
@@ -153,11 +156,11 @@ const MessageBubble: React.FC<{
       {/* Content */}
       <div style={{flex: 1}}>
         {/* Header */}
-        <div style={{display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4}}>
+        <div style={{display: 'flex', alignItems: 'center', gap: 12, marginBottom: 8}}>
           <span style={{
             color: COLORS.text,
             fontWeight: 'bold',
-            fontSize: 18,
+            fontSize: 32,
           }}>
             {message.sender}
           </span>
@@ -165,9 +168,9 @@ const MessageBubble: React.FC<{
             <span style={{
               backgroundColor: COLORS.botBadge,
               color: 'white',
-              padding: '2px 6px',
-              borderRadius: 4,
-              fontSize: 11,
+              padding: '4px 10px',
+              borderRadius: 6,
+              fontSize: 18,
               fontWeight: 'bold',
             }}>
               BOT
@@ -175,17 +178,17 @@ const MessageBubble: React.FC<{
           )}
           <span style={{
             color: COLORS.textMuted,
-            fontSize: 14,
+            fontSize: 24,
           }}>
             {message.role}
           </span>
         </div>
         
-        {/* Message text */}
+        {/* Message text - 2x size */}
         <div style={{
           color: COLORS.text,
-          fontSize: 18,
-          lineHeight: 1.5,
+          fontSize: 32,
+          lineHeight: 1.4,
         }}>
           {message.text}
         </div>
@@ -194,7 +197,7 @@ const MessageBubble: React.FC<{
   );
 };
 
-// Typing indicator
+// Typing indicator - scaled 2x
 const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({sender, visible}) => {
   const frame = useCurrentFrame();
   if (!visible) return null;
@@ -202,14 +205,14 @@ const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({sender, 
   return (
     <div style={{
       display: 'flex',
-      gap: 16,
-      padding: '12px 24px',
+      gap: 24,
+      padding: `16px ${SIDE_MARGIN}px`,
       opacity: 0.7,
     }}>
       <div style={{
-        width: 48,
-        height: 48,
-        borderRadius: 8,
+        width: 80,
+        height: 80,
+        borderRadius: 12,
         backgroundColor: PROFILE_COLORS[sender] || '#666',
         flexShrink: 0,
         display: 'flex',
@@ -217,17 +220,17 @@ const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({sender, 
         justifyContent: 'center',
         color: 'white',
         fontWeight: 'bold',
-        fontSize: 20,
+        fontSize: 36,
       }}>
         {sender[0]}
       </div>
-      <div style={{display: 'flex', alignItems: 'center', gap: 6}}>
+      <div style={{display: 'flex', alignItems: 'center', gap: 10}}>
         {[0, 1, 2].map(i => (
           <div
             key={i}
             style={{
-              width: 10,
-              height: 10,
+              width: 16,
+              height: 16,
               borderRadius: '50%',
               backgroundColor: COLORS.textMuted,
               opacity: interpolate(
@@ -283,7 +286,7 @@ export const AISelvesMarketing: React.FC = () => {
   
   // Calculate which messages are visible and chat offset
   let chatOffset = 0;
-  const BUBBLE_HEIGHT = 92; // exact height to reveal 1 bubble
+  const BUBBLE_HEIGHT = 140; // height of one message bubble (scaled 2x)
   const NUDGE_FRAMES = 10; // 10 frames at 24fps
   
   const visibleMessages = SHOT1_MESSAGES.filter(msg => frame >= msg.appearFrame);
@@ -313,15 +316,14 @@ export const AISelvesMarketing: React.FC = () => {
       display: 'flex',
       flexDirection: 'column',
     }}>
-      {/* Messages container - scaled up for tighter crop */}
+      {/* Messages container */}
       <div style={{
         flex: 1,
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 16,
-        transform: `translateY(-${chatOffset}px) scale(1.15)`,
-        transformOrigin: 'center bottom',
+        paddingBottom: 24,
+        transform: `translateY(-${chatOffset}px)`,
       }}>
         {SHOT1_MESSAGES.map(msg => {
           const isVisible = frame >= msg.appearFrame;
