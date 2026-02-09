@@ -6,7 +6,7 @@ import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} 
 const MESSAGES: Message[] = [
   {
     id: 4,
-    sender: 'Matan',
+    sender: 'Kirby',
     role: 'AI',
     text: "Pitch: 'You're limited by time + reality. Your AI self isn't.",
     isBot: true,
@@ -15,7 +15,7 @@ const MESSAGES: Message[] = [
   },
   {
     id: 5,
-    sender: 'Matan',
+    sender: 'Kirby',
     role: 'AI',
     text: 'Show bots working while humans sleep.',
     isBot: true,
