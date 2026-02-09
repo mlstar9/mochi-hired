@@ -64,6 +64,54 @@ export const PROFILE_IMAGES: Record<string, string> = {
 // Margin to align with typing box
 export const SIDE_MARGIN = 48;
 
+// Channel header component - Slack style
+export const ChannelHeader: React.FC<{channelName: string; memberCount?: number}> = ({
+  channelName,
+  memberCount = 12,
+}) => {
+  return (
+    <div style={{
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      padding: `16px ${SIDE_MARGIN}px`,
+      borderBottom: `1px solid ${COLORS.inputBorder}`,
+      backgroundColor: COLORS.bg,
+    }}>
+      <div style={{display: 'flex', alignItems: 'center', gap: 8}}>
+        <span style={{
+          color: COLORS.textBold,
+          fontSize: 32,
+          fontWeight: 'bold',
+          fontFamily: FONTS.slack,
+        }}>
+          # {channelName}
+        </span>
+        <span style={{
+          color: COLORS.textMuted,
+          fontSize: 24,
+          fontFamily: FONTS.slack,
+        }}>
+          |
+        </span>
+        <span style={{
+          color: COLORS.textMuted,
+          fontSize: 24,
+          fontFamily: FONTS.slack,
+        }}>
+          {memberCount} members
+        </span>
+      </div>
+      {/* Right side icons */}
+      <div style={{display: 'flex', gap: 16}}>
+        {['🔍', '📌', '👤'].map((icon, i) => (
+          <span key={i} style={{fontSize: 24, opacity: 0.6}}>{icon}</span>
+        ))}
+      </div>
+    </div>
+  );
+};
+
 // Message component - Slack style with entrance animation
 export const MessageBubble: React.FC<{
   message: Message;

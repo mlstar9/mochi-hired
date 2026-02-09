@@ -1,5 +1,5 @@
 import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
-import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox} from './AISelvesShared';
+import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, ChannelHeader} from './AISelvesShared';
 
 // Shot 2: Raccoon's Pitch
 // Messages 4-5
@@ -55,6 +55,11 @@ export const AISelvesShot2: React.FC = () => {
       backgroundColor: COLORS.bg,
       fontFamily: FONTS.slack,
     }}>
+      {/* Channel header at top */}
+      <div style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10}}>
+        <ChannelHeader channelName="marketing" memberCount={8} />
+      </div>
+      
       {/* LAYER 1: Base UI */}
       <AbsoluteFill style={{
         display: 'flex',

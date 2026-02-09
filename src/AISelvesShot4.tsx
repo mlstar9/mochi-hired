@@ -1,5 +1,5 @@
 import {AbsoluteFill, useCurrentFrame, interpolate, Img, staticFile} from 'remotion';
-import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, EmojiReaction, SIDE_MARGIN} from './AISelvesShared';
+import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, ChannelHeader, EmojiReaction, SIDE_MARGIN} from './AISelvesShared';
 
 // Shot 4: Nyx Selfie Drop + Reactions
 // Message 10 + reactions
@@ -59,6 +59,11 @@ export const AISelvesShot4: React.FC = () => {
       backgroundColor: COLORS.bg,
       fontFamily: FONTS.slack,
     }}>
+      {/* Channel header at top */}
+      <div style={{position: 'absolute', top: 0, left: 0, right: 0, zIndex: 10}}>
+        <ChannelHeader channelName="marketing" memberCount={8} />
+      </div>
+      
       {/* LAYER 1: Base UI */}
       <AbsoluteFill style={{
         display: 'flex',
