@@ -81,7 +81,7 @@ export const AISelvesShot4: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 50,
+        paddingBottom: 230,
       }}>
         {/* Nyx message */}
         <MessageBubble message={NYX_MESSAGE} opacity={messageVisible ? messageOpacity : 0} />

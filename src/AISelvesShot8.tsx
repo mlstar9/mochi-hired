@@ -37,7 +37,7 @@ const MESSAGES: Message[] = [
 export const AISelvesShot8: React.FC = () => {
   const frame = useCurrentFrame();
   
-  const NUDGE_PX = 120;
+  const NUDGE_PX = 95;
   const NUDGE_FRAMES = 10;
   
   let chatOffset = 0;
@@ -101,7 +101,7 @@ export const AISelvesShot8: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 50,
+        paddingBottom: 230,
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {MESSAGES.slice(0, 2).map(msg => {
