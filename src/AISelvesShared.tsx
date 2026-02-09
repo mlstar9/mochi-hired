@@ -243,7 +243,8 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
                 opacity,
               }}
             />
-        ))}
+          );
+        })}
       </div>
     </div>
   );
