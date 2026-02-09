@@ -72,15 +72,17 @@ export const AISelvesShot7: React.FC = () => {
         <ChannelHeader channelName="marketing" memberCount={8} />
       </div>
       
-      {/* LAYER 1: Base UI */}
+      {/* LAYER 1: Input box + Typing indicator (fixed at bottom) */}
       <AbsoluteFill style={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        <div style={{marginBottom: 16}}>
-          <TypingIndicator sender={typingSender} visible={showTyping} />
-        </div>
+        {showTyping && (
+          <div style={{marginBottom: 8}}>
+            <TypingIndicator sender={typingSender} visible={true} />
+          </div>
+        )}
         {/* Show DM input when DM message is sent */}
         <TypingInputBox channelName={dmVisible ? "Demi" : "marketing"} />
       </AbsoluteFill>
@@ -90,7 +92,7 @@ export const AISelvesShot7: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 230,
+        paddingBottom: showTyping ? 295 : 200,
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {MESSAGES.map(msg => {
