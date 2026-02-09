@@ -95,7 +95,7 @@ export const AISelvesShot6: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 280,
+        paddingBottom: 200,
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {MESSAGES.map(msg => {
