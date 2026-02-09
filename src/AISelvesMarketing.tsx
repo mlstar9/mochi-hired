@@ -322,7 +322,7 @@ export const AISelvesMarketing: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 120, // space for typing indicator
+        paddingBottom: 430, // 50px above typing indicator (280 + 100 + 50)
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {SHOT1_MESSAGES.map(msg => {
