@@ -49,20 +49,22 @@ export const AISelvesShot3: React.FC = () => {
   const NUDGE_PX = 95;
   const NUDGE_FRAMES = 10;
   
-  let chatOffset = 0;
-  const visibleMessages = MESSAGES.filter(msg => frame >= msg.appearFrame);
-  
-  visibleMessages.forEach((msg, idx) => {
-    if (idx > 0) {
-      const nudgeProgress = interpolate(
-        frame,
-        [msg.appearFrame, msg.appearFrame + NUDGE_FRAMES],
-        [0, 1],
-        {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
-      );
-      chatOffset += NUDGE_PX * nudgeProgress;
+  const getNudgeOffset = (msgIndex: number): number => {
+    let offset = 0;
+    for (let i = msgIndex + 1; i < MESSAGES.length; i++) {
+      const laterMsg = MESSAGES[i];
+      if (frame >= laterMsg.appearFrame) {
+        const nudgeProgress = interpolate(
+          frame,
+          [laterMsg.appearFrame, laterMsg.appearFrame + NUDGE_FRAMES],
+          [0, 1],
+          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+        );
+        offset += NUDGE_PX * nudgeProgress;
+      }
     }
-  });
+    return offset;
+  };
   
   const nextMessage = MESSAGES.find(msg => frame < msg.appearFrame && frame >= msg.appearFrame - 20);
   const showTyping = nextMessage !== undefined;
@@ -94,9 +96,8 @@ export const AISelvesShot3: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
         paddingBottom: 230,
-        transform: `translateY(-${chatOffset}px)`,
       }}>
-        {MESSAGES.map(msg => {
+        {MESSAGES.map((msg, idx) => {
           const isVisible = frame >= msg.appearFrame;
           const entranceProgress = interpolate(
             frame,
@@ -104,14 +105,16 @@ export const AISelvesShot3: React.FC = () => {
             [0, 1],
             {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
           );
+          const nudgeOffset = getNudgeOffset(idx);
           
           return (
-            <MessageBubble
-              key={msg.id}
-              message={msg}
-              opacity={isVisible ? 1 : 0}
-              entranceProgress={entranceProgress}
-            />
+            <div key={msg.id} style={{transform: `translateY(-${nudgeOffset}px)`}}>
+              <MessageBubble
+                message={msg}
+                opacity={isVisible ? 1 : 0}
+                entranceProgress={entranceProgress}
+              />
+            </div>
           );
         })}
       </AbsoluteFill>
