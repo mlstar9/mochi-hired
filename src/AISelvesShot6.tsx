@@ -95,7 +95,7 @@ export const AISelvesShot6: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 220,
+        paddingBottom: 200,
       }}>
         {MESSAGES.map((msg, idx) => {
           const isVisible = frame >= msg.appearFrame;
