@@ -223,7 +223,7 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
       fontSize: 22,
       fontFamily: FONTS.slack,
       height: 30,
-      marginTop: -30, // pull up 30px
+      marginTop: 0, // sits right below input box
       opacity: visible ? 1 : 0,
     }}>
       <span style={{fontWeight: 'bold', color: COLORS.text}}>{sender}</span> is typing...
@@ -235,7 +235,7 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
 export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) => {
   return (
     <div style={{
-      margin: `0 ${SIDE_MARGIN}px ${SIDE_MARGIN}px ${SIDE_MARGIN}px`,
+      margin: `0 ${SIDE_MARGIN}px 8px ${SIDE_MARGIN}px`, // reduced bottom margin
       backgroundColor: COLORS.inputBg,
       border: `1px solid ${COLORS.inputBorder}`,
       borderRadius: 12,
