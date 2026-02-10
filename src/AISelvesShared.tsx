@@ -230,27 +230,29 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
   );
 };
 
-// Slack typing input box - scaled 2x, aligned with messages, Pika fonts
+// Slack typing input box - matches real Slack UI
 export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) => {
   return (
     <div style={{
-      margin: `0 ${SIDE_MARGIN}px 8px ${SIDE_MARGIN}px`, // reduced bottom margin
+      margin: `0 ${SIDE_MARGIN}px 16px ${SIDE_MARGIN}px`,
       backgroundColor: COLORS.inputBg,
       border: `1px solid ${COLORS.inputBorder}`,
       borderRadius: 12,
       overflow: 'hidden',
     }}>
-      {/* Formatting toolbar */}
+      {/* Formatting toolbar - matches real Slack */}
       <div style={{
         display: 'flex',
-        gap: 4,
-        padding: '10px 16px',
+        alignItems: 'center',
+        gap: 2,
+        padding: '8px 12px',
         borderBottom: `1px solid ${COLORS.inputBorder}`,
       }}>
-        {['B', 'I', 'U', 'S', '🔗', '☰', '•', '1.', '</>'].map((icon, i) => (
+        {/* Text formatting: B I U S */}
+        {['B', 'I', 'U', 'S'].map((icon, i) => (
           <div key={i} style={{
-            width: 36,
-            height: 36,
+            width: 32,
+            height: 32,
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
@@ -264,11 +266,27 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
             {icon}
           </div>
         ))}
+        {/* Divider */}
+        <div style={{width: 1, height: 20, backgroundColor: COLORS.inputBorder, margin: '0 8px'}} />
+        {/* Link, lists, code */}
+        {['🔗', '1≡', '•≡', '</>', '⌘'].map((icon, i) => (
+          <div key={i} style={{
+            width: 32,
+            height: 32,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: COLORS.textMuted,
+            fontSize: 16,
+          }}>
+            {icon}
+          </div>
+        ))}
       </div>
       
       {/* Input area */}
       <div style={{
-        padding: '16px 20px',
+        padding: '14px 16px',
         color: COLORS.textDark,
         fontSize: 24,
         fontFamily: FONTS.slack,
@@ -276,40 +294,90 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
         Message #{channelName}
       </div>
       
-      {/* Bottom toolbar */}
+      {/* Bottom toolbar - matches real Slack */}
       <div style={{
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '10px 16px',
+        padding: '8px 12px',
       }}>
-        <div style={{display: 'flex', gap: 12}}>
-          {['+', 'Aa', '😊', '@', '📎', '🎤'].map((icon, i) => (
+        <div style={{display: 'flex', alignItems: 'center', gap: 4}}>
+          {/* + button */}
+          <div style={{
+            width: 32,
+            height: 32,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: COLORS.textMuted,
+            fontSize: 24,
+            fontWeight: 'bold',
+          }}>
+            +
+          </div>
+          {/* Divider */}
+          <div style={{width: 1, height: 20, backgroundColor: COLORS.inputBorder, margin: '0 6px'}} />
+          {/* Aa, emoji, @, attachments, mic */}
+          {['Aa', '😊', '@', '📎', '🎤'].map((icon, i) => (
             <div key={i} style={{
-              width: 36,
-              height: 36,
+              width: 32,
+              height: 32,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               color: COLORS.textMuted,
-              fontSize: 22,
+              fontSize: icon === 'Aa' ? 16 : 20,
+              fontFamily: FONTS.slack,
+            }}>
+              {icon}
+            </div>
+          ))}
+          {/* Divider */}
+          <div style={{width: 1, height: 20, backgroundColor: COLORS.inputBorder, margin: '0 6px'}} />
+          {/* Drive, checkbox */}
+          {['📁', '☑'].map((icon, i) => (
+            <div key={i} style={{
+              width: 32,
+              height: 32,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              color: COLORS.textMuted,
+              fontSize: 18,
             }}>
               {icon}
             </div>
           ))}
         </div>
-        <div style={{
-          width: 40,
-          height: 40,
-          backgroundColor: COLORS.accent,
-          borderRadius: 8,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: '#111111',
-          fontSize: 20,
-        }}>
-          ▶
+        {/* Send button - green like Slack */}
+        <div style={{display: 'flex', alignItems: 'center'}}>
+          <div style={{
+            height: 36,
+            padding: '0 12px',
+            backgroundColor: '#007a5a', // Slack green
+            borderRadius: '6px 0 0 6px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: 18,
+          }}>
+            ▶
+          </div>
+          <div style={{
+            height: 36,
+            width: 28,
+            backgroundColor: '#007a5a',
+            borderLeft: '1px solid rgba(255,255,255,0.2)',
+            borderRadius: '0 6px 6px 0',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'white',
+            fontSize: 12,
+          }}>
+            ▼
+          </div>
         </div>
       </div>
     </div>
