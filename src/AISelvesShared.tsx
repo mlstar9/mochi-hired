@@ -412,7 +412,7 @@ export const TypingInputBox: React.FC<{channelName: string}> = ({channelName}) =
   );
 };
 
-// Emoji reaction component
+// Emoji reaction component with bouncy pop-in
 export const EmojiReaction: React.FC<{
   emoji: string;
   sender: string;
@@ -421,16 +421,25 @@ export const EmojiReaction: React.FC<{
   const frame = useCurrentFrame();
   const appearProgress = interpolate(
     frame - delay,
-    [0, 8],
+    [0, 6],
     [0, 1],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+    {
+      extrapolateLeft: 'clamp', 
+      extrapolateRight: 'clamp',
+      easing: Easing.out(Easing.quad),
+    }
   );
   
+  // Bouncy scale: 0 → 1.15 → 0.95 → 1 (overshoot + settle)
   const scale = interpolate(
     frame - delay,
-    [0, 6, 10],
-    [0, 1.2, 1],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+    [0, 4, 8, 12],
+    [0, 1.15, 0.95, 1],
+    {
+      extrapolateLeft: 'clamp', 
+      extrapolateRight: 'clamp',
+      easing: Easing.out(Easing.quad),
+    }
   );
   
   return (
