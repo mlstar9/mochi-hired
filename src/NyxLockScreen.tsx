@@ -48,14 +48,14 @@ const Notification: React.FC<{
   const opacity = entrance;
   
   const stackIndex = totalVisible - 1 - index;
-  const targetY = stackIndex * 96;
+  const targetY = stackIndex * 130;
   
   return (
     <div style={{
       position: 'absolute',
-      top: 620 + targetY,
-      left: 20,
-      right: 20,
+      top: 580 + targetY,
+      left: 24,
+      right: 24,
       opacity,
       transform: `translateY(${slideY}px) scale(${scale})`,
       transformOrigin: 'top center',
@@ -64,10 +64,10 @@ const Notification: React.FC<{
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         backdropFilter: 'blur(40px) saturate(180%)',
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-        borderRadius: 26,
-        padding: '14px 16px 14px 14px',
+        borderRadius: 30,
+        padding: '18px 20px 18px 18px',
         display: 'flex',
-        gap: 12,
+        gap: 14,
         alignItems: 'center',
         border: '0.5px solid rgba(255, 255, 255, 0.12)',
         boxShadow: '0 2px 16px rgba(0, 0, 0, 0.25)',
@@ -77,8 +77,8 @@ const Notification: React.FC<{
           <Img
             src={staticFile('images/nyx-pfp.png')}
             style={{
-              width: 44,
-              height: 44,
+              width: 56,
+              height: 56,
               borderRadius: '50%',
               objectFit: 'cover',
             }}
@@ -87,8 +87,8 @@ const Notification: React.FC<{
             position: 'absolute',
             bottom: -3,
             right: -3,
-            width: 20,
-            height: 20,
+            width: 24,
+            height: 24,
             borderRadius: '50%',
             backgroundColor: '#5865F2',
             display: 'flex',
@@ -107,7 +107,7 @@ const Notification: React.FC<{
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1}}>
             <span style={{
               color: 'rgba(255, 255, 255, 0.5)',
-              fontSize: 14,
+              fontSize: 18,
               fontWeight: '400',
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
@@ -115,7 +115,7 @@ const Notification: React.FC<{
             </span>
             <span style={{
               color: 'rgba(255, 255, 255, 0.3)',
-              fontSize: 14,
+              fontSize: 18,
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
               {time}
@@ -123,7 +123,7 @@ const Notification: React.FC<{
           </div>
           <div style={{
             color: 'rgba(255, 255, 255, 0.95)',
-            fontSize: 16,
+            fontSize: 20,
             fontWeight: '600',
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             marginBottom: 2,
@@ -132,9 +132,9 @@ const Notification: React.FC<{
           </div>
           <div style={{
             color: 'rgba(255, 255, 255, 0.6)',
-            fontSize: 16,
+            fontSize: 20,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
-            lineHeight: 1.25,
+            lineHeight: 1.3,
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
@@ -159,7 +159,7 @@ export const NyxLockScreen: React.FC = () => {
     }
   }
   
-  const maxVisible = 12;
+  const maxVisible = 8;
   const displayMessages = visibleMessages.slice(-maxVisible);
   
   return (
