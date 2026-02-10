@@ -223,7 +223,7 @@ export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({s
       fontSize: 22,
       fontFamily: FONTS.slack,
       height: 30,
-      marginTop: -10, // pull up 10px
+      marginTop: -30, // pull up 30px
       opacity: visible ? 1 : 0,
     }}>
       <span style={{fontWeight: 'bold', color: COLORS.text}}>{sender}</span> is typing...
