@@ -214,15 +214,16 @@ export const MessageBubble: React.FC<{
 };
 
 // Typing indicator - Slack style: "xxx is typing" text below input box
+// Always renders with fixed height to prevent layout shift
 export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({sender, visible}) => {
-  if (!visible) return null;
-  
   return (
     <div style={{
       padding: `4px ${SIDE_MARGIN}px`,
       color: COLORS.textMuted,
       fontSize: 22,
       fontFamily: FONTS.slack,
+      height: 30, // fixed height
+      opacity: visible ? 1 : 0,
     }}>
       <span style={{fontWeight: 'bold', color: COLORS.text}}>{sender}</span> is typing...
     </div>
