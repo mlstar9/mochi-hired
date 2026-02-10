@@ -207,8 +207,8 @@ const RemotionRoot: React.FC = () => {
         component={NyxLockScreen}
         durationInFrames={360} // 15s at 24fps - nyx spam
         fps={24}
-        width={1080}
-        height={1920}
+        width={1320}
+        height={2868}
       />
     </>
   );

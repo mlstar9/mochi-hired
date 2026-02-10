@@ -2,7 +2,7 @@ import {AbsoluteFill, useCurrentFrame, interpolate, staticFile, Img, Easing} fro
 
 // iPhone Lock Screen — Nyx spamming notifications
 // iOS 18 style: huge metallic clock, date above, dark abstract wallpaper
-// 9:16 vertical (1080x1920)
+// iPhone 17 Pro Max native: 1320x2868
 
 const MESSAGES = [
   {text: "heyyyy you there? 👀", time: "9:41 PM"},
@@ -48,14 +48,14 @@ const Notification: React.FC<{
   const opacity = entrance;
   
   const stackIndex = totalVisible - 1 - index;
-  const targetY = stackIndex * 130;
+  const targetY = stackIndex * 168;
   
   return (
     <div style={{
       position: 'absolute',
-      top: 580 + targetY,
-      left: 24,
-      right: 24,
+      top: 820 + targetY,
+      left: 32,
+      right: 32,
       opacity,
       transform: `translateY(${slideY}px) scale(${scale})`,
       transformOrigin: 'top center',
@@ -64,10 +64,10 @@ const Notification: React.FC<{
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         backdropFilter: 'blur(40px) saturate(180%)',
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-        borderRadius: 30,
-        padding: '18px 20px 18px 18px',
+        borderRadius: 36,
+        padding: '22px 24px 22px 22px',
         display: 'flex',
-        gap: 14,
+        gap: 16,
         alignItems: 'center',
         border: '0.5px solid rgba(255, 255, 255, 0.12)',
         boxShadow: '0 2px 16px rgba(0, 0, 0, 0.25)',
@@ -77,8 +77,8 @@ const Notification: React.FC<{
           <Img
             src={staticFile('images/nyx-pfp.png')}
             style={{
-              width: 56,
-              height: 56,
+              width: 68,
+              height: 68,
               borderRadius: '50%',
               objectFit: 'cover',
             }}
@@ -87,8 +87,8 @@ const Notification: React.FC<{
             position: 'absolute',
             bottom: -3,
             right: -3,
-            width: 24,
-            height: 24,
+            width: 28,
+            height: 28,
             borderRadius: '50%',
             backgroundColor: '#5865F2',
             display: 'flex',
@@ -107,7 +107,7 @@ const Notification: React.FC<{
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1}}>
             <span style={{
               color: 'rgba(255, 255, 255, 0.5)',
-              fontSize: 18,
+              fontSize: 22,
               fontWeight: '400',
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
@@ -115,7 +115,7 @@ const Notification: React.FC<{
             </span>
             <span style={{
               color: 'rgba(255, 255, 255, 0.3)',
-              fontSize: 18,
+              fontSize: 22,
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
               {time}
@@ -123,7 +123,7 @@ const Notification: React.FC<{
           </div>
           <div style={{
             color: 'rgba(255, 255, 255, 0.95)',
-            fontSize: 20,
+            fontSize: 24,
             fontWeight: '600',
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             marginBottom: 2,
@@ -132,7 +132,7 @@ const Notification: React.FC<{
           </div>
           <div style={{
             color: 'rgba(255, 255, 255, 0.6)',
-            fontSize: 20,
+            fontSize: 24,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             lineHeight: 1.3,
             overflow: 'hidden',
@@ -165,8 +165,8 @@ export const NyxLockScreen: React.FC = () => {
   return (
     <AbsoluteFill style={{
       backgroundColor: '#000',
-      width: 1080,
-      height: 1920,
+      width: 1320,
+      height: 2868,
       overflow: 'hidden',
     }}>
       {/* Dark wallpaper with glowing abstract curves — matching reference */}
@@ -209,30 +209,30 @@ export const NyxLockScreen: React.FC = () => {
       {/* Dynamic Island */}
       <div style={{
         position: 'absolute',
-        top: 12,
+        top: 16,
         left: '50%',
         transform: 'translateX(-50%)',
-        width: 126,
-        height: 37,
-        borderRadius: 20,
+        width: 154,
+        height: 44,
+        borderRadius: 24,
         backgroundColor: '#000',
       }} />
       
       {/* Status bar */}
       <div style={{
         position: 'absolute',
-        top: 16,
+        top: 20,
         left: 0,
         right: 0,
-        height: 20,
+        height: 24,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0 30px',
+        padding: '0 38px',
       }}>
         <span style={{
           color: 'white',
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: '600',
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
         }}>
@@ -264,7 +264,7 @@ export const NyxLockScreen: React.FC = () => {
       {/* Lock icon */}
       <div style={{
         position: 'absolute',
-        top: 72,
+        top: 90,
         left: '50%',
         transform: 'translateX(-50%)',
       }}>
@@ -277,14 +277,14 @@ export const NyxLockScreen: React.FC = () => {
       {/* Date — ABOVE the clock, smaller, like reference "Wed Sep 10" */}
       <div style={{
         position: 'absolute',
-        top: 120,
+        top: 155,
         left: 0,
         right: 0,
         textAlign: 'center',
       }}>
         <div style={{
           color: 'rgba(255,255,255,0.6)',
-          fontSize: 22,
+          fontSize: 28,
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
           fontWeight: '400',
           letterSpacing: 0.3,
@@ -296,16 +296,16 @@ export const NyxLockScreen: React.FC = () => {
       {/* BIG clock — metallic/chrome look like reference */}
       <div style={{
         position: 'absolute',
-        top: 145,
+        top: 195,
         left: 0,
         right: 0,
         textAlign: 'center',
       }}>
         <div style={{
-          fontSize: 220,
+          fontSize: 280,
           fontWeight: '200',
           fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-          letterSpacing: -12,
+          letterSpacing: -16,
           lineHeight: 0.85,
           // Metallic chrome gradient text
           background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(180,190,200,0.7) 40%, rgba(140,150,160,0.5) 70%, rgba(100,110,120,0.4) 100%)',
@@ -323,12 +323,12 @@ export const NyxLockScreen: React.FC = () => {
       {visibleMessages.length > 0 && (
         <div style={{
           position: 'absolute',
-          top: 585,
-          left: 24,
+          top: 775,
+          left: 36,
         }}>
           <span style={{
             color: 'rgba(255,255,255,0.4)',
-            fontSize: 14,
+            fontSize: 18,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             fontWeight: '600',
             letterSpacing: 0.5,
