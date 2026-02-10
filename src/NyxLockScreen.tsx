@@ -1,8 +1,8 @@
 import {AbsoluteFill, useCurrentFrame, interpolate, staticFile, Img, Easing} from 'remotion';
 
-// iPhone 17 Pro Max Lock Screen - Nyx spamming notifications
-// 9:16 vertical (1320x2868 native, we render at 1080x1920 for video)
-// iOS 26 Liquid Glass aesthetic
+// iPhone 17 Pro Max Lock Screen — Nyx spamming notifications
+// iOS 26 Liquid Glass aesthetic — matched from real screenshot reference
+// Dimensions: 1290x2796 (iPhone 15 Pro Max logical, close to 17 Pro Max)
 
 const MESSAGES = [
   {text: "heyyyy you there? 👀", time: "9:41 PM"},
@@ -24,7 +24,9 @@ const MESSAGES = [
 const NOTIF_INTERVAL = 18;
 const NOTIF_START = 30;
 
-// iOS 26 Liquid Glass notification
+// Scale factor: we design at 1290 wide but render at 1080
+const S = 1080 / 1290;
+
 const Notification: React.FC<{
   message: string;
   time: string;
@@ -35,110 +37,121 @@ const Notification: React.FC<{
   const frame = useCurrentFrame();
   
   const age = frame - appearFrame;
-  const entrance = interpolate(age, [0, 8], [0, 1], {
+  const entrance = interpolate(age, [0, 10], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.out(Easing.cubic),
   });
   
-  const slideY = interpolate(entrance, [0, 1], [-30, 0]);
+  // iOS-style: slide in from top with slight scale
+  const slideY = interpolate(entrance, [0, 1], [-40, 0]);
+  const scale = interpolate(entrance, [0, 1], [0.95, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
   const opacity = entrance;
   
   const stackIndex = totalVisible - 1 - index;
-  const targetY = stackIndex * 100;
+  const targetY = stackIndex * 96;
   
   return (
     <div style={{
       position: 'absolute',
-      top: 440 + targetY,
-      left: 20,
-      right: 20,
+      top: 520 + targetY,
+      left: 16,
+      right: 16,
       opacity,
-      transform: `translateY(${slideY}px)`,
+      transform: `translateY(${slideY}px) scale(${scale})`,
+      transformOrigin: 'top center',
     }}>
-      {/* iOS 26 Liquid Glass notification card */}
+      {/* iOS 26 Liquid Glass notification — matched from reference */}
       <div style={{
-        background: 'linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.12) 100%)',
-        borderRadius: 24,
-        padding: '14px 16px',
+        backgroundColor: 'rgba(255, 255, 255, 0.18)',
+        backdropFilter: 'blur(40px) saturate(180%)',
+        WebkitBackdropFilter: 'blur(40px) saturate(180%)',
+        borderRadius: 26,
+        padding: '14px 16px 14px 14px',
         display: 'flex',
         gap: 12,
-        alignItems: 'flex-start',
-        border: '0.5px solid rgba(255,255,255,0.2)',
-        boxShadow: '0 2px 16px rgba(0,0,0,0.15), inset 0 1px 0 rgba(255,255,255,0.15)',
+        alignItems: 'center',
+        border: '1px solid rgba(255, 255, 255, 0.15)',
+        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.15)',
       }}>
-        {/* App icon + pfp */}
+        {/* Profile picture — circle, 44px */}
         <div style={{position: 'relative', flexShrink: 0}}>
           <Img
             src={staticFile('images/nyx-pfp.png')}
             style={{
-              width: 42,
-              height: 42,
-              borderRadius: 12,
+              width: 44,
+              height: 44,
+              borderRadius: '50%',
               objectFit: 'cover',
             }}
           />
-          {/* Discord badge - iOS 26 style with slight glass effect */}
+          {/* Discord badge — bottom-right, 22px blue circle */}
           <div style={{
             position: 'absolute',
-            bottom: -4,
-            right: -4,
-            width: 20,
-            height: 20,
-            borderRadius: 7,
+            bottom: -3,
+            right: -3,
+            width: 22,
+            height: 22,
+            borderRadius: '50%',
             backgroundColor: '#5865F2',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '1.5px solid rgba(0,0,0,0.15)',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.2)',
+            border: '2px solid rgba(30, 30, 40, 0.6)',
           }}>
-            <svg width="12" height="9" viewBox="0 0 24 18" fill="white">
-              <path d="M20.317 1.492a19.7 19.7 0 0 0-4.885-1.492.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.7 19.7 0 0 0 3.677 1.492.07.07 0 0 0 3.645 1.52C.533 6.093-.32 10.555.099 14.961a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.3 12.3 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.8 19.8 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.02z"/>
+            <svg width="12" height="9" viewBox="0 0 71 55" fill="white">
+              <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3## 44.2785 53.4خ 44.2898 53.4#.344L53.5765 44.3461C53.9319 44.6391 54.3041 44.9293 54.6791 45.2082C54.8078 45.304 54.7994 45.5041 54.6phases45.5858C52.8907 46.6168 51.052 47.4931 49.1182 48.2228C48.9923 48.2707 48.9363 48.4172 48.9979 48.5383C50.0585 50.6034 51.2759 52.5699 52.6166 54.435C52.6726 54.5139 52.7733 54.5505 52.8657 54.5765C58.6697 52.7249 64.5523 50.0174 70.6252 45.5576C70.6783 45.5182 70.7119 45.459 70.7175 45.3942C72.1971 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978Z"/>
             </svg>
           </div>
         </div>
         
-        {/* Content */}
+        {/* Text content */}
         <div style={{flex: 1, minWidth: 0}}>
-          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 2}}>
+          {/* Top row: App name + timestamp */}
+          <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1}}>
             <span style={{
-              color: 'rgba(255,255,255,0.95)',
-              fontSize: 16,
-              fontWeight: '600',
-              fontFamily: "-apple-system, 'SF Pro Display', 'Helvetica Neue', sans-serif",
-              letterSpacing: -0.2,
+              color: 'rgba(255, 255, 255, 0.55)',
+              fontSize: 14,
+              fontWeight: '400',
+              fontFamily: "-apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif",
+              letterSpacing: -0.1,
             }}>
               Discord
             </span>
             <span style={{
-              color: 'rgba(255,255,255,0.45)',
-              fontSize: 13,
+              color: 'rgba(255, 255, 255, 0.35)',
+              fontSize: 14,
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
               fontWeight: '400',
             }}>
               {time}
             </span>
           </div>
+          {/* Sender name */}
           <div style={{
-            color: 'rgba(255,255,255,0.9)',
-            fontSize: 15,
+            color: 'rgba(255, 255, 255, 0.95)',
+            fontSize: 16,
             fontWeight: '600',
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             marginBottom: 2,
-            letterSpacing: -0.1,
+            letterSpacing: -0.2,
           }}>
             Nyx
           </div>
+          {/* Message text */}
           <div style={{
-            color: 'rgba(255,255,255,0.65)',
-            fontSize: 15,
+            color: 'rgba(255, 255, 255, 0.65)',
+            fontSize: 16,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
-            lineHeight: 1.3,
+            lineHeight: 1.25,
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
             fontWeight: '400',
+            letterSpacing: -0.1,
           }}>
             {message}
           </div>
@@ -160,7 +173,7 @@ export const NyxLockScreen: React.FC = () => {
     }
   }
   
-  const maxVisible = 8;
+  const maxVisible = 10;
   const displayMessages = visibleMessages.slice(-maxVisible);
   
   return (
@@ -168,173 +181,155 @@ export const NyxLockScreen: React.FC = () => {
       backgroundColor: '#000',
       width: 1080,
       height: 1920,
+      overflow: 'hidden',
     }}>
-      {/* Wallpaper - dark moody gradient (iPhone 17 Pro Max deep blue vibes) */}
+      {/* Wallpaper — warm muted tones like reference (beige/taupe gradient) */}
       <div style={{
         position: 'absolute',
         inset: 0,
-        background: 'linear-gradient(160deg, #0a0a1a 0%, #0d1b2a 25%, #1b2838 45%, #162032 65%, #0a0f1a 100%)',
+        background: 'linear-gradient(170deg, #3d3428 0%, #4a3f32 20%, #5c4f3e 40%, #4a4035 60%, #352e25 80%, #2a2420 100%)',
       }} />
       
-      {/* Subtle light leak / bokeh effect */}
+      {/* Subtle warm light */}
       <div style={{
         position: 'absolute',
-        top: '15%',
-        left: '20%',
-        width: 400,
-        height: 400,
+        top: '10%',
+        left: '30%',
+        width: 500,
+        height: 500,
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(100,140,200,0.08) 0%, transparent 70%)',
-      }} />
-      <div style={{
-        position: 'absolute',
-        top: '60%',
-        right: '10%',
-        width: 300,
-        height: 300,
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(80,60,140,0.06) 0%, transparent 70%)',
+        background: 'radial-gradient(circle, rgba(180,160,130,0.12) 0%, transparent 70%)',
       }} />
       
-      {/* Dynamic Island */}
+      {/* Dynamic Island — centered pill, true black */}
       <div style={{
         position: 'absolute',
         top: 12,
         left: '50%',
         transform: 'translateX(-50%)',
-        width: 162,
+        width: 126,
         height: 37,
         borderRadius: 20,
         backgroundColor: '#000',
       }} />
       
-      {/* Status bar */}
+      {/* Status bar — left time, right icons */}
       <div style={{
         position: 'absolute',
-        top: 16,
+        top: 14,
         left: 0,
         right: 0,
-        height: 30,
+        height: 24,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0 32px',
+        padding: '0 28px',
       }}>
+        {/* Time in status bar */}
         <span style={{
           color: 'white',
           fontSize: 16,
           fontWeight: '600',
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
-          letterSpacing: 0.5,
         }}>
           9:45
         </span>
-        <div style={{display: 'flex', gap: 5, alignItems: 'center'}}>
-          {/* Signal */}
-          <svg width="18" height="12" viewBox="0 0 18 12">
-            <rect x="0" y="8" width="3" height="4" rx="0.5" fill="white"/>
-            <rect x="5" y="5" width="3" height="7" rx="0.5" fill="white"/>
-            <rect x="10" y="2" width="3" height="10" rx="0.5" fill="white"/>
-            <rect x="15" y="0" width="3" height="12" rx="0.5" fill="white"/>
-          </svg>
-          {/* WiFi */}
-          <svg width="16" height="12" viewBox="0 0 16 12" fill="white">
-            <path d="M8 10.5a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3zM3.46 7.54a6.42 6.42 0 0 1 9.08 0l.7-.7a7.42 7.42 0 0 0-10.48 0l.7.7zM.93 5.01a9.97 9.97 0 0 1 14.14 0l.7-.7A10.97 10.97 0 0 0 .23 4.31l.7.7z" fillRule="evenodd"/>
-          </svg>
+        {/* Right icons */}
+        <div style={{display: 'flex', gap: 6, alignItems: 'center'}}>
+          {/* Cellular bars */}
+          <div style={{display: 'flex', gap: 1.5, alignItems: 'flex-end', height: 12}}>
+            {[4, 6, 8, 10].map((h, i) => (
+              <div key={i} style={{width: 3, height: h, borderRadius: 1, backgroundColor: 'white'}} />
+            ))}
+          </div>
+          {/* WiFi — simplified */}
+          <div style={{width: 16, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+            <svg width="15" height="11" viewBox="0 0 15 11" fill="white">
+              <path d="M7.5 9.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z" fillRule="evenodd"/>
+              <path d="M4.7 7.8a3.96 3.96 0 0 1 5.6 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+              <path d="M2.1 5.2a7.43 7.43 0 0 1 10.8 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+              <path d="M0 2.6a10.6 10.6 0 0 1 15 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+            </svg>
+          </div>
           {/* Battery */}
-          <div style={{display: 'flex', alignItems: 'center', gap: 1}}>
+          <div style={{display: 'flex', alignItems: 'center'}}>
             <div style={{
               width: 25,
-              height: 12,
+              height: 11,
               borderRadius: 3,
-              border: '1px solid rgba(255,255,255,0.5)',
-              padding: 1.5,
-              position: 'relative',
+              border: '1.2px solid rgba(255,255,255,0.5)',
+              padding: 2,
             }}>
-              <div style={{
-                width: '70%',
-                height: '100%',
-                borderRadius: 1.5,
-                backgroundColor: 'white',
-              }} />
+              <div style={{width: '72%', height: '100%', borderRadius: 1, backgroundColor: 'white'}} />
             </div>
-            <div style={{
-              width: 2,
-              height: 5,
-              borderRadius: '0 1px 1px 0',
-              backgroundColor: 'rgba(255,255,255,0.5)',
-            }} />
+            <div style={{width: 1.5, height: 4.5, borderRadius: '0 1px 1px 0', backgroundColor: 'rgba(255,255,255,0.5)', marginLeft: 1}} />
           </div>
         </div>
       </div>
       
-      {/* Lock icon - iOS 26 liquid glass style */}
+      {/* Lock icon */}
       <div style={{
         position: 'absolute',
-        top: 72,
+        top: 70,
         left: '50%',
         transform: 'translateX(-50%)',
       }}>
-        <svg width="14" height="18" viewBox="0 0 14 18" fill="none">
-          <rect x="1" y="7" width="12" height="10" rx="2.5" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5"/>
-          <path d="M4 7V5a3 3 0 0 1 6 0v2" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" strokeLinecap="round"/>
+        <svg width="11" height="15" viewBox="0 0 11 15" fill="none">
+          <rect x="0.5" y="5.5" width="10" height="9" rx="2" stroke="rgba(255,255,255,0.5)" strokeWidth="1"/>
+          <path d="M3 5.5V4a2.5 2.5 0 0 1 5 0v1.5" stroke="rgba(255,255,255,0.5)" strokeWidth="1" strokeLinecap="round"/>
         </svg>
       </div>
       
-      {/* Time - iOS 26 Liquid Glass clock with subtle refraction */}
+      {/* Main clock — iOS 26 style: thin weight, large */}
       <div style={{
         position: 'absolute',
-        top: 110,
+        top: 105,
         left: 0,
         right: 0,
         textAlign: 'center',
       }}>
         <div style={{
           color: 'white',
-          fontSize: 96,
-          fontWeight: '200',
+          fontSize: 100,
+          fontWeight: '100',
           fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-          letterSpacing: -3,
+          letterSpacing: -4,
           lineHeight: 1,
-          textShadow: '0 0 40px rgba(255,255,255,0.05)',
         }}>
           9:45
         </div>
         <div style={{
-          color: 'rgba(255,255,255,0.6)',
-          fontSize: 20,
+          color: 'rgba(255,255,255,0.55)',
+          fontSize: 21,
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
           marginTop: 6,
           fontWeight: '400',
-          letterSpacing: 0.3,
+          letterSpacing: 0.2,
         }}>
           Monday, February 10
         </div>
       </div>
       
-      {/* Notification stack label */}
+      {/* Notification count header */}
       {visibleMessages.length > 0 && (
         <div style={{
           position: 'absolute',
-          top: 400,
-          left: 0,
-          right: 0,
-          textAlign: 'center',
+          top: 480,
+          left: 20,
         }}>
           <span style={{
-            color: 'rgba(255,255,255,0.4)',
-            fontSize: 14,
+            color: 'rgba(255,255,255,0.45)',
+            fontSize: 15,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
-            fontWeight: '500',
+            fontWeight: '600',
             letterSpacing: 0.3,
-            textTransform: 'uppercase',
           }}>
-            {visibleMessages.length} Notification{visibleMessages.length > 1 ? 's' : ''}
+            DISCORD · {visibleMessages.length} notification{visibleMessages.length > 1 ? 's' : ''}
           </span>
         </div>
       )}
       
-      {/* Notifications */}
+      {/* Notifications stack */}
       {displayMessages.map((item, idx) => (
         <Notification
           key={item.idx}
@@ -346,59 +341,53 @@ export const NyxLockScreen: React.FC = () => {
         />
       ))}
       
-      {/* Bottom - Flashlight + Camera (iOS 26 liquid glass buttons) */}
+      {/* Bottom quick actions — flashlight + camera (liquid glass circles) */}
       <div style={{
         position: 'absolute',
-        bottom: 50,
+        bottom: 46,
         left: 0,
         right: 0,
         display: 'flex',
         justifyContent: 'space-between',
         padding: '0 46px',
       }}>
-        <div style={{
-          width: 50,
-          height: 50,
-          borderRadius: 25,
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
-          border: '0.5px solid rgba(255,255,255,0.15)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1)',
-        }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5">
-            <path d="M9 18h6M10 22h4M15 2H9L7 8l2 4h6l2-4-2-6z"/>
-          </svg>
-        </div>
-        <div style={{
-          width: 50,
-          height: 50,
-          borderRadius: 25,
-          background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)',
-          border: '0.5px solid rgba(255,255,255,0.15)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.1)',
-        }}>
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" strokeWidth="1.5">
+        {[
+          // Flashlight
+          <svg key="flash" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>,
+          // Camera
+          <svg key="cam" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
-          </svg>
-        </div>
+          </svg>,
+        ].map((icon, i) => (
+          <div key={i} style={{
+            width: 50,
+            height: 50,
+            borderRadius: 25,
+            backgroundColor: 'rgba(255, 255, 255, 0.12)',
+            border: '0.5px solid rgba(255,255,255,0.12)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: 'inset 0 0.5px 0 rgba(255,255,255,0.08)',
+          }}>
+            {icon}
+          </div>
+        ))}
       </div>
       
-      {/* Home indicator */}
+      {/* Home indicator bar */}
       <div style={{
         position: 'absolute',
-        bottom: 10,
+        bottom: 8,
         left: '50%',
         transform: 'translateX(-50%)',
         width: 140,
         height: 5,
         borderRadius: 3,
-        backgroundColor: 'rgba(255,255,255,0.35)',
+        backgroundColor: 'rgba(255,255,255,0.3)',
       }} />
     </AbsoluteFill>
   );
