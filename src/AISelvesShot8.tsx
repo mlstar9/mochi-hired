@@ -37,7 +37,7 @@ const MESSAGES: Message[] = [
 export const AISelvesShot8: React.FC = () => {
   const frame = useCurrentFrame();
   
-  const NUDGE_PX = 95;
+  const NUDGE_PX = 70;
   const NUDGE_FRAMES = 10;
   
   const getNudgeOffset = (msgIndex: number): number => {

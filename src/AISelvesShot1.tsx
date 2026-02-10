@@ -37,7 +37,7 @@ const MESSAGES: Message[] = [
 export const AISelvesShot1: React.FC = () => {
   const frame = useCurrentFrame();
   
-  const NUDGE_PX = 95; // 92-140px per animation rules
+  const NUDGE_PX = 70; // 92-140px per animation rules
   const NUDGE_FRAMES = 10;
   
   // Calculate nudge offset for each message (how far UP it should move)
