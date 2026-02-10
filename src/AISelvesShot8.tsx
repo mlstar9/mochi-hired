@@ -1,4 +1,4 @@
-import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
+import {AbsoluteFill, useCurrentFrame, interpolate, Easing} from 'remotion';
 import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, ChannelHeader} from './AISelvesShared';
 
 // Shot 8: Deadline Bomb
@@ -49,7 +49,7 @@ export const AISelvesShot8: React.FC = () => {
           frame,
           [laterMsg.appearFrame, laterMsg.appearFrame + NUDGE_FRAMES],
           [0, 1],
-          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)}
         );
         offset += NUDGE_PX * nudgeProgress;
       }
@@ -71,7 +71,7 @@ export const AISelvesShot8: React.FC = () => {
     frame,
     [letiMessage.appearFrame, letiMessage.appearFrame + 36], // type over 1.5s
     [0, 1],
-    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+    {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)}
   );
   const visibleChars = Math.floor(typeOutProgress * letiFullText.length);
   const displayedText = letiFullText.substring(0, visibleChars);
@@ -109,7 +109,7 @@ export const AISelvesShot8: React.FC = () => {
             frame,
             [msg.appearFrame, msg.appearFrame + 8],
             [0, 1],
-            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)}
           );
           const nudgeOffset = getNudgeOffset(idx);
           const prevMsg = idx > 0 ? MESSAGES[idx - 1] : null;

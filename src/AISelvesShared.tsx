@@ -1,4 +1,4 @@
-import {useCurrentFrame, interpolate, staticFile, Img} from 'remotion';
+import {useCurrentFrame, interpolate, staticFile, Img, Easing} from 'remotion';
 
 // Font face declarations (load via CSS in remotion.config.ts or use staticFile)
 // Primary: Telka-Extended (headings, bold text)
@@ -122,9 +122,15 @@ export const MessageBubble: React.FC<{
 }> = ({message, opacity, entranceProgress = 1, isGrouped = false}) => {
   const hasImage = PROFILE_IMAGES[message.sender];
   
-  // Slack-style entrance: subtle slide up (10px) + fade
-  const slideY = interpolate(entranceProgress, [0, 1], [10, 0], { extrapolateRight: 'clamp' });
-  const fadeOpacity = opacity * entranceProgress;
+  // Slack-style entrance: subtle slide up (10px) + fade with ease-out
+  const slideY = interpolate(entranceProgress, [0, 1], [10, 0], { 
+    extrapolateRight: 'clamp',
+    easing: Easing.out(Easing.cubic),
+  });
+  const fadeOpacity = opacity * interpolate(entranceProgress, [0, 1], [0, 1], {
+    extrapolateRight: 'clamp',
+    easing: Easing.out(Easing.quad),
+  });
   
   // Grouped messages: just show text, aligned with previous msg
   if (isGrouped) {

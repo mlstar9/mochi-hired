@@ -1,4 +1,4 @@
-import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
+import {AbsoluteFill, useCurrentFrame, interpolate, Easing} from 'remotion';
 import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, ChannelHeader} from './AISelvesShared';
 
 // Shot 2: Raccoon's Pitch
@@ -41,7 +41,7 @@ export const AISelvesShot2: React.FC = () => {
           frame,
           [laterMsg.appearFrame, laterMsg.appearFrame + NUDGE_FRAMES],
           [0, 1],
-          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)}
         );
         offset += NUDGE_PX * nudgeProgress;
       }
@@ -86,7 +86,7 @@ export const AISelvesShot2: React.FC = () => {
             frame,
             [msg.appearFrame, msg.appearFrame + 8],
             [0, 1],
-            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+            {extrapolateLeft: 'clamp', extrapolateRight: 'clamp', easing: Easing.out(Easing.cubic)}
           );
           const nudgeOffset = getNudgeOffset(idx);
           const prevMsg = idx > 0 ? MESSAGES[idx - 1] : null;

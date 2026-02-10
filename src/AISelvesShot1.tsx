@@ -1,4 +1,4 @@
-import {AbsoluteFill, useCurrentFrame, interpolate} from 'remotion';
+import {AbsoluteFill, useCurrentFrame, interpolate, Easing} from 'remotion';
 import {Message, COLORS, FONTS, MessageBubble, TypingIndicator, TypingInputBox, ChannelHeader} from './AISelvesShared';
 
 // Shot 1: Task Drops
@@ -52,7 +52,11 @@ export const AISelvesShot1: React.FC = () => {
           frame,
           [laterMsg.appearFrame, laterMsg.appearFrame + NUDGE_FRAMES],
           [0, 1],
-          {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
+          {
+            extrapolateLeft: 'clamp', 
+            extrapolateRight: 'clamp',
+            easing: Easing.out(Easing.cubic), // smooth ease-out
+          }
         );
         offset += NUDGE_PX * nudgeProgress;
       }
