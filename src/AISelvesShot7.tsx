@@ -80,9 +80,9 @@ export const AISelvesShot7: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
+        <TypingIndicator sender={typingSender} visible={showTyping} />
         {/* Show DM input when DM message is sent */}
         <TypingInputBox channelName={dmVisible ? "Demi" : "marketing"} />
-        <TypingIndicator sender={typingSender} visible={showTyping} />
       </AbsoluteFill>
       
       {/* LAYER 2: Chat bubbles */}
@@ -90,7 +90,7 @@ export const AISelvesShot7: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 230,
+        paddingBottom: 220,
       }}>
         {MESSAGES.map((msg, idx) => {
           const isVisible = frame >= msg.appearFrame;

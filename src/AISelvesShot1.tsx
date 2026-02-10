@@ -80,9 +80,9 @@ export const AISelvesShot1: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        <TypingInputBox channelName="marketing" />
-        {/* Typing indicator below input box - Slack style */}
+        {/* Typing indicator ABOVE input box - Slack style */}
         <TypingIndicator sender={typingSender} visible={showTyping} />
+        <TypingInputBox channelName="marketing" />
       </AbsoluteFill>
       
       {/* LAYER 2: Chat bubbles - positioned above input box */}
@@ -90,7 +90,7 @@ export const AISelvesShot1: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 230,
+        paddingBottom: 220,
       }}>
         {MESSAGES.map((msg, idx) => {
           const isVisible = frame >= msg.appearFrame;

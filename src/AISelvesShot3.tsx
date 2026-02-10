@@ -86,8 +86,8 @@ export const AISelvesShot3: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        <TypingInputBox channelName="marketing" />
         <TypingIndicator sender={typingSender} visible={showTyping} />
+        <TypingInputBox channelName="marketing" />
       </AbsoluteFill>
       
       {/* LAYER 2: Chat bubbles */}
@@ -95,7 +95,7 @@ export const AISelvesShot3: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: 230,
+        paddingBottom: 220,
       }}>
         {MESSAGES.map((msg, idx) => {
           const isVisible = frame >= msg.appearFrame;
