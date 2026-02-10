@@ -89,6 +89,8 @@ export const AISelvesShot2: React.FC = () => {
             {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
           );
           const nudgeOffset = getNudgeOffset(idx);
+          const prevMsg = idx > 0 ? MESSAGES[idx - 1] : null;
+          const isGrouped = !!(prevMsg && prevMsg.sender === msg.sender && frame >= prevMsg.appearFrame);
           
           return (
             <div key={msg.id} style={{transform: `translateY(-${nudgeOffset}px)`}}>
@@ -96,6 +98,7 @@ export const AISelvesShot2: React.FC = () => {
                 message={msg}
                 opacity={isVisible ? 1 : 0}
                 entranceProgress={entranceProgress}
+                isGrouped={isGrouped}
               />
             </div>
           );

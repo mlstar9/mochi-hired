@@ -113,16 +113,38 @@ export const ChannelHeader: React.FC<{channelName: string; memberCount?: number}
 };
 
 // Message component - Slack style with entrance animation
+// isGrouped: when true, hides avatar/name (consecutive msgs from same sender)
 export const MessageBubble: React.FC<{
   message: Message;
   opacity: number;
   entranceProgress?: number; // 0-1, controls slide-up + fade
-}> = ({message, opacity, entranceProgress = 1}) => {
+  isGrouped?: boolean; // true = consecutive msg from same sender, hide avatar/name
+}> = ({message, opacity, entranceProgress = 1, isGrouped = false}) => {
   const hasImage = PROFILE_IMAGES[message.sender];
   
   // Slack-style entrance: subtle slide up (10px) + fade
   const slideY = interpolate(entranceProgress, [0, 1], [10, 0], { extrapolateRight: 'clamp' });
   const fadeOpacity = opacity * entranceProgress;
+  
+  // Grouped messages: just show text, aligned with previous msg
+  if (isGrouped) {
+    return (
+      <div style={{
+        padding: `2px ${SIDE_MARGIN}px 2px ${SIDE_MARGIN + 88}px`, // indent to align with text
+        opacity: fadeOpacity,
+        transform: `translateY(${slideY}px)`,
+      }}>
+        <div style={{
+          color: COLORS.text,
+          fontSize: 30,
+          lineHeight: 1.46,
+          fontFamily: FONTS.slack,
+        }}>
+          {message.text}
+        </div>
+      </div>
+    );
+  }
   
   return (
     <div style={{

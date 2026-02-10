@@ -101,9 +101,10 @@ export const AISelvesShot7: React.FC = () => {
             {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}
           );
           const nudgeOffset = getNudgeOffset(idx);
-          
-          // Special styling for DM message
+          const prevMsg = idx > 0 ? MESSAGES[idx - 1] : null;
+          // Don't group DM message (id 17) since it's a different context
           const isDM = msg.id === 17;
+          const isGrouped = !!(!isDM && prevMsg && prevMsg.sender === msg.sender && frame >= prevMsg.appearFrame);
           
           return (
             <div key={msg.id} style={{position: 'relative', transform: `translateY(-${nudgeOffset}px)`}}>
@@ -123,6 +124,7 @@ export const AISelvesShot7: React.FC = () => {
                 message={msg}
                 opacity={isVisible ? 1 : 0}
                 entranceProgress={entranceProgress}
+                isGrouped={isGrouped}
               />
             </div>
           );
