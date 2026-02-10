@@ -213,87 +213,18 @@ export const MessageBubble: React.FC<{
   );
 };
 
-// Typing indicator - Slack style
+// Typing indicator - Slack style: "xxx is typing" text below input box
 export const TypingIndicator: React.FC<{sender: string; visible: boolean}> = ({sender, visible}) => {
-  const frame = useCurrentFrame();
   if (!visible) return null;
-  
-  const hasImage = PROFILE_IMAGES[sender];
   
   return (
     <div style={{
-      display: 'flex',
-      gap: 16,
-      padding: `8px ${SIDE_MARGIN}px`,
-      opacity: 0.8,
+      padding: `4px ${SIDE_MARGIN}px`,
+      color: COLORS.textMuted,
+      fontSize: 22,
+      fontFamily: FONTS.slack,
     }}>
-      {hasImage ? (
-        <Img
-          src={staticFile(PROFILE_IMAGES[sender])}
-          style={{
-            width: 72,
-            height: 72,
-            borderRadius: 8,
-            objectFit: 'cover',
-            flexShrink: 0,
-          }}
-        />
-      ) : (
-        <div style={{
-          width: 72,
-          height: 72,
-          borderRadius: 8,
-          backgroundColor: PROFILE_COLORS[sender] || '#616061',
-          flexShrink: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          color: 'white',
-          fontWeight: 'bold',
-          fontSize: 32,
-        }}>
-          {sender[0]}
-        </div>
-      )}
-      {/* Slack-style typing dots: bounce + fade with staggered timing */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: 6,
-        backgroundColor: COLORS.messageBg,
-        padding: '12px 16px',
-        borderRadius: 18,
-      }}>
-        {[0, 1, 2].map(i => {
-          // Staggered animation: each dot is 5 frames behind
-          const dotFrame = (frame + i * 5) % 30;
-          const bounce = interpolate(
-            dotFrame,
-            [0, 10, 20, 30],
-            [0, -6, 0, 0],
-            { extrapolateRight: 'clamp' }
-          );
-          const opacity = interpolate(
-            dotFrame,
-            [0, 10, 20, 30],
-            [0.4, 1, 0.4, 0.4],
-            { extrapolateRight: 'clamp' }
-          );
-          return (
-            <div
-              key={i}
-              style={{
-                width: 10,
-                height: 10,
-                borderRadius: '50%',
-                backgroundColor: COLORS.textMuted,
-                transform: `translateY(${bounce}px)`,
-                opacity,
-              }}
-            />
-          );
-        })}
-      </div>
+      <span style={{fontWeight: 'bold', color: COLORS.text}}>{sender}</span> is typing...
     </div>
   );
 };

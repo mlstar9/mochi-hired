@@ -70,10 +70,8 @@ export const AISelvesShot4: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        <div style={{marginBottom: 16}}>
-          <TypingIndicator sender="Nyx" visible={showTyping} />
-        </div>
         <TypingInputBox channelName="marketing" />
+        <TypingIndicator sender="Nyx" visible={showTyping} />
       </AbsoluteFill>
       
       {/* LAYER 2: Chat content */}

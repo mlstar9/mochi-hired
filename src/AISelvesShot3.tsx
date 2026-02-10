@@ -84,12 +84,8 @@ export const AISelvesShot3: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        {showTyping && (
-          <div style={{marginBottom: 8}}>
-            <TypingIndicator sender={typingSender} visible={true} />
-          </div>
-        )}
         <TypingInputBox channelName="marketing" />
+        <TypingIndicator sender={typingSender} visible={showTyping} />
       </AbsoluteFill>
       
       {/* LAYER 2: Chat bubbles */}
@@ -97,7 +93,7 @@ export const AISelvesShot3: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        paddingBottom: showTyping ? 295 : 200,
+        paddingBottom: 230,
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {MESSAGES.map(msg => {

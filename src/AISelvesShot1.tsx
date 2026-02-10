@@ -75,21 +75,18 @@ export const AISelvesShot1: React.FC = () => {
         flexDirection: 'column',
         justifyContent: 'flex-end',
       }}>
-        {showTyping && (
-          <div style={{marginBottom: 8}}>
-            <TypingIndicator sender={typingSender} visible={true} />
-          </div>
-        )}
         <TypingInputBox channelName="marketing" />
+        {/* Typing indicator below input box - Slack style */}
+        <TypingIndicator sender={typingSender} visible={showTyping} />
       </AbsoluteFill>
       
-      {/* LAYER 2: Chat bubbles - positioned to sit just above typing indicator */}
+      {/* LAYER 2: Chat bubbles - positioned above input box */}
       <AbsoluteFill style={{
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'flex-end',
-        // Base padding clears input (185px) + typing area when visible (95px) + small gap (5px)
-        paddingBottom: showTyping ? 295 : 200,
+        // Input box (~185px) + typing text (~30px) + gap
+        paddingBottom: 230,
         transform: `translateY(-${chatOffset}px)`,
       }}>
         {MESSAGES.map(msg => {
