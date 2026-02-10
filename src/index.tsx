@@ -21,6 +21,7 @@ import {MochiCelebrationClean} from './MochiCelebrationClean';
 import {MochiHiredFinal} from './MochiHiredFinal';
 import {SlackMockup} from './SlackMockup';
 import {PikaAISelfDemo} from './PikaAISelfDemo';
+import {NyxLockScreen} from './NyxLockScreen';
 
 const RemotionRoot: React.FC = () => {
   return (
@@ -200,6 +201,14 @@ const RemotionRoot: React.FC = () => {
         fps={24}
         width={1920}
         height={1080}
+      />
+      <Composition
+        id="NyxLockScreen"
+        component={NyxLockScreen}
+        durationInFrames={360} // 15s at 24fps - nyx spam
+        fps={24}
+        width={1080}
+        height={1920}
       />
     </>
   );

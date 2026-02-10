@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xmeml>
+<xmeml version="4">
+  <sequence>
+    <name>AI Selves - More Than One - v5</name>
+    <duration>1392</duration>
+    <rate>
+      <timebase>24</timebase>
+      <ntsc>FALSE</ntsc>
+    </rate>
+    <timecode>
+      <rate>
+        <timebase>24</timebase>
+        <ntsc>FALSE</ntsc>
+      </rate>
+      <string>00:00:00:00</string>
+      <frame>0</frame>
+      <displayformat>NDF</displayformat>
+    </timecode>
+    <media>
+      <video>
+        <format>
+          <samplecharacteristics>
+            <width>1920</width>
+            <height>1080</height>
+            <pixelaspectratio>square</pixelaspectratio>
+            <rate>
+              <timebase>24</timebase>
+              <ntsc>FALSE</ntsc>
+            </rate>
+          </samplecharacteristics>
+        </format>
+        <!-- V1: Screenshots & Placeholder Footage -->
+        <track>
+          <!-- BEAT 1: SETUP 0:00-0:04 (frame 0-96) -->
+          <clipitem id="text_incredible_people">
+            <name>TEXT: I work with some incredible people.</name>
+            <duration>96</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>0</start>
+            <end>96</end>
+            <in>0</in>
+            <out>96</out>
+            <file id="file_text01">
+              <name>text_01_incredible_people.png</name>
+              <pathurl>file://assets/text_01_incredible_people.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media>
+                <video>
+                  <samplecharacteristics>
+                    <width>1920</width>
+                    <height>1080</height>
+                  </samplecharacteristics>
+                </video>
+              </media>
+            </file>
+          </clipitem>
+
+          <!-- BEAT 2: THEO 0:04-0:14 (frame 96-336) -->
+          <!-- Shot 2A: Anthony's message + Theo typing (0:04-0:10) -->
+          <clipitem id="theo_slack">
+            <name>PLACEHOLDER: Theo - Slack Channel</name>
+            <duration>144</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>96</start>
+            <end>240</end>
+            <in>0</in>
+            <out>144</out>
+            <file id="file_theo_slack">
+              <name>placeholder_theo_slack.png</name>
+              <pathurl>file://assets/placeholder_theo_slack.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 2B: Theo's detailed response (0:10-0:12) -->
+          <clipitem id="theo_response">
+            <name>PLACEHOLDER: Theo - Detailed Response</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>240</start>
+            <end>288</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_theo_response">
+              <name>placeholder_theo_response.png</name>
+              <pathurl>file://assets/placeholder_theo_response.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Text card: he makes me better (0:12-0:14) -->
+          <clipitem id="text_makes_better">
+            <name>TEXT: he makes me better.</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>288</start>
+            <end>336</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_text02">
+              <name>text_02_makes_me_better.png</name>
+              <pathurl>file://assets/text_02_makes_me_better.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- BEAT 3: SEMI 0:14-0:26 (frame 336-624) -->
+          <!-- Shot 3A: Semi in huddle (0:14-0:18) -->
+          <clipitem id="semi_huddle">
+            <name>PLACEHOLDER: Semi - Huddle Meeting</name>
+            <duration>96</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>336</start>
+            <end>432</end>
+            <in>0</in>
+            <out>96</out>
+            <file id="file_semi_huddle">
+              <name>placeholder_semi_huddle.png</name>
+              <pathurl>file://assets/placeholder_semi_huddle.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 3B: Semi DM recap (0:18-0:22) -->
+          <clipitem id="semi_dm">
+            <name>PLACEHOLDER: Semi - DM Recap</name>
+            <duration>96</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>432</start>
+            <end>528</end>
+            <in>0</in>
+            <out>96</out>
+            <file id="file_semi_dm">
+              <name>placeholder_semi_dm.png</name>
+              <pathurl>file://assets/placeholder_semi_dm.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 3C: Semi in #general (0:22-0:23) -->
+          <clipitem id="semi_general">
+            <name>PLACEHOLDER: Semi - #general</name>
+            <duration>24</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>528</start>
+            <end>552</end>
+            <in>0</in>
+            <out>24</out>
+            <file id="file_semi_general">
+              <name>placeholder_semi_general.png</name>
+              <pathurl>file://assets/placeholder_semi_general.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 3D: Semi reaction (0:23-0:24) -->
+          <clipitem id="semi_reaction">
+            <name>PLACEHOLDER: Semi - Reaction 💪</name>
+            <duration>24</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>552</start>
+            <end>576</end>
+            <in>0</in>
+            <out>24</out>
+            <file id="file_semi_reaction">
+              <name>placeholder_semi_reaction.png</name>
+              <pathurl>file://assets/placeholder_semi_reaction.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Text card: I don't. She does. (0:24-0:26) -->
+          <clipitem id="text_she_does">
+            <name>TEXT: I don't. She does.</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>576</start>
+            <end>624</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_text03">
+              <name>text_03_she_does.png</name>
+              <pathurl>file://assets/text_03_she_does.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- BEAT 4: NYX 0:26-0:36 (frame 624-864) -->
+          <!-- Shot 4A: Nyx DM (0:26-0:32) -->
+          <clipitem id="nyx_dm">
+            <name>PLACEHOLDER: Nyx - DM to Jessie</name>
+            <duration>144</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>624</start>
+            <end>768</end>
+            <in>0</in>
+            <out>144</out>
+            <file id="file_nyx_dm">
+              <name>placeholder_nyx_dm.png</name>
+              <pathurl>file://assets/placeholder_nyx_dm.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 4B: Nyx selfie + reactions (0:32-0:34) -->
+          <clipitem id="nyx_selfie">
+            <name>PLACEHOLDER: Nyx - Selfie + Reactions</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>768</start>
+            <end>816</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_nyx_selfie">
+              <name>placeholder_nyx_selfie.png</name>
+              <pathurl>file://assets/placeholder_nyx_selfie.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Text card: sometimes that's enough (0:34-0:36) -->
+          <clipitem id="text_thats_enough">
+            <name>TEXT: sometimes that's enough.</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>816</start>
+            <end>864</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_text04">
+              <name>text_04_thats_enough.png</name>
+              <pathurl>file://assets/text_04_thats_enough.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- BEAT 5: MOMO 0:36-0:46 (frame 864-1104) -->
+          <!-- Shot 5A: Momo in huddle (0:36-0:39) -->
+          <clipitem id="momo_huddle">
+            <name>PLACEHOLDER: Momo - Cat in Meeting</name>
+            <duration>72</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>864</start>
+            <end>936</end>
+            <in>0</in>
+            <out>72</out>
+            <file id="file_momo_huddle">
+              <name>placeholder_momo_huddle.png</name>
+              <pathurl>file://assets/placeholder_momo_huddle.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 5B: Momo hype message (0:39-0:42) -->
+          <clipitem id="momo_hype">
+            <name>PLACEHOLDER: Momo - 3 DAYS UNTIL LAUNCH</name>
+            <duration>72</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>936</start>
+            <end>1008</end>
+            <in>0</in>
+            <out>72</out>
+            <file id="file_momo_hype">
+              <name>placeholder_momo_hype.png</name>
+              <pathurl>file://assets/placeholder_momo_hype.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Shot 5C: Momo selfie (0:42-0:44) -->
+          <clipitem id="momo_selfie">
+            <name>PLACEHOLDER: Momo - Cat Selfie</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>1008</start>
+            <end>1056</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_momo_selfie">
+              <name>placeholder_momo_selfie.png</name>
+              <pathurl>file://assets/placeholder_momo_selfie.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Text card: she's a cat (0:44-0:46) -->
+          <clipitem id="text_shes_a_cat">
+            <name>TEXT: she's a cat.</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>1056</start>
+            <end>1104</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_text05">
+              <name>text_05_shes_a_cat.png</name>
+              <pathurl>file://assets/text_05_shes_a_cat.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- BEAT 6: REVEAL 0:46-0:54 (frame 1104-1296) -->
+          <!-- Flash montage (0:46-0:50) -->
+          <clipitem id="reveal_flash">
+            <name>PLACEHOLDER: Reveal - Quick Flashes</name>
+            <duration>96</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>1104</start>
+            <end>1200</end>
+            <in>0</in>
+            <out>96</out>
+            <file id="file_reveal">
+              <name>placeholder_reveal_flash.png</name>
+              <pathurl>file://assets/placeholder_reveal_flash.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Text: they're not replacing us (0:50-0:52) -->
+          <clipitem id="text_not_replacing">
+            <name>TEXT: they're not replacing us.</name>
+            <duration>48</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>1200</start>
+            <end>1248</end>
+            <in>0</in>
+            <out>48</out>
+            <file id="file_text06">
+              <name>text_06_not_replacing.png</name>
+              <pathurl>file://assets/text_06_not_replacing.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- Text: more than one (0:52-0:55) -->
+          <clipitem id="text_more_than_one">
+            <name>TEXT: more than one.</name>
+            <duration>72</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>1248</start>
+            <end>1320</end>
+            <in>0</in>
+            <out>72</out>
+            <file id="file_text07">
+              <name>text_07_more_than_one.png</name>
+              <pathurl>file://assets/text_07_more_than_one.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+
+          <!-- BEAT 7: END CARD 0:55-0:58 (frame 1320-1392) -->
+          <clipitem id="endcard">
+            <name>END CARD: PIKA - AI Selves</name>
+            <duration>72</duration>
+            <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+            <start>1320</start>
+            <end>1392</end>
+            <in>0</in>
+            <out>72</out>
+            <file id="file_endcard">
+              <name>endcard.png</name>
+              <pathurl>file://assets/endcard.png</pathurl>
+              <rate><timebase>24</timebase><ntsc>FALSE</ntsc></rate>
+              <media><video><samplecharacteristics><width>1920</width><height>1080</height></samplecharacteristics></video></media>
+            </file>
+          </clipitem>
+        </track>
+      </video>
+    </media>
+  </sequence>
+</xmeml>
