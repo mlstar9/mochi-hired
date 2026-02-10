@@ -156,7 +156,7 @@ export const MessageBubble: React.FC<{
     <div style={{
       display: 'flex',
       gap: 16,
-      padding: `4px ${SIDE_MARGIN}px`,
+      padding: `0px ${SIDE_MARGIN}px`,
       opacity: fadeOpacity,
       transform: `translateY(${slideY}px)`,
     }}>
