@@ -1,8 +1,8 @@
 import {AbsoluteFill, useCurrentFrame, interpolate, staticFile, Img, Easing} from 'remotion';
 
-// iPhone 17 Pro Max Lock Screen — Nyx spamming notifications
-// iOS 26 Liquid Glass aesthetic — matched from real screenshot reference
-// Dimensions: 1290x2796 (iPhone 15 Pro Max logical, close to 17 Pro Max)
+// iPhone Lock Screen — Nyx spamming notifications
+// iOS 18 style: huge metallic clock, date above, dark abstract wallpaper
+// 9:16 vertical (1080x1920)
 
 const MESSAGES = [
   {text: "heyyyy you there? 👀", time: "9:41 PM"},
@@ -24,9 +24,6 @@ const MESSAGES = [
 const NOTIF_INTERVAL = 18;
 const NOTIF_START = 30;
 
-// Scale factor: we design at 1290 wide but render at 1080
-const S = 1080 / 1290;
-
 const Notification: React.FC<{
   message: string;
   time: string;
@@ -43,7 +40,6 @@ const Notification: React.FC<{
     easing: Easing.out(Easing.cubic),
   });
   
-  // iOS-style: slide in from top with slight scale
   const slideY = interpolate(entrance, [0, 1], [-40, 0]);
   const scale = interpolate(entrance, [0, 1], [0.95, 1], {
     extrapolateLeft: 'clamp',
@@ -57,16 +53,15 @@ const Notification: React.FC<{
   return (
     <div style={{
       position: 'absolute',
-      top: 520 + targetY,
-      left: 16,
-      right: 16,
+      top: 620 + targetY,
+      left: 20,
+      right: 20,
       opacity,
       transform: `translateY(${slideY}px) scale(${scale})`,
       transformOrigin: 'top center',
     }}>
-      {/* iOS 26 Liquid Glass notification — matched from reference */}
       <div style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.18)',
+        backgroundColor: 'rgba(255, 255, 255, 0.15)',
         backdropFilter: 'blur(40px) saturate(180%)',
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
         borderRadius: 26,
@@ -74,10 +69,10 @@ const Notification: React.FC<{
         display: 'flex',
         gap: 12,
         alignItems: 'center',
-        border: '1px solid rgba(255, 255, 255, 0.15)',
-        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.15)',
+        border: '0.5px solid rgba(255, 255, 255, 0.12)',
+        boxShadow: '0 2px 16px rgba(0, 0, 0, 0.25)',
       }}>
-        {/* Profile picture — circle, 44px */}
+        {/* PFP with Discord badge */}
         <div style={{position: 'relative', flexShrink: 0}}>
           <Img
             src={staticFile('images/nyx-pfp.png')}
@@ -88,70 +83,61 @@ const Notification: React.FC<{
               objectFit: 'cover',
             }}
           />
-          {/* Discord badge — bottom-right, 22px blue circle */}
           <div style={{
             position: 'absolute',
             bottom: -3,
             right: -3,
-            width: 22,
-            height: 22,
+            width: 20,
+            height: 20,
             borderRadius: '50%',
             backgroundColor: '#5865F2',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            border: '2px solid rgba(30, 30, 40, 0.6)',
+            border: '2px solid rgba(20, 20, 30, 0.8)',
           }}>
-            <svg width="12" height="9" viewBox="0 0 71 55" fill="white">
-              <path d="M60.1045 4.8978C55.5792 2.8214 50.7265 1.2916 45.6527 0.41542C45.5603 0.39851 45.468 0.440769 45.4204 0.525289C44.7963 1.6353 44.105 3.0834 43.6209 4.2216C38.1637 3.4046 32.7345 3.4046 27.3892 4.2216C26.905 3.0581 26.1886 1.6353 25.5617 0.525289C25.5141 0.443589 25.4218 0.40133 25.3294 0.41542C20.2584 1.2888 15.4057 2.8186 10.8776 4.8978C10.8384 4.9147 10.8048 4.9429 10.7825 4.9795C1.57795 18.7309 -0.943561 32.1443 0.293408 45.3914C0.299005 45.4562 0.335386 45.5182 0.385761 45.5576C6.45866 50.0174 12.3413 52.7249 18.1147 54.5195C18.2071 54.5477 18.305 54.5139 18.3638 54.4378C19.7295 52.5728 20.9469 50.6063 21.9907 48.5383C22.0523 48.4172 21.9935 48.2735 21.8676 48.2256C19.9366 47.4931 18.0979 46.6 16.3292 45.5858C16.1893 45.5041 16.1781 45.304 16.3068 45.2082C16.679 44.9293 17.0513 44.6391 17.4067 44.3461C17.471 44.2926 17.5606 44.2813 17.6362 44.3151C29.2558 49.6202 41.8354 49.6202 53.3179 44.3151C53.3## 44.2785 53.4خ 44.2898 53.4#.344L53.5765 44.3461C53.9319 44.6391 54.3041 44.9293 54.6791 45.2082C54.8078 45.304 54.7994 45.5041 54.6phases45.5858C52.8907 46.6168 51.052 47.4931 49.1182 48.2228C48.9923 48.2707 48.9363 48.4172 48.9979 48.5383C50.0585 50.6034 51.2759 52.5699 52.6166 54.435C52.6726 54.5139 52.7733 54.5505 52.8657 54.5765C58.6697 52.7249 64.5523 50.0174 70.6252 45.5576C70.6783 45.5182 70.7119 45.459 70.7175 45.3942C72.1971 30.0791 68.2147 16.7757 60.1968 4.9823C60.1772 4.9429 60.1437 4.9147 60.1045 4.8978Z"/>
+            <svg width="10" height="8" viewBox="0 0 71 55" fill="white">
+              <path d="M60.1 4.9C55.6 2.8 50.7 1.3 45.7.4c-.1 0-.2 0-.2.1-.6 1.1-1.3 2.6-1.8 3.7-5.5-.8-10.9-.8-16.3 0-.5-1.2-1.2-2.6-1.8-3.7 0-.1-.1-.1-.2-.1C20.3 1.3 15.4 2.8 10.9 4.9c0 0-.1 0-.1.1C1.6 18.7-.9 32.1.3 45.4c0 .1 0 .1.1.2 6.1 4.5 12 7.2 17.7 9 .1 0 .2 0 .2-.1 1.4-1.9 2.6-3.8 3.6-5.9.1-.1 0-.3-.1-.3-2-.7-3.8-1.6-5.6-2.7-.2-.1-.2-.3 0-.4.4-.3.7-.6 1.1-.9.1-.1.1-.1.2 0 11.6 5.3 24.2 5.3 35.7 0h.2c.4.3.7.6 1.1.9.2.1.2.3 0 .4-1.8 1-3.6 2-5.6 2.7-.1.1-.2.2-.1.3 1.1 2.1 2.3 4 3.6 5.9 0 .1.1.1.2.1 5.8-1.8 11.7-4.5 17.8-9 .1 0 .1-.1.1-.2 1.5-15.3-2.5-28.6-10.5-40.4 0-.1 0-.1-.1-.1z"/>
             </svg>
           </div>
         </div>
         
-        {/* Text content */}
+        {/* Text */}
         <div style={{flex: 1, minWidth: 0}}>
-          {/* Top row: App name + timestamp */}
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1}}>
             <span style={{
-              color: 'rgba(255, 255, 255, 0.55)',
+              color: 'rgba(255, 255, 255, 0.5)',
               fontSize: 14,
               fontWeight: '400',
-              fontFamily: "-apple-system, 'SF Pro Text', 'Helvetica Neue', sans-serif",
-              letterSpacing: -0.1,
+              fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
               Discord
             </span>
             <span style={{
-              color: 'rgba(255, 255, 255, 0.35)',
+              color: 'rgba(255, 255, 255, 0.3)',
               fontSize: 14,
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
-              fontWeight: '400',
             }}>
               {time}
             </span>
           </div>
-          {/* Sender name */}
           <div style={{
             color: 'rgba(255, 255, 255, 0.95)',
             fontSize: 16,
             fontWeight: '600',
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             marginBottom: 2,
-            letterSpacing: -0.2,
           }}>
             Nyx
           </div>
-          {/* Message text */}
           <div style={{
-            color: 'rgba(255, 255, 255, 0.65)',
+            color: 'rgba(255, 255, 255, 0.6)',
             fontSize: 16,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             lineHeight: 1.25,
             overflow: 'hidden',
             textOverflow: 'ellipsis',
             whiteSpace: 'nowrap',
-            fontWeight: '400',
-            letterSpacing: -0.1,
           }}>
             {message}
           </div>
@@ -173,7 +159,7 @@ export const NyxLockScreen: React.FC = () => {
     }
   }
   
-  const maxVisible = 10;
+  const maxVisible = 12;
   const displayMessages = visibleMessages.slice(-maxVisible);
   
   return (
@@ -183,25 +169,44 @@ export const NyxLockScreen: React.FC = () => {
       height: 1920,
       overflow: 'hidden',
     }}>
-      {/* Wallpaper — warm muted tones like reference (beige/taupe gradient) */}
-      <div style={{
-        position: 'absolute',
-        inset: 0,
-        background: 'linear-gradient(170deg, #3d3428 0%, #4a3f32 20%, #5c4f3e 40%, #4a4035 60%, #352e25 80%, #2a2420 100%)',
-      }} />
+      {/* Dark wallpaper with glowing abstract curves — matching reference */}
+      <div style={{position: 'absolute', inset: 0, background: '#0a0c10'}} />
       
-      {/* Subtle warm light */}
-      <div style={{
-        position: 'absolute',
-        top: '10%',
-        left: '30%',
-        width: 500,
-        height: 500,
-        borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(180,160,130,0.12) 0%, transparent 70%)',
-      }} />
+      {/* Glow curve layers — abstract blue/gold like reference */}
+      <svg style={{position: 'absolute', inset: 0, width: '100%', height: '100%'}} viewBox="0 0 1080 1920" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="glow1" x1="0%" y1="40%" x2="100%" y2="60%">
+            <stop offset="0%" stopColor="#1a3a5c" stopOpacity="0.6" />
+            <stop offset="50%" stopColor="#2a6090" stopOpacity="0.3" />
+            <stop offset="100%" stopColor="#0a1520" stopOpacity="0" />
+          </linearGradient>
+          <linearGradient id="glow2" x1="0%" y1="50%" x2="100%" y2="50%">
+            <stop offset="0%" stopColor="#0a1520" stopOpacity="0" />
+            <stop offset="40%" stopColor="#8a7040" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#c0a060" stopOpacity="0.15" />
+          </linearGradient>
+          <filter id="blur1">
+            <feGaussianBlur stdDeviation="30" />
+          </filter>
+          <filter id="blur2">
+            <feGaussianBlur stdDeviation="20" />
+          </filter>
+        </defs>
+        {/* Top curve band */}
+        <path d="M0,500 Q200,350 540,420 Q880,490 1080,380 L1080,520 Q880,630 540,560 Q200,490 0,640 Z" fill="url(#glow1)" filter="url(#blur1)" />
+        {/* Middle bright line */}
+        <path d="M0,900 Q300,800 540,880 Q780,960 1080,850" stroke="rgba(180,210,255,0.15)" strokeWidth="3" fill="none" filter="url(#blur2)" />
+        <path d="M0,920 Q300,820 540,900 Q780,980 1080,870" stroke="rgba(200,180,120,0.12)" strokeWidth="2" fill="none" filter="url(#blur2)" />
+        {/* Bottom gold glow */}
+        <path d="M0,1100 Q400,950 700,1050 Q900,1100 1080,1000 L1080,1200 Q900,1300 700,1250 Q400,1150 0,1300 Z" fill="url(#glow2)" filter="url(#blur1)" />
+        {/* Thin bright edge lines */}
+        <path d="M0,510 Q200,360 540,430 Q880,500 1080,390" stroke="rgba(200,230,255,0.2)" strokeWidth="1.5" fill="none" />
+        <path d="M0,630 Q200,480 540,550 Q880,620 1080,510" stroke="rgba(200,230,255,0.12)" strokeWidth="1" fill="none" />
+        <path d="M0,1110 Q400,960 700,1060 Q900,1110 1080,1010" stroke="rgba(220,200,140,0.18)" strokeWidth="1.5" fill="none" />
+        <path d="M0,1290 Q400,1140 700,1240 Q900,1290 1080,1190" stroke="rgba(220,200,140,0.1)" strokeWidth="1" fill="none" />
+      </svg>
       
-      {/* Dynamic Island — centered pill, true black */}
+      {/* Dynamic Island */}
       <div style={{
         position: 'absolute',
         top: 12,
@@ -213,19 +218,18 @@ export const NyxLockScreen: React.FC = () => {
         backgroundColor: '#000',
       }} />
       
-      {/* Status bar — left time, right icons */}
+      {/* Status bar */}
       <div style={{
         position: 'absolute',
-        top: 14,
+        top: 16,
         left: 0,
         right: 0,
-        height: 24,
+        height: 20,
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0 28px',
+        padding: '0 30px',
       }}>
-        {/* Time in status bar */}
         <span style={{
           color: 'white',
           fontSize: 16,
@@ -234,31 +238,21 @@ export const NyxLockScreen: React.FC = () => {
         }}>
           9:45
         </span>
-        {/* Right icons */}
         <div style={{display: 'flex', gap: 6, alignItems: 'center'}}>
-          {/* Cellular bars */}
           <div style={{display: 'flex', gap: 1.5, alignItems: 'flex-end', height: 12}}>
             {[4, 6, 8, 10].map((h, i) => (
               <div key={i} style={{width: 3, height: h, borderRadius: 1, backgroundColor: 'white'}} />
             ))}
           </div>
-          {/* WiFi — simplified */}
-          <div style={{width: 16, height: 12, display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-            <svg width="15" height="11" viewBox="0 0 15 11" fill="white">
-              <path d="M7.5 9.5a1.25 1.25 0 1 1 0 2.5 1.25 1.25 0 0 1 0-2.5z" fillRule="evenodd"/>
-              <path d="M4.7 7.8a3.96 3.96 0 0 1 5.6 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-              <path d="M2.1 5.2a7.43 7.43 0 0 1 10.8 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-              <path d="M0 2.6a10.6 10.6 0 0 1 15 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
-            </svg>
-          </div>
-          {/* Battery */}
+          <svg width="15" height="11" viewBox="0 0 15 11" fill="white">
+            <circle cx="7.5" cy="10" r="1.2" />
+            <path d="M4.7 7.8a4 4 0 0 1 5.6 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+            <path d="M2.1 5.2a7.4 7.4 0 0 1 10.8 0" stroke="white" strokeWidth="1.3" fill="none" strokeLinecap="round"/>
+          </svg>
           <div style={{display: 'flex', alignItems: 'center'}}>
             <div style={{
-              width: 25,
-              height: 11,
-              borderRadius: 3,
-              border: '1.2px solid rgba(255,255,255,0.5)',
-              padding: 2,
+              width: 25, height: 11, borderRadius: 3,
+              border: '1.2px solid rgba(255,255,255,0.5)', padding: 2,
             }}>
               <div style={{width: '72%', height: '100%', borderRadius: 1, backgroundColor: 'white'}} />
             </div>
@@ -270,7 +264,7 @@ export const NyxLockScreen: React.FC = () => {
       {/* Lock icon */}
       <div style={{
         position: 'absolute',
-        top: 70,
+        top: 72,
         left: '50%',
         transform: 'translateX(-50%)',
       }}>
@@ -280,33 +274,48 @@ export const NyxLockScreen: React.FC = () => {
         </svg>
       </div>
       
-      {/* Main clock — iOS 26 style: thin weight, large */}
+      {/* Date — ABOVE the clock, smaller, like reference "Wed Sep 10" */}
       <div style={{
         position: 'absolute',
-        top: 105,
+        top: 120,
         left: 0,
         right: 0,
         textAlign: 'center',
       }}>
         <div style={{
-          color: 'white',
-          fontSize: 100,
-          fontWeight: '100',
-          fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-          letterSpacing: -4,
-          lineHeight: 1,
-        }}>
-          9:45
-        </div>
-        <div style={{
-          color: 'rgba(255,255,255,0.55)',
-          fontSize: 21,
+          color: 'rgba(255,255,255,0.6)',
+          fontSize: 22,
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
-          marginTop: 6,
           fontWeight: '400',
-          letterSpacing: 0.2,
+          letterSpacing: 0.3,
         }}>
-          Monday, February 10
+          Mon Feb 10
+        </div>
+      </div>
+      
+      {/* BIG clock — metallic/chrome look like reference */}
+      <div style={{
+        position: 'absolute',
+        top: 145,
+        left: 0,
+        right: 0,
+        textAlign: 'center',
+      }}>
+        <div style={{
+          fontSize: 220,
+          fontWeight: '200',
+          fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
+          letterSpacing: -12,
+          lineHeight: 0.85,
+          // Metallic chrome gradient text
+          background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(180,190,200,0.7) 40%, rgba(140,150,160,0.5) 70%, rgba(100,110,120,0.4) 100%)',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          backgroundClip: 'text',
+          // Subtle text shadow for depth
+          filter: 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))',
+        }}>
+          09:45
         </div>
       </div>
       
@@ -314,22 +323,23 @@ export const NyxLockScreen: React.FC = () => {
       {visibleMessages.length > 0 && (
         <div style={{
           position: 'absolute',
-          top: 480,
-          left: 20,
+          top: 585,
+          left: 24,
         }}>
           <span style={{
-            color: 'rgba(255,255,255,0.45)',
-            fontSize: 15,
+            color: 'rgba(255,255,255,0.4)',
+            fontSize: 14,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             fontWeight: '600',
-            letterSpacing: 0.3,
+            letterSpacing: 0.5,
+            textTransform: 'uppercase',
           }}>
-            DISCORD · {visibleMessages.length} notification{visibleMessages.length > 1 ? 's' : ''}
+            Discord · {visibleMessages.length} notification{visibleMessages.length > 1 ? 's' : ''}
           </span>
         </div>
       )}
       
-      {/* Notifications stack */}
+      {/* Notifications */}
       {displayMessages.map((item, idx) => (
         <Notification
           key={item.idx}
@@ -341,53 +351,50 @@ export const NyxLockScreen: React.FC = () => {
         />
       ))}
       
-      {/* Bottom quick actions — flashlight + camera (liquid glass circles) */}
+      {/* Bottom actions — flashlight + camera */}
       <div style={{
         position: 'absolute',
-        bottom: 46,
+        bottom: 50,
         left: 0,
         right: 0,
         display: 'flex',
         justifyContent: 'space-between',
-        padding: '0 46px',
+        padding: '0 50px',
       }}>
         {[
-          // Flashlight
-          <svg key="flash" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          <svg key="f" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 2h8l2 4H6l2-4z"/><rect x="6" y="6" width="12" height="16" rx="2"/><circle cx="12" cy="14" r="2"/>
           </svg>,
-          // Camera
-          <svg key="cam" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+          <svg key="c" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
             <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/>
             <circle cx="12" cy="13" r="4"/>
           </svg>,
         ].map((icon, i) => (
           <div key={i} style={{
-            width: 50,
-            height: 50,
-            borderRadius: 25,
-            backgroundColor: 'rgba(255, 255, 255, 0.12)',
-            border: '0.5px solid rgba(255,255,255,0.12)',
+            width: 54,
+            height: 54,
+            borderRadius: 27,
+            backgroundColor: 'rgba(255, 255, 255, 0.08)',
+            border: '0.5px solid rgba(255,255,255,0.1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            boxShadow: 'inset 0 0.5px 0 rgba(255,255,255,0.08)',
           }}>
             {icon}
           </div>
         ))}
       </div>
       
-      {/* Home indicator bar */}
+      {/* Home indicator */}
       <div style={{
         position: 'absolute',
-        bottom: 8,
+        bottom: 10,
         left: '50%',
         transform: 'translateX(-50%)',
         width: 140,
         height: 5,
         borderRadius: 3,
-        backgroundColor: 'rgba(255,255,255,0.3)',
+        backgroundColor: 'rgba(255,255,255,0.25)',
       }} />
     </AbsoluteFill>
   );
