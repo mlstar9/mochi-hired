@@ -48,14 +48,14 @@ const Notification: React.FC<{
   const opacity = entrance;
   
   const stackIndex = totalVisible - 1 - index;
-  const targetY = stackIndex * 168;
+  const targetY = stackIndex * 210;
   
   return (
     <div style={{
       position: 'absolute',
-      top: 820 + targetY,
-      left: 32,
-      right: 32,
+      top: 980 + targetY,
+      left: 40,
+      right: 40,
       opacity,
       transform: `translateY(${slideY}px) scale(${scale})`,
       transformOrigin: 'top center',
@@ -64,10 +64,10 @@ const Notification: React.FC<{
         backgroundColor: 'rgba(255, 255, 255, 0.15)',
         backdropFilter: 'blur(40px) saturate(180%)',
         WebkitBackdropFilter: 'blur(40px) saturate(180%)',
-        borderRadius: 36,
-        padding: '22px 24px 22px 22px',
+        borderRadius: 42,
+        padding: '28px 30px 28px 28px',
         display: 'flex',
-        gap: 16,
+        gap: 20,
         alignItems: 'center',
         border: '0.5px solid rgba(255, 255, 255, 0.12)',
         boxShadow: '0 2px 16px rgba(0, 0, 0, 0.25)',
@@ -77,8 +77,8 @@ const Notification: React.FC<{
           <Img
             src={staticFile('images/nyx-pfp.png')}
             style={{
-              width: 68,
-              height: 68,
+              width: 84,
+              height: 84,
               borderRadius: '50%',
               objectFit: 'cover',
             }}
@@ -87,8 +87,8 @@ const Notification: React.FC<{
             position: 'absolute',
             bottom: -3,
             right: -3,
-            width: 28,
-            height: 28,
+            width: 32,
+            height: 32,
             borderRadius: '50%',
             backgroundColor: '#5865F2',
             display: 'flex',
@@ -107,7 +107,7 @@ const Notification: React.FC<{
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 1}}>
             <span style={{
               color: 'rgba(255, 255, 255, 0.5)',
-              fontSize: 22,
+              fontSize: 28,
               fontWeight: '400',
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
@@ -115,7 +115,7 @@ const Notification: React.FC<{
             </span>
             <span style={{
               color: 'rgba(255, 255, 255, 0.3)',
-              fontSize: 22,
+              fontSize: 28,
               fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             }}>
               {time}
@@ -123,7 +123,7 @@ const Notification: React.FC<{
           </div>
           <div style={{
             color: 'rgba(255, 255, 255, 0.95)',
-            fontSize: 24,
+            fontSize: 32,
             fontWeight: '600',
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             marginBottom: 2,
@@ -132,7 +132,7 @@ const Notification: React.FC<{
           </div>
           <div style={{
             color: 'rgba(255, 255, 255, 0.6)',
-            fontSize: 24,
+            fontSize: 30,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             lineHeight: 1.3,
             overflow: 'hidden',
@@ -159,7 +159,7 @@ export const NyxLockScreen: React.FC = () => {
     }
   }
   
-  const maxVisible = 8;
+  const maxVisible = 7;
   const displayMessages = visibleMessages.slice(-maxVisible);
   
   return (
@@ -232,7 +232,7 @@ export const NyxLockScreen: React.FC = () => {
       }}>
         <span style={{
           color: 'white',
-          fontSize: 20,
+          fontSize: 24,
           fontWeight: '600',
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
         }}>
@@ -284,7 +284,7 @@ export const NyxLockScreen: React.FC = () => {
       }}>
         <div style={{
           color: 'rgba(255,255,255,0.6)',
-          fontSize: 28,
+          fontSize: 36,
           fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
           fontWeight: '400',
           letterSpacing: 0.3,
@@ -302,10 +302,10 @@ export const NyxLockScreen: React.FC = () => {
         textAlign: 'center',
       }}>
         <div style={{
-          fontSize: 280,
+          fontSize: 380,
           fontWeight: '200',
           fontFamily: "-apple-system, 'SF Pro Display', sans-serif",
-          letterSpacing: -16,
+          letterSpacing: -20,
           lineHeight: 0.85,
           // Metallic chrome gradient text
           background: 'linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(180,190,200,0.7) 40%, rgba(140,150,160,0.5) 70%, rgba(100,110,120,0.4) 100%)',
@@ -323,12 +323,12 @@ export const NyxLockScreen: React.FC = () => {
       {visibleMessages.length > 0 && (
         <div style={{
           position: 'absolute',
-          top: 775,
-          left: 36,
+          top: 935,
+          left: 44,
         }}>
           <span style={{
             color: 'rgba(255,255,255,0.4)',
-            fontSize: 18,
+            fontSize: 22,
             fontFamily: "-apple-system, 'SF Pro Text', sans-serif",
             fontWeight: '600',
             letterSpacing: 0.5,
