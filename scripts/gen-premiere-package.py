@@ -9,9 +9,88 @@ import shutil
 
 FPS = 24
 TIMEBASE = 24
-OUTPUT_DIR = "premiere/ai-selves-leti-v2"
+import sys
 
-SECTIONS = [
+# ── V1 FULL (76s) ──────────────────────────────────────────────────────────
+SECTIONS_V1 = [
+    {"id": "01-intro", "label": "INTRO — Leti to camera", "dur": 8, "subs": [
+        (0, 2.5, "You're not gonna believe this but —"),
+        (2.5, 2.5, "our company used our own product, AI Selves,"),
+        (5, 1.5, "to push the actual product."),
+        (7, 1, "Let me explain."),
+    ]},
+    {"id": "02-anthony-intro", "label": "ANTHONY — Real photo + title", "dur": 4, "subs": [
+        (0, 3, "This is Anthony, our head of partnerships."),
+        (3, 1, "And this is Theo."),
+    ]},
+    {"id": "03-theo-reveal", "label": "THEO — Avatar reveal + ding SFX", "dur": 7, "subs": [
+        (0, 1.5, "(his AI Self)"),
+        (1.5, 2.5, "Theo monitors our brand mentions in real time —"),
+        (4, 2, "and helped Anthony evaluate partnership opportunities"),
+        (6, 1, "around the clock for the launch."),
+    ]},
+    {"id": "04-starry-intro", "label": "STARRY — Real photo + title", "dur": 3, "subs": [
+        (0, 2, "Starry, our product manager —"),
+        (2, 1, "uses Momo."),
+    ]},
+    {"id": "05-momo-reveal", "label": "MOMO — Avatar reveal + ding SFX", "dur": 6, "subs": [
+        (0, 1, "(her AI Self)"),
+        (1, 0.8, "CUTE."),
+        (1.8, 2.2, "Momo handles Linear tasks across all departments —"),
+        (4, 2, "and even goes on Zoom calls when Starry doesn't feel like it!"),
+    ]},
+    {"id": "06-rus-intro", "label": "RUS — Real photo + title", "dur": 3, "subs": [
+        (0, 2, "Rus, our head of design —"),
+        (2, 1, "uses Russ."),
+    ]},
+    {"id": "07-russ-reveal", "label": "RUSS — Avatar reveal + ding SFX", "dur": 4, "subs": [
+        (0, 1, "(his AI Self)"),
+        (1, 1.5, "Russ goes over design issues"),
+        (2.5, 1.5, "and communicates them to the design team."),
+    ]},
+    {"id": "08-matan-intro", "label": "MATAN — Real photo + title", "dur": 3, "subs": [
+        (0, 2.5, "And this is Matan, our Creative Director."),
+    ]},
+    {"id": "09-raccoon-reveal", "label": "RACCOON 2.0 — Avatar reveal + ding SFX", "dur": 5, "subs": [
+        (0, 1.5, "His Raccoon 2.0 — (his AI Self)"),
+        (1.5, 1.5, "helps Matan bridge the gap between"),
+        (3, 2, "our researchers and our Creative team."),
+    ]},
+    {"id": "10-demi-intro", "label": "DEMI — Real photo + title", "dur": 3, "subs": [
+        (0, 3, "Oh, and all of them report up to our CEO, Demi Guo."),
+    ]},
+    {"id": "11-semi-reveal", "label": "SEMI — Avatar reveal + ding SFX", "dur": 6, "subs": [
+        (0, 1.5, "Well… not exactly."),
+        (1.5, 1.5, "They report to Semi — (her AI Self)"),
+        (3, 1.5, "and Semi reports back to her."),
+        (4.5, 1.5, "Because Demi is waaaay too busy."),
+    ]},
+    {"id": "12-leti-intro", "label": "LETI — To camera (THE ENDING)", "dur": 4, "subs": [
+        (0, 3, "And me? I'm Leti, and I usually make videos, buuuut—"),
+        (3, 0.5, "[MEOW]"),
+    ]},
+    {"id": "13-mochi-reveal", "label": "MOCHI — Hard cut, smashing keyboard", "dur": 4, "subs": [
+        (0, 1.5, "(my AI Self)"),
+    ]},
+    {"id": "14-leti-interrupted", "label": "LETI — Offscreen annoyed", "dur": 3, "subs": [
+        (0, 2.5, "Mochi— ffs, I'm in the middle of introducing yo—"),
+    ]},
+    {"id": "15-mochi-glitch", "label": "MOCHI — Glitch cut, looking annoyed", "dur": 2, "subs": []},
+    {"id": "16-leti-comeback", "label": "LETI — Tries to recover", "dur": 2, "subs": [
+        (0, 1.5, "Anyways, I'm—"),
+    ]},
+    {"id": "17-mochi-glitch-2", "label": "MOCHI — Glitch, looking at camera", "dur": 5, "subs": [
+        (0, 2, "What?? What do you need from me—"),
+        (2, 1.5, "oh. Oh! You're done editing the video?"),
+        (3.5, 1.5, "Ok ok lemme check it out."),
+    ]},
+    {"id": "18-loop-zoom", "label": "ZOOM INTO SCREEN → LOOP", "dur": 4, "subs": [
+        (2, 2, '"You\'re not gonna believe this but—"'),
+    ]},
+]
+
+# ── V2 TIGHT (40s) ─────────────────────────────────────────────────────────
+SECTIONS_V2 = [
     {"id": "01-hook", "label": "HOOK — Text card or to camera", "dur": 4, "subs": [
         (0, 2.5, "You're not gonna believe this but —"),
         (2.5, 1.5, "our company used our own product, AI Selves, to push the actual product."),
@@ -80,6 +159,15 @@ SECTIONS = [
         (1, 1, '"You\'re not gonna believe this but—"'),
     ]},
 ]
+
+# Select version from command line: python3 gen-premiere-package.py [v1|v2]
+version = sys.argv[1] if len(sys.argv) > 1 else "v2"
+if version == "v1":
+    OUTPUT_DIR = "premiere/ai-selves-leti-v1"
+    SECTIONS = SECTIONS_V1
+else:
+    OUTPUT_DIR = "premiere/ai-selves-leti-v2"
+    SECTIONS = SECTIONS_V2
 
 def sec_to_frames(s):
     return int(round(s * FPS))
