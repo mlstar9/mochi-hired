@@ -1,0 +1,1692 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmeml version="5">
+  <project>
+    <name>Leti AI Selves Video</name>
+    <children>
+      <sequence>
+        <name>Leti AI Selves — Main</name>
+        <duration>960</duration>
+        <rate>
+          <timebase>24</timebase>
+          <ntsc>FALSE</ntsc>
+        </rate>
+        <media>
+          <video>
+            <track>
+              <clipitem id="clip-1">
+                <name>HOOK — Text card or to camera</name>
+                <duration>96</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>0</start>
+                <end>96</end>
+                <in>0</in>
+                <out>96</out>
+                <file id="file-1">
+                  <name>HOOK — Text card or to camera</name>
+                  <duration>96</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>hook</name>
+                  <comment>HOOK — Text card or to camera</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-2">
+                <name>LET ME EXPLAIN — Beat</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>96</start>
+                <end>120</end>
+                <in>0</in>
+                <out>24</out>
+                <file id="file-2">
+                  <name>LET ME EXPLAIN — Beat</name>
+                  <duration>24</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>explain</name>
+                  <comment>LET ME EXPLAIN — Beat</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-3">
+                <name>ANTHONY — Photo + title (Head of Partnerships)</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>120</start>
+                <end>168</end>
+                <in>0</in>
+                <out>48</out>
+                <file id="file-3">
+                  <name>ANTHONY — Photo + title (Head of Partnerships)</name>
+                  <duration>48</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>anthony</name>
+                  <comment>ANTHONY — Photo + title (Head of Partnerships)</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-4">
+                <name>THEO — Avatar + ding + (his AI Self)</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>168</start>
+                <end>216</end>
+                <in>0</in>
+                <out>48</out>
+                <file id="file-4">
+                  <name>THEO — Avatar + ding + (his AI Self)</name>
+                  <duration>48</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>theo</name>
+                  <comment>THEO — Avatar + ding + (his AI Self)</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-5">
+                <name>THEO WORK — Scanning UI + Slack</name>
+                <duration>96</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>216</start>
+                <end>312</end>
+                <in>0</in>
+                <out>96</out>
+                <file id="file-5">
+                  <name>THEO WORK — Scanning UI + Slack</name>
+                  <duration>96</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>theo-work</name>
+                  <comment>THEO WORK — Scanning UI + Slack</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-6">
+                <name>RAPID — Starry photo → Momo avatar + ding</name>
+                <duration>31</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>312</start>
+                <end>343</end>
+                <in>0</in>
+                <out>31</out>
+                <file id="file-6">
+                  <name>RAPID — Starry photo → Momo avatar + ding</name>
+                  <duration>31</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>montage-starry</name>
+                  <comment>RAPID — Starry photo → Momo avatar + ding</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-7">
+                <name>RAPID — Rus photo → Russ avatar + ding</name>
+                <duration>31</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>343</start>
+                <end>374</end>
+                <in>0</in>
+                <out>31</out>
+                <file id="file-7">
+                  <name>RAPID — Rus photo → Russ avatar + ding</name>
+                  <duration>31</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>montage-rus</name>
+                  <comment>RAPID — Rus photo → Russ avatar + ding</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-8">
+                <name>RAPID — Matan photo → Raccoon 2.0 avatar + ding</name>
+                <duration>34</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>374</start>
+                <end>408</end>
+                <in>0</in>
+                <out>34</out>
+                <file id="file-8">
+                  <name>RAPID — Matan photo → Raccoon 2.0 avatar + ding</name>
+                  <duration>34</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>montage-matan</name>
+                  <comment>RAPID — Matan photo → Raccoon 2.0 avatar + ding</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-9">
+                <name>DEMI — Photo + CEO title</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>408</start>
+                <end>456</end>
+                <in>0</in>
+                <out>48</out>
+                <file id="file-9">
+                  <name>DEMI — Photo + CEO title</name>
+                  <duration>48</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>demi</name>
+                  <comment>DEMI — Photo + CEO title</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-10">
+                <name>BEAT — 'Well… not exactly.'</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>456</start>
+                <end>492</end>
+                <in>0</in>
+                <out>36</out>
+                <file id="file-10">
+                  <name>BEAT — 'Well… not exactly.'</name>
+                  <duration>36</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>not-exactly</name>
+                  <comment>BEAT — 'Well… not exactly.'</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-11">
+                <name>SEMI — Avatar + ding + (her AI Self)</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>492</start>
+                <end>528</end>
+                <in>0</in>
+                <out>36</out>
+                <file id="file-11">
+                  <name>SEMI — Avatar + ding + (her AI Self)</name>
+                  <duration>36</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>semi</name>
+                  <comment>SEMI — Avatar + ding + (her AI Self)</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-12">
+                <name>DEMI BUSY — Calendar + punchline</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>528</start>
+                <end>576</end>
+                <in>0</in>
+                <out>48</out>
+                <file id="file-12">
+                  <name>DEMI BUSY — Calendar + punchline</name>
+                  <duration>48</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>demi-busy</name>
+                  <comment>DEMI BUSY — Calendar + punchline</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-13">
+                <name>LETI — To camera, normal intro</name>
+                <duration>72</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>576</start>
+                <end>648</end>
+                <in>0</in>
+                <out>72</out>
+                <file id="file-13">
+                  <name>LETI — To camera, normal intro</name>
+                  <duration>72</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>leti-intro</name>
+                  <comment>LETI — To camera, normal intro</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-14">
+                <name>MOCHI — Hard cut, smashing keyboard, 2 monitors</name>
+                <duration>72</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>648</start>
+                <end>720</end>
+                <in>0</in>
+                <out>72</out>
+                <file id="file-14">
+                  <name>MOCHI — Hard cut, smashing keyboard, 2 monitors</name>
+                  <duration>72</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>mochi-reveal</name>
+                  <comment>MOCHI — Hard cut, smashing keyboard, 2 monitors</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-15">
+                <name>LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>720</start>
+                <end>768</end>
+                <in>0</in>
+                <out>48</out>
+                <file id="file-15">
+                  <name>LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'</name>
+                  <duration>48</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>leti-annoyed</name>
+                  <comment>LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-16">
+                <name>GLITCH — Mochi stares at camera annoyed</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>768</start>
+                <end>792</end>
+                <in>0</in>
+                <out>24</out>
+                <file id="file-16">
+                  <name>GLITCH — Mochi stares at camera annoyed</name>
+                  <duration>24</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>mochi-glitch</name>
+                  <comment>GLITCH — Mochi stares at camera annoyed</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-17">
+                <name>LETI — 'Anyways, I'm—' (gets cut off again)</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>792</start>
+                <end>828</end>
+                <in>0</in>
+                <out>36</out>
+                <file id="file-17">
+                  <name>LETI — 'Anyways, I'm—' (gets cut off again)</name>
+                  <duration>36</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>leti-comeback</name>
+                  <comment>LETI — 'Anyways, I'm—' (gets cut off again)</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-18">
+                <name>MOCHI GLITCH — Leti: 'oh you're done?'</name>
+                <duration>84</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>828</start>
+                <end>912</end>
+                <in>0</in>
+                <out>84</out>
+                <file id="file-18">
+                  <name>MOCHI GLITCH — Leti: 'oh you're done?'</name>
+                  <duration>84</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>mochi-done</name>
+                  <comment>MOCHI GLITCH — Leti: 'oh you're done?'</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+              <clipitem id="clip-19">
+                <name>ZOOM INTO MOCHI SCREEN → LOOP ∞</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>912</start>
+                <end>960</end>
+                <in>0</in>
+                <out>48</out>
+                <file id="file-19">
+                  <name>ZOOM INTO MOCHI SCREEN → LOOP ∞</name>
+                  <duration>48</duration>
+                  <rate>
+                    <timebase>24</timebase>
+                    <ntsc>FALSE</ntsc>
+                  </rate>
+                  <media>
+                    <video>
+                      <samplecharacteristics>
+                        <width>1920</width>
+                        <height>1080</height>
+                      </samplecharacteristics>
+                    </video>
+                  </media>
+                </file>
+                <marker>
+                  <name>loop-zoom</name>
+                  <comment>ZOOM INTO MOCHI SCREEN → LOOP ∞</comment>
+                  <in>0</in>
+                  <out>-1</out>
+                </marker>
+              </clipitem>
+            </track>
+            <track>
+              <enabled>TRUE</enabled>
+              <locked>FALSE</locked>
+              <generatoritem id="sub-1">
+                <name>You're not gonna believe this but —</name>
+                <duration>60</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>0</start>
+                <end>60</end>
+                <in>0</in>
+                <out>60</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>You're not gonna believe this but —</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-2">
+                <name>our company used our own product, AI Selves, to pu</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>60</start>
+                <end>96</end>
+                <in>0</in>
+                <out>36</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>our company used our own product, AI Selves, to push the actual product.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-3">
+                <name>Let me explain.</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>96</start>
+                <end>120</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Let me explain.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-4">
+                <name>This is Anthony, our head of partnerships.</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>120</start>
+                <end>156</end>
+                <in>0</in>
+                <out>36</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>This is Anthony, our head of partnerships.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-5">
+                <name>And this is Theo.</name>
+                <duration>12</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>156</start>
+                <end>168</end>
+                <in>0</in>
+                <out>12</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>And this is Theo.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-6">
+                <name>(his AI Self)</name>
+                <duration>12</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>168</start>
+                <end>180</end>
+                <in>0</in>
+                <out>12</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>(his AI Self)</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-7">
+                <name>Theo monitors brand mentions in real time</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>180</start>
+                <end>216</end>
+                <in>0</in>
+                <out>36</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Theo monitors brand mentions in real time</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-8">
+                <name>and helped Anthony evaluate partnerships around th</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>216</start>
+                <end>264</end>
+                <in>0</in>
+                <out>48</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>and helped Anthony evaluate partnerships around the clock</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-9">
+                <name>for the launch.</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>264</start>
+                <end>312</end>
+                <in>0</in>
+                <out>48</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>for the launch.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-10">
+                <name>Starry — Momo</name>
+                <duration>14</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>312</start>
+                <end>326</end>
+                <in>0</in>
+                <out>14</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Starry — Momo</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-11">
+                <name>(her AI Self)</name>
+                <duration>17</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>326</start>
+                <end>343</end>
+                <in>0</in>
+                <out>17</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>(her AI Self)</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-12">
+                <name>Rus — Russ</name>
+                <duration>14</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>343</start>
+                <end>357</end>
+                <in>0</in>
+                <out>14</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Rus — Russ</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-13">
+                <name>(his AI Self)</name>
+                <duration>17</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>357</start>
+                <end>374</end>
+                <in>0</in>
+                <out>17</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>(his AI Self)</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-14">
+                <name>Matan — Raccoon 2.0</name>
+                <duration>14</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>374</start>
+                <end>388</end>
+                <in>0</in>
+                <out>14</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Matan — Raccoon 2.0</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-15">
+                <name>(his AI Self)</name>
+                <duration>19</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>388</start>
+                <end>407</end>
+                <in>0</in>
+                <out>19</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>(his AI Self)</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-16">
+                <name>Oh, and all of them report up to our CEO, Demi Guo</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>408</start>
+                <end>456</end>
+                <in>0</in>
+                <out>48</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Oh, and all of them report up to our CEO, Demi Guo.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-17">
+                <name>Well… not exactly.</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>456</start>
+                <end>492</end>
+                <in>0</in>
+                <out>36</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Well… not exactly.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-18">
+                <name>They report to Semi —</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>492</start>
+                <end>516</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>They report to Semi —</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-19">
+                <name>(her AI Self)</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>492</start>
+                <end>516</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>(her AI Self)</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-20">
+                <name>and Semi reports back to her.</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>528</start>
+                <end>552</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>and Semi reports back to her.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-21">
+                <name>Because Demi is waaaay too busy.</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>552</start>
+                <end>576</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Because Demi is waaaay too busy.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-22">
+                <name>And me? I'm Leti, and I usually make videos, buuuu</name>
+                <duration>60</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>576</start>
+                <end>636</end>
+                <in>0</in>
+                <out>60</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>And me? I'm Leti, and I usually make videos, buuuut—</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-23">
+                <name>[MEOW]</name>
+                <duration>12</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>636</start>
+                <end>648</end>
+                <in>0</in>
+                <out>12</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>[MEOW]</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-24">
+                <name>(my AI Self)</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>648</start>
+                <end>684</end>
+                <in>0</in>
+                <out>36</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>(my AI Self)</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-25">
+                <name>Mochi— ffs, I'm in the middle of introducing yo—</name>
+                <duration>48</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>720</start>
+                <end>768</end>
+                <in>0</in>
+                <out>48</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Mochi— ffs, I'm in the middle of introducing yo—</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-26">
+                <name>Anyways, I'm—</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>792</start>
+                <end>816</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Anyways, I'm—</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-27">
+                <name>What?? What do you need from me—</name>
+                <duration>36</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>828</start>
+                <end>864</end>
+                <in>0</in>
+                <out>36</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>What?? What do you need from me—</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-28">
+                <name>oh. Oh! You're done editing the video?</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>864</start>
+                <end>888</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>oh. Oh! You're done editing the video?</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-29">
+                <name>Ok ok lemme check it out.</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>888</start>
+                <end>912</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>Ok ok lemme check it out.</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+              <generatoritem id="sub-30">
+                <name>&quot;You're not gonna believe this but—&quot;</name>
+                <duration>24</duration>
+                <rate>
+                  <timebase>24</timebase>
+                  <ntsc>FALSE</ntsc>
+                </rate>
+                <start>936</start>
+                <end>960</end>
+                <in>0</in>
+                <out>24</out>
+                <effect>
+                  <name>Text</name>
+                  <effectid>Text</effectid>
+                  <effectcategory>Text</effectcategory>
+                  <effecttype>generator</effecttype>
+                  <mediatype>video</mediatype>
+                  <parameter>
+                    <parameterid>str</parameterid>
+                    <name>Text</name>
+                    <value>&quot;You're not gonna believe this but—&quot;</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>font</parameterid>
+                    <name>Font</name>
+                    <value>SF Pro</value>
+                  </parameter>
+                  <parameter>
+                    <parameterid>fontsize</parameterid>
+                    <name>Font Size</name>
+                    <value>42</value>
+                  </parameter>
+                </effect>
+              </generatoritem>
+            </track>
+          </video>
+        </media>
+      </sequence>
+    </children>
+  </project>
+</xmeml>
