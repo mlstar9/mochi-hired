@@ -140,8 +140,8 @@ def build_xml():
         f_media = ET.SubElement(file_elem, "media")
         f_video = ET.SubElement(f_media, "video")
         f_vc = ET.SubElement(f_video, "samplecharacteristics")
-        ET.SubElement(f_vc, "width").text = "1080"
-        ET.SubElement(f_vc, "height").text = "1920"
+        ET.SubElement(f_vc, "width").text = "1920"
+        ET.SubElement(f_vc, "height").text = "1080"
 
         # Add marker with section label
         marker = ET.SubElement(clipitem, "marker")
