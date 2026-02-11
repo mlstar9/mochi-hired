@@ -149,4 +149,68 @@ Study these:
 
 ---
 
+---
+
+## 11. VIRAL VIDEO BREAKDOWN — What Works
+
+### "Surprising My DAD with a Custom IPAD PRO!!" (6.5M views)
+**Why it popped:**
+- Emotional hook (dad surprise) + satisfying art process
+- The JOURNEY: concept → sketch → custom paint → reveal → reaction
+- Every step has visual payoff — you're always watching something satisfying happen
+- Reaction shot is the climax — all the editing energy builds to that moment
+- Pacing: process shots are fast-cut, reaction is held longer (contrast = emotion)
+
+**Takeaway:** Build toward a single emotional moment. Everything before it is fuel.
+
+### "Drawing For 100,000 Seconds Straight!! (FACE REVEAL)" (1.3M+ views)
+**Why it popped:**
+- Double hook: marathon challenge + face reveal milestone
+- Time counter creates tension (how far can he go?)
+- Vulnerability: fatigue, frustration, real moments — not polished perfection
+- The face reveal reward at the end = you HAVE to watch to the end
+
+**Takeaway:** Stakes + countdown + authentic struggle = can't look away.
+
+### "Spray Painting my House While my Parents are Away!" (1.2M views)
+**Why it popped:**
+- Rebellious energy in the title alone (tension: will parents find out?)
+- Transformation content: boring wall → art piece
+- Risk element keeps you watching
+- Before/after payoff
+
+**Takeaway:** Implied consequences + transformation = engagement.
+
+### "I Made My First Custom Outfit!" (series, consistently high views)
+**Why it popped:**
+- Drawing → real life pipeline is inherently satisfying
+- Clear structure: design → paint → wear → reveal
+- Fashion + art crossover audience
+- Each video in the series improves = returning viewers
+
+**Takeaway:** Take art off the page and into the real world. Physical transformation > digital.
+
+---
+
+## 12. PATTERNS ACROSS HIS VIRAL HITS
+
+| Pattern | How it works |
+|---|---|
+| **Transformation arc** | Before → process → after. Always. |
+| **Emotional stakes** | Surprising someone, revealing yourself, risking something |
+| **Satisfying process** | The HOW is as entertaining as the result |
+| **Time pressure** | Countdowns, challenges, "while parents are away" |
+| **Payoff at the end** | Don't front-load the best moment — earn it |
+| **Real reactions** | Genuine surprise/joy, not scripted |
+| **Title tension** | Every title implies something could go wrong or something amazing will happen |
+
+### How this applies to Leti's AI Selves video:
+- **Transformation arc:** Regular team → team powered by AI Selves
+- **Emotional stakes:** This is YOUR video, your voice, your team
+- **Satisfying process:** Each AI Self reveal is a mini-payoff
+- **Payoff at the end:** The Mochi loop is the ultimate "wait what" moment
+- **Real reactions:** Your genuine annoyance at me interrupting = authentic
+
+---
+
 *This is a living doc. Update as we learn more.*
