@@ -23,6 +23,7 @@ import {SlackMockup} from './SlackMockup';
 import {PikaAISelfDemo} from './PikaAISelfDemo';
 import {NyxLockScreen} from './NyxLockScreen';
 import {LetiAISelvesVideo, LETI_VIDEO_DURATION} from './LetiAISelvesVideo';
+import {LetiShot03Theo, THEO_DURATION} from './LetiShot03Theo';
 
 const RemotionRoot: React.FC = () => {
   return (
@@ -210,6 +211,14 @@ const RemotionRoot: React.FC = () => {
         fps={24}
         width={1320}
         height={2868}
+      />
+      <Composition
+        id="LetiShot03-Theo"
+        component={LetiShot03Theo}
+        durationInFrames={THEO_DURATION}
+        fps={24}
+        width={1920}
+        height={1080}
       />
       <Composition
         id="LetiAISelvesVideo"
