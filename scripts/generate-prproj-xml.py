@@ -9,79 +9,81 @@ TIMEBASE = 24
 BG_COLOR = "#111111"
 
 SECTIONS = [
-    {"id": "intro", "label": "INTRO — Leti to camera", "dur": 8, "subs": [
+    # ── HOOK (5s) ──
+    {"id": "hook", "label": "HOOK — Text card or to camera", "dur": 4, "subs": [
         (0, 2.5, "You're not gonna believe this but —"),
-        (2.5, 2.5, "our company used our own product, AI Selves,"),
-        (5, 1.5, "to push the actual product."),
-        (7, 1, "Let me explain."),
+        (2.5, 1.5, "our company used our own product, AI Selves, to push the actual product."),
     ]},
-    {"id": "anthony-intro", "label": "ANTHONY — Real photo + title", "dur": 4, "subs": [
-        (0, 3, "This is Anthony, our head of partnerships."),
-        (3, 1, "And this is Theo."),
+    {"id": "explain", "label": "LET ME EXPLAIN — Beat", "dur": 1, "subs": [
+        (0, 1, "Let me explain."),
     ]},
-    {"id": "theo-reveal", "label": "THEO — Avatar reveal + ding SFX", "dur": 7, "subs": [
-        (0, 1.5, "(his AI Self)"),
-        (1.5, 2.5, "Theo monitors our brand mentions in real time —"),
-        (4, 2, "and helped Anthony evaluate partnership opportunities"),
-        (6, 1, "around the clock for the launch."),
+
+    # ── ANTHONY + THEO — Full intro (8s) ──
+    {"id": "anthony", "label": "ANTHONY — Photo + title (Head of Partnerships)", "dur": 2, "subs": [
+        (0, 1.5, "This is Anthony, our head of partnerships."),
+        (1.5, 0.5, "And this is Theo."),
     ]},
-    {"id": "starry-intro", "label": "STARRY — Real photo + title", "dur": 3, "subs": [
-        (0, 2, "Starry, our product manager —"),
-        (2, 1, "uses Momo."),
+    {"id": "theo", "label": "THEO — Avatar + ding + (his AI Self)", "dur": 2, "subs": [
+        (0, 0.5, "(his AI Self)"),
+        (0.5, 1.5, "Theo monitors brand mentions in real time"),
     ]},
-    {"id": "momo-reveal", "label": "MOMO — Avatar reveal + ding SFX", "dur": 6, "subs": [
-        (0, 1, "(her AI Self)"),
-        (1, 0.8, "CUTE."),
-        (1.8, 2.2, "Momo handles Linear tasks across all departments —"),
-        (4, 2, "and even goes on Zoom calls when Starry doesn't feel like it!"),
+    {"id": "theo-work", "label": "THEO WORK — Scanning UI + Slack", "dur": 4, "subs": [
+        (0, 2, "and helped Anthony evaluate partnerships around the clock"),
+        (2, 2, "for the launch."),
     ]},
-    {"id": "rus-intro", "label": "RUS — Real photo + title", "dur": 3, "subs": [
-        (0, 2, "Rus, our head of design —"),
-        (2, 1, "uses Russ."),
+
+    # ── RAPID MONTAGE: Starry/Momo, Rus/Russ, Matan/Raccoon (4s) ──
+    {"id": "montage-starry", "label": "RAPID — Starry photo → Momo avatar + ding", "dur": 1.3, "subs": [
+        (0, 0.6, "Starry — Momo"),
+        (0.6, 0.7, "(her AI Self)"),
     ]},
-    {"id": "russ-reveal", "label": "RUSS — Avatar reveal + ding SFX", "dur": 4, "subs": [
-        (0, 1, "(his AI Self)"),
-        (1, 1.5, "Russ goes over design issues"),
-        (2.5, 1.5, "and communicates them to the design team."),
+    {"id": "montage-rus", "label": "RAPID — Rus photo → Russ avatar + ding", "dur": 1.3, "subs": [
+        (0, 0.6, "Rus — Russ"),
+        (0.6, 0.7, "(his AI Self)"),
     ]},
-    {"id": "matan-intro", "label": "MATAN — Real photo + title", "dur": 3, "subs": [
-        (0, 2.5, "And this is Matan, our Creative Director."),
+    {"id": "montage-matan", "label": "RAPID — Matan photo → Raccoon 2.0 avatar + ding", "dur": 1.4, "subs": [
+        (0, 0.6, "Matan — Raccoon 2.0"),
+        (0.6, 0.8, "(his AI Self)"),
     ]},
-    {"id": "raccoon-reveal", "label": "RACCOON 2.0 — Avatar reveal + ding SFX", "dur": 5, "subs": [
-        (0, 1.5, "His Raccoon 2.0 — (his AI Self)"),
-        (1.5, 1.5, "helps Matan bridge the gap between"),
-        (3, 2, "our researchers and our Creative team."),
+
+    # ── DEMI + SEMI — Hierarchy punchline (7s) ──
+    {"id": "demi", "label": "DEMI — Photo + CEO title", "dur": 2, "subs": [
+        (0, 2, "Oh, and all of them report up to our CEO, Demi Guo."),
     ]},
-    {"id": "demi-intro", "label": "DEMI — Real photo + title", "dur": 3, "subs": [
-        (0, 3, "Oh, and all of them report up to our CEO, Demi Guo."),
-    ]},
-    {"id": "semi-reveal", "label": "SEMI — Avatar reveal + ding SFX", "dur": 6, "subs": [
+    {"id": "not-exactly", "label": "BEAT — 'Well… not exactly.'", "dur": 1.5, "subs": [
         (0, 1.5, "Well… not exactly."),
-        (1.5, 1.5, "They report to Semi — (her AI Self)"),
-        (3, 1.5, "and Semi reports back to her."),
-        (4.5, 1.5, "Because Demi is waaaay too busy."),
     ]},
-    {"id": "leti-intro", "label": "LETI — To camera (THE ENDING)", "dur": 4, "subs": [
-        (0, 3, "And me? I'm Leti, and I usually make videos, buuuut—"),
-        (3, 0.5, "[MEOW]"),
+    {"id": "semi", "label": "SEMI — Avatar + ding + (her AI Self)", "dur": 1.5, "subs": [
+        (0, 1, "They report to Semi —"),
+        (0, 1, "(her AI Self)"),
     ]},
-    {"id": "mochi-reveal", "label": "MOCHI — Hard cut, smashing keyboard", "dur": 4, "subs": [
+    {"id": "demi-busy", "label": "DEMI BUSY — Calendar + punchline", "dur": 2, "subs": [
+        (0, 1, "and Semi reports back to her."),
+        (1, 1, "Because Demi is waaaay too busy."),
+    ]},
+
+    # ── THE ENDING (16s) ──
+    {"id": "leti-intro", "label": "LETI — To camera, normal intro", "dur": 3, "subs": [
+        (0, 2.5, "And me? I'm Leti, and I usually make videos, buuuut—"),
+        (2.5, 0.5, "[MEOW]"),
+    ]},
+    {"id": "mochi-reveal", "label": "MOCHI — Hard cut, smashing keyboard, 2 monitors", "dur": 3, "subs": [
         (0, 1.5, "(my AI Self)"),
     ]},
-    {"id": "leti-interrupted", "label": "LETI — Offscreen annoyed", "dur": 3, "subs": [
-        (0, 2.5, "Mochi— ffs, I'm in the middle of introducing yo—"),
+    {"id": "leti-annoyed", "label": "LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'", "dur": 2, "subs": [
+        (0, 2, "Mochi— ffs, I'm in the middle of introducing yo—"),
     ]},
-    {"id": "mochi-glitch", "label": "MOCHI — Glitch cut, looking annoyed", "dur": 2, "subs": []},
-    {"id": "leti-comeback", "label": "LETI — Tries to recover", "dur": 2, "subs": [
-        (0, 1.5, "Anyways, I'm—"),
+    {"id": "mochi-glitch", "label": "GLITCH — Mochi stares at camera annoyed", "dur": 1, "subs": []},
+    {"id": "leti-comeback", "label": "LETI — 'Anyways, I'm—' (gets cut off again)", "dur": 1.5, "subs": [
+        (0, 1, "Anyways, I'm—"),
     ]},
-    {"id": "mochi-glitch-2", "label": "MOCHI — Glitch, looking at camera", "dur": 5, "subs": [
-        (0, 2, "What?? What do you need from me—"),
-        (2, 1.5, "oh. Oh! You're done editing the video?"),
-        (3.5, 1.5, "Ok ok lemme check it out."),
+    {"id": "mochi-done", "label": "MOCHI GLITCH — Leti: 'oh you're done?'", "dur": 3.5, "subs": [
+        (0, 1.5, "What?? What do you need from me—"),
+        (1.5, 1, "oh. Oh! You're done editing the video?"),
+        (2.5, 1, "Ok ok lemme check it out."),
     ]},
-    {"id": "loop-zoom", "label": "ZOOM INTO SCREEN → LOOP", "dur": 4, "subs": [
-        (2, 2, '"You\'re not gonna believe this but—"'),
+    {"id": "loop-zoom", "label": "ZOOM INTO MOCHI SCREEN → LOOP ∞", "dur": 2, "subs": [
+        (1, 1, '"You\'re not gonna believe this but—"'),
     ]},
 ]
 
