@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xmeml version="5">
   <project>
-    <name>Leti AI Selves Video</name>
+    <name>AI Selves Leti v2</name>
     <children>
       <sequence>
-        <name>Leti AI Selves — Main</name>
+        <name>AI Selves Leti — 40s Cut</name>
         <duration>960</duration>
         <rate>
           <timebase>24</timebase>
@@ -25,12 +25,13 @@
                 <in>0</in>
                 <out>96</out>
                 <file id="file-1">
-                  <name>HOOK — Text card or to camera</name>
+                  <name>01-hook.mp4</name>
                   <duration>96</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/01-hook.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -41,7 +42,7 @@
                   </media>
                 </file>
                 <marker>
-                  <name>hook</name>
+                  <name>01-hook</name>
                   <comment>HOOK — Text card or to camera</comment>
                   <in>0</in>
                   <out>-1</out>
@@ -59,12 +60,13 @@
                 <in>0</in>
                 <out>24</out>
                 <file id="file-2">
-                  <name>LET ME EXPLAIN — Beat</name>
+                  <name>02-explain.mp4</name>
                   <duration>24</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/02-explain.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -75,14 +77,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>explain</name>
+                  <name>02-explain</name>
                   <comment>LET ME EXPLAIN — Beat</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-3">
-                <name>ANTHONY — Photo + title (Head of Partnerships)</name>
+                <name>ANTHONY — Photo + title</name>
                 <duration>48</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -93,12 +95,13 @@
                 <in>0</in>
                 <out>48</out>
                 <file id="file-3">
-                  <name>ANTHONY — Photo + title (Head of Partnerships)</name>
+                  <name>03-anthony.mp4</name>
                   <duration>48</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/03-anthony.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -109,8 +112,8 @@
                   </media>
                 </file>
                 <marker>
-                  <name>anthony</name>
-                  <comment>ANTHONY — Photo + title (Head of Partnerships)</comment>
+                  <name>03-anthony</name>
+                  <comment>ANTHONY — Photo + title</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
@@ -127,12 +130,13 @@
                 <in>0</in>
                 <out>48</out>
                 <file id="file-4">
-                  <name>THEO — Avatar + ding + (his AI Self)</name>
+                  <name>04-theo.mp4</name>
                   <duration>48</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/04-theo.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -143,7 +147,7 @@
                   </media>
                 </file>
                 <marker>
-                  <name>theo</name>
+                  <name>04-theo</name>
                   <comment>THEO — Avatar + ding + (his AI Self)</comment>
                   <in>0</in>
                   <out>-1</out>
@@ -161,12 +165,13 @@
                 <in>0</in>
                 <out>96</out>
                 <file id="file-5">
-                  <name>THEO WORK — Scanning UI + Slack</name>
+                  <name>05-theo-work.mp4</name>
                   <duration>96</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/05-theo-work.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -177,14 +182,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>theo-work</name>
+                  <name>05-theo-work</name>
                   <comment>THEO WORK — Scanning UI + Slack</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-6">
-                <name>RAPID — Starry photo → Momo avatar + ding</name>
+                <name>RAPID — Starry → Momo + ding</name>
                 <duration>31</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -195,12 +200,13 @@
                 <in>0</in>
                 <out>31</out>
                 <file id="file-6">
-                  <name>RAPID — Starry photo → Momo avatar + ding</name>
+                  <name>06-montage-starry.mp4</name>
                   <duration>31</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/06-montage-starry.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -211,14 +217,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>montage-starry</name>
-                  <comment>RAPID — Starry photo → Momo avatar + ding</comment>
+                  <name>06-montage-starry</name>
+                  <comment>RAPID — Starry → Momo + ding</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-7">
-                <name>RAPID — Rus photo → Russ avatar + ding</name>
+                <name>RAPID — Rus → Russ + ding</name>
                 <duration>31</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -229,12 +235,13 @@
                 <in>0</in>
                 <out>31</out>
                 <file id="file-7">
-                  <name>RAPID — Rus photo → Russ avatar + ding</name>
+                  <name>07-montage-rus.mp4</name>
                   <duration>31</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/07-montage-rus.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -245,14 +252,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>montage-rus</name>
-                  <comment>RAPID — Rus photo → Russ avatar + ding</comment>
+                  <name>07-montage-rus</name>
+                  <comment>RAPID — Rus → Russ + ding</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-8">
-                <name>RAPID — Matan photo → Raccoon 2.0 avatar + ding</name>
+                <name>RAPID — Matan → Raccoon 2.0 + ding</name>
                 <duration>34</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -263,12 +270,13 @@
                 <in>0</in>
                 <out>34</out>
                 <file id="file-8">
-                  <name>RAPID — Matan photo → Raccoon 2.0 avatar + ding</name>
+                  <name>08-montage-matan.mp4</name>
                   <duration>34</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/08-montage-matan.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -279,8 +287,8 @@
                   </media>
                 </file>
                 <marker>
-                  <name>montage-matan</name>
-                  <comment>RAPID — Matan photo → Raccoon 2.0 avatar + ding</comment>
+                  <name>08-montage-matan</name>
+                  <comment>RAPID — Matan → Raccoon 2.0 + ding</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
@@ -297,12 +305,13 @@
                 <in>0</in>
                 <out>48</out>
                 <file id="file-9">
-                  <name>DEMI — Photo + CEO title</name>
+                  <name>09-demi.mp4</name>
                   <duration>48</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/09-demi.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -313,14 +322,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>demi</name>
+                  <name>09-demi</name>
                   <comment>DEMI — Photo + CEO title</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-10">
-                <name>BEAT — 'Well… not exactly.'</name>
+                <name>BEAT — Well not exactly</name>
                 <duration>36</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -331,12 +340,13 @@
                 <in>0</in>
                 <out>36</out>
                 <file id="file-10">
-                  <name>BEAT — 'Well… not exactly.'</name>
+                  <name>10-not-exactly.mp4</name>
                   <duration>36</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/10-not-exactly.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -347,8 +357,8 @@
                   </media>
                 </file>
                 <marker>
-                  <name>not-exactly</name>
-                  <comment>BEAT — 'Well… not exactly.'</comment>
+                  <name>10-not-exactly</name>
+                  <comment>BEAT — Well not exactly</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
@@ -365,12 +375,13 @@
                 <in>0</in>
                 <out>36</out>
                 <file id="file-11">
-                  <name>SEMI — Avatar + ding + (her AI Self)</name>
+                  <name>11-semi.mp4</name>
                   <duration>36</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/11-semi.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -381,7 +392,7 @@
                   </media>
                 </file>
                 <marker>
-                  <name>semi</name>
+                  <name>11-semi</name>
                   <comment>SEMI — Avatar + ding + (her AI Self)</comment>
                   <in>0</in>
                   <out>-1</out>
@@ -399,12 +410,13 @@
                 <in>0</in>
                 <out>48</out>
                 <file id="file-12">
-                  <name>DEMI BUSY — Calendar + punchline</name>
+                  <name>12-demi-busy.mp4</name>
                   <duration>48</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/12-demi-busy.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -415,14 +427,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>demi-busy</name>
+                  <name>12-demi-busy</name>
                   <comment>DEMI BUSY — Calendar + punchline</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-13">
-                <name>LETI — To camera, normal intro</name>
+                <name>LETI — To camera normal intro</name>
                 <duration>72</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -433,12 +445,13 @@
                 <in>0</in>
                 <out>72</out>
                 <file id="file-13">
-                  <name>LETI — To camera, normal intro</name>
+                  <name>13-leti-intro.mp4</name>
                   <duration>72</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/13-leti-intro.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -449,14 +462,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>leti-intro</name>
-                  <comment>LETI — To camera, normal intro</comment>
+                  <name>13-leti-intro</name>
+                  <comment>LETI — To camera normal intro</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-14">
-                <name>MOCHI — Hard cut, smashing keyboard, 2 monitors</name>
+                <name>MOCHI — Hard cut smashing keyboard</name>
                 <duration>72</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -467,12 +480,13 @@
                 <in>0</in>
                 <out>72</out>
                 <file id="file-14">
-                  <name>MOCHI — Hard cut, smashing keyboard, 2 monitors</name>
+                  <name>14-mochi-reveal.mp4</name>
                   <duration>72</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/14-mochi-reveal.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -483,14 +497,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>mochi-reveal</name>
-                  <comment>MOCHI — Hard cut, smashing keyboard, 2 monitors</comment>
+                  <name>14-mochi-reveal</name>
+                  <comment>MOCHI — Hard cut smashing keyboard</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-15">
-                <name>LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'</name>
+                <name>LETI OFFSCREEN — ffs introducing yo—</name>
                 <duration>48</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -501,12 +515,13 @@
                 <in>0</in>
                 <out>48</out>
                 <file id="file-15">
-                  <name>LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'</name>
+                  <name>15-leti-annoyed.mp4</name>
                   <duration>48</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/15-leti-annoyed.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -517,14 +532,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>leti-annoyed</name>
-                  <comment>LETI OFFSCREEN — 'ffs I'm in the middle of introducing yo—'</comment>
+                  <name>15-leti-annoyed</name>
+                  <comment>LETI OFFSCREEN — ffs introducing yo—</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-16">
-                <name>GLITCH — Mochi stares at camera annoyed</name>
+                <name>GLITCH — Mochi stares annoyed</name>
                 <duration>24</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -535,12 +550,13 @@
                 <in>0</in>
                 <out>24</out>
                 <file id="file-16">
-                  <name>GLITCH — Mochi stares at camera annoyed</name>
+                  <name>16-mochi-glitch.mp4</name>
                   <duration>24</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/16-mochi-glitch.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -551,14 +567,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>mochi-glitch</name>
-                  <comment>GLITCH — Mochi stares at camera annoyed</comment>
+                  <name>16-mochi-glitch</name>
+                  <comment>GLITCH — Mochi stares annoyed</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-17">
-                <name>LETI — 'Anyways, I'm—' (gets cut off again)</name>
+                <name>LETI — Anyways I'm—</name>
                 <duration>36</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -569,12 +585,13 @@
                 <in>0</in>
                 <out>36</out>
                 <file id="file-17">
-                  <name>LETI — 'Anyways, I'm—' (gets cut off again)</name>
+                  <name>17-leti-comeback.mp4</name>
                   <duration>36</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/17-leti-comeback.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -585,14 +602,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>leti-comeback</name>
-                  <comment>LETI — 'Anyways, I'm—' (gets cut off again)</comment>
+                  <name>17-leti-comeback</name>
+                  <comment>LETI — Anyways I'm—</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-18">
-                <name>MOCHI GLITCH — Leti: 'oh you're done?'</name>
+                <name>MOCHI — oh you're done editing?</name>
                 <duration>84</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -603,12 +620,13 @@
                 <in>0</in>
                 <out>84</out>
                 <file id="file-18">
-                  <name>MOCHI GLITCH — Leti: 'oh you're done?'</name>
+                  <name>18-mochi-done.mp4</name>
                   <duration>84</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/18-mochi-done.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -619,14 +637,14 @@
                   </media>
                 </file>
                 <marker>
-                  <name>mochi-done</name>
-                  <comment>MOCHI GLITCH — Leti: 'oh you're done?'</comment>
+                  <name>18-mochi-done</name>
+                  <comment>MOCHI — oh you're done editing?</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>
               </clipitem>
               <clipitem id="clip-19">
-                <name>ZOOM INTO MOCHI SCREEN → LOOP ∞</name>
+                <name>ZOOM INTO SCREEN → LOOP</name>
                 <duration>48</duration>
                 <rate>
                   <timebase>24</timebase>
@@ -637,12 +655,13 @@
                 <in>0</in>
                 <out>48</out>
                 <file id="file-19">
-                  <name>ZOOM INTO MOCHI SCREEN → LOOP ∞</name>
+                  <name>19-loop-zoom.mp4</name>
                   <duration>48</duration>
                   <rate>
                     <timebase>24</timebase>
                     <ntsc>FALSE</ntsc>
                   </rate>
+                  <pathurl>placeholders/19-loop-zoom.mp4</pathurl>
                   <media>
                     <video>
                       <samplecharacteristics>
@@ -653,8 +672,8 @@
                   </media>
                 </file>
                 <marker>
-                  <name>loop-zoom</name>
-                  <comment>ZOOM INTO MOCHI SCREEN → LOOP ∞</comment>
+                  <name>19-loop-zoom</name>
+                  <comment>ZOOM INTO SCREEN → LOOP</comment>
                   <in>0</in>
                   <out>-1</out>
                 </marker>

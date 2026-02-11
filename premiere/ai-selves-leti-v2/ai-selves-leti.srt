@@ -3,165 +3,117 @@
 You're not gonna believe this but —
 
 2
-00:00:02,500 --> 00:00:05,000
-our company used our own product, AI Selves,
+00:00:02,500 --> 00:00:04,000
+our company used our own product, AI Selves, to push the actual product.
 
 3
-00:00:05,000 --> 00:00:06,500
-to push the actual product.
-
-4
-00:00:07,000 --> 00:00:08,000
+00:00:04,000 --> 00:00:05,000
 Let me explain.
 
-5
-00:00:08,000 --> 00:00:11,000
+4
+00:00:05,000 --> 00:00:06,500
 This is Anthony, our head of partnerships.
 
-6
-00:00:11,000 --> 00:00:12,000
+5
+00:00:06,500 --> 00:00:07,000
 And this is Theo.
 
-7
-00:00:12,000 --> 00:00:13,500
+6
+00:00:07,000 --> 00:00:07,500
 (his AI Self)
+
+7
+00:00:07,500 --> 00:00:09,000
+Theo monitors brand mentions in real time
 
 8
-00:00:13,500 --> 00:00:16,000
-Theo monitors our brand mentions in real time —
+00:00:09,000 --> 00:00:11,000
+and helped Anthony evaluate partnerships around the clock
 
 9
-00:00:16,000 --> 00:00:18,000
-and helped Anthony evaluate partnership opportunities
+00:00:11,000 --> 00:00:13,000
+for the launch.
 
 10
-00:00:18,000 --> 00:00:19,000
-around the clock for the launch.
+00:00:13,000 --> 00:00:13,599
+Starry — Momo
 
 11
-00:00:19,000 --> 00:00:21,000
-Starry, our product manager —
+00:00:13,599 --> 00:00:14,299
+(her AI Self)
 
 12
-00:00:21,000 --> 00:00:22,000
-uses Momo.
+00:00:14,300 --> 00:00:14,900
+Rus — Russ
 
 13
-00:00:22,000 --> 00:00:23,000
-(her AI Self)
+00:00:14,900 --> 00:00:15,599
+(his AI Self)
 
 14
-00:00:23,000 --> 00:00:23,800
-CUTE.
+00:00:15,600 --> 00:00:16,200
+Matan — Raccoon 2.0
 
 15
-00:00:23,800 --> 00:00:26,000
-Momo handles Linear tasks across all departments —
+00:00:16,200 --> 00:00:17,000
+(his AI Self)
 
 16
-00:00:26,000 --> 00:00:28,000
-and even goes on Zoom calls
-when Starry doesn't feel like it!
+00:00:17,000 --> 00:00:19,000
+Oh, and all of them report up to our CEO, Demi Guo.
 
 17
-00:00:28,000 --> 00:00:30,000
-Rus, our head of design —
-
-18
-00:00:30,000 --> 00:00:31,000
-uses Russ.
-
-19
-00:00:31,000 --> 00:00:32,000
-(his AI Self)
-
-20
-00:00:32,000 --> 00:00:33,500
-Russ goes over design issues
-
-21
-00:00:33,500 --> 00:00:35,000
-and communicates them to the design team.
-
-22
-00:00:35,000 --> 00:00:37,500
-And this is Matan, our Creative Director.
-
-23
-00:00:38,000 --> 00:00:39,500
-His Raccoon 2.0 —
-
-24
-00:00:38,000 --> 00:00:39,500
-(his AI Self)
-
-25
-00:00:39,500 --> 00:00:41,000
-helps Matan bridge the gap between
-
-26
-00:00:41,000 --> 00:00:43,000
-our researchers and our Creative team.
-
-27
-00:00:43,000 --> 00:00:46,000
-Oh, and all of them report up
-to our CEO, Demi Guo.
-
-28
-00:00:46,000 --> 00:00:47,500
+00:00:19,000 --> 00:00:20,500
 Well… not exactly.
 
-29
-00:00:47,500 --> 00:00:49,000
+18
+00:00:20,500 --> 00:00:21,500
 They report to Semi —
 
-30
-00:00:47,500 --> 00:00:49,000
+19
+00:00:20,500 --> 00:00:21,500
 (her AI Self)
 
-31
-00:00:49,000 --> 00:00:50,500
+20
+00:00:22,000 --> 00:00:23,000
 and Semi reports back to her.
 
-32
-00:00:50,500 --> 00:00:52,000
+21
+00:00:23,000 --> 00:00:24,000
 Because Demi is waaaay too busy.
 
-33
-00:00:52,000 --> 00:00:55,000
-And me? I'm Leti, and I usually
-make videos, buuuut—
+22
+00:00:24,000 --> 00:00:26,500
+And me? I'm Leti, and I usually make videos, buuuut—
 
-34
-00:00:55,000 --> 00:00:55,500
+23
+00:00:26,500 --> 00:00:27,000
 [MEOW]
 
-35
-00:00:55,500 --> 00:00:57,000
+24
+00:00:27,000 --> 00:00:28,500
 (my AI Self)
 
-36
-00:00:59,500 --> 00:00:62,000
-Mochi— ffs, I'm in the middle
-of introducing yo—
+25
+00:00:30,000 --> 00:00:32,000
+Mochi— ffs, I'm in the middle of introducing yo—
 
-37
-00:01:04,000 --> 00:01:05,500
+26
+00:00:33,000 --> 00:00:34,000
 Anyways, I'm—
 
-38
-00:01:07,500 --> 00:01:09,500
+27
+00:00:34,500 --> 00:00:36,000
 What?? What do you need from me—
 
-39
-00:01:09,500 --> 00:01:11,000
+28
+00:00:36,000 --> 00:00:37,000
 oh. Oh! You're done editing the video?
 
-40
-00:01:11,000 --> 00:01:12,500
+29
+00:00:37,000 --> 00:00:38,000
 Ok ok lemme check it out.
 
-41
-00:01:14,500 --> 00:01:16,500
+30
+00:00:39,000 --> 00:00:40,000
 "You're not gonna believe this but—"
