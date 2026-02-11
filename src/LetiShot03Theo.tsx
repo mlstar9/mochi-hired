@@ -128,29 +128,31 @@ export const LetiShot03Theo: React.FC = () => {
   const frame = useCurrentFrame();
   const { fps } = useVideoConfig();
 
-  // ── Camera animation ──────────────────────────────────────────────────
-  // Slow parallax drift throughout
-  const driftX = interpolate(frame, [0, THEO_DURATION], [-2, 2], {
-    extrapolateRight: 'clamp',
-  });
-  const driftY = interpolate(frame, [0, THEO_DURATION], [1, -1], {
-    extrapolateRight: 'clamp',
-  });
-
-  // 3D Y rotation: subtle sway
-  const rotY = interpolate(frame, [0, THEO_DURATION], [-3, 3], {
-    extrapolateRight: 'clamp',
-  });
-
-  // 3D X rotation: very subtle tilt
-  const rotX = interpolate(frame, [0, THEO_DURATION], [1.5, -0.5], {
-    extrapolateRight: 'clamp',
-  });
-
-  // Slow zoom in
-  const zoom = interpolate(frame, [0, THEO_DURATION], [1.05, 1.12], {
+  // ── Ken Burns — slow zoom + pan ────────────────────────────────────────
+  // Zoom from 1.08 → 1.18 (slow push in)
+  const zoom = interpolate(frame, [0, THEO_DURATION], [1.08, 1.18], {
     extrapolateRight: 'clamp',
     easing: Easing.ease,
+  });
+
+  // Pan: drift from left to right slowly
+  const panX = interpolate(frame, [0, THEO_DURATION], [-15, 15], {
+    extrapolateRight: 'clamp',
+    easing: Easing.ease,
+  });
+
+  // Slight vertical drift
+  const panY = interpolate(frame, [0, THEO_DURATION], [5, -5], {
+    extrapolateRight: 'clamp',
+    easing: Easing.ease,
+  });
+
+  // Subtle 3D tilt for depth (much lighter than before)
+  const rotY = interpolate(frame, [0, THEO_DURATION], [-1.5, 1.5], {
+    extrapolateRight: 'clamp',
+  });
+  const rotX = interpolate(frame, [0, THEO_DURATION], [0.5, -0.5], {
+    extrapolateRight: 'clamp',
   });
 
   // ── Glitch flash on Theo reveal (at ~4s = frame 96) ───────────────────
@@ -168,7 +170,7 @@ export const LetiShot03Theo: React.FC = () => {
             style={{
               width: '100%',
               height: '100%',
-              transform: `translate(${driftX}px, ${driftY}px)`,
+              transform: `translate(${panX}px, ${panY}px)`,
             }}
           >
             <Video
@@ -216,41 +218,7 @@ export const LetiShot03Theo: React.FC = () => {
       {/* Vignette */}
       <Vignette />
 
-      {/* ── Subtitles ─────────────────────────────────────────────────── */}
-      {/* Anthony intro (0-4s) */}
-      <Subtitle
-        text="This is Anthony, our head of partnerships."
-        startFrame={0}
-        durationFrames={3 * fps}
-      />
-      <Subtitle
-        text="And this is Theo."
-        startFrame={3 * fps}
-        durationFrames={1 * fps}
-      />
-
-      {/* Theo reveal (4-11s) */}
-      <Subtitle
-        text="(his AI Self)"
-        startFrame={4 * fps}
-        durationFrames={1.5 * fps}
-        isAiSelf
-      />
-      <Subtitle
-        text="Theo monitors our brand mentions in real time —"
-        startFrame={5.5 * fps}
-        durationFrames={2.5 * fps}
-      />
-      <Subtitle
-        text="and helped Anthony evaluate partnership opportunities"
-        startFrame={8 * fps}
-        durationFrames={2 * fps}
-      />
-      <Subtitle
-        text="around the clock for the launch."
-        startFrame={10 * fps}
-        durationFrames={1 * fps}
-      />
+      {/* No subtitles — Leti handles those in Premiere */}
     </AbsoluteFill>
   );
 };
