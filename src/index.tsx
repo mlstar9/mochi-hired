@@ -22,6 +22,7 @@ import {MochiHiredFinal} from './MochiHiredFinal';
 import {SlackMockup} from './SlackMockup';
 import {PikaAISelfDemo} from './PikaAISelfDemo';
 import {NyxLockScreen} from './NyxLockScreen';
+import {LetiAISelvesVideo, LETI_VIDEO_DURATION} from './LetiAISelvesVideo';
 
 const RemotionRoot: React.FC = () => {
   return (
@@ -209,6 +210,14 @@ const RemotionRoot: React.FC = () => {
         fps={24}
         width={1320}
         height={2868}
+      />
+      <Composition
+        id="LetiAISelvesVideo"
+        component={LetiAISelvesVideo}
+        durationInFrames={LETI_VIDEO_DURATION}
+        fps={24}
+        width={1080}
+        height={1920}
       />
     </>
   );
