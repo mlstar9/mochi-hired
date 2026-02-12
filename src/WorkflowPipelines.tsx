@@ -84,8 +84,8 @@ const PipelineNode: React.FC<{
     config: {damping: 34, stiffness: 120, mass: 1},
   });
 
-  // Subtle slide in from right (not whip-pan)
-  const slideX = interpolate(frame - appearFrame, [0, 12], [40, 0], {
+  // Subtle slide in with anticipation (tiny pull-back then ease in)
+  const slideX = interpolate(frame - appearFrame, [0, 3, 16], [30, 34, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
@@ -95,7 +95,7 @@ const PipelineNode: React.FC<{
     extrapolateRight: 'clamp',
   });
 
-  const scale = interpolate(progress, [0, 1], [0.85, 1]);
+  const scale = interpolate(progress, [0, 1], [0.92, 1]);
 
   // Hand-drawn rotation
   const rotation = (seededRandom(seed) - 0.5) * 4; // -2 to 2 degrees
@@ -131,7 +131,7 @@ const PipelineNode: React.FC<{
         style={{
           width: size,
           height: size,
-          borderRadius: '50%',
+          borderRadius: 12,
           overflow: 'hidden',
           display: 'flex',
           alignItems: 'center',
