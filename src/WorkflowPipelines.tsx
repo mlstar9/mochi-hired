@@ -76,26 +76,26 @@ const PipelineNode: React.FC<{
 
   if (frame < appearFrame) return null;
 
-  // Overshoot bounce spring
+  // Smooth professional spring — no bounce
   const progress = spring({
     frame: frame - appearFrame,
     fps,
-    durationInFrames: 18,
-    config: {damping: 8, stiffness: 180, mass: 0.8},
+    durationInFrames: 20,
+    config: {damping: 34, stiffness: 120, mass: 1},
   });
 
-  // Whip-pan: slam in from right
-  const slideX = interpolate(frame - appearFrame, [0, 6], [200, 0], {
+  // Subtle slide in from right (not whip-pan)
+  const slideX = interpolate(frame - appearFrame, [0, 12], [40, 0], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
-  const opacity = interpolate(frame - appearFrame, [0, 4], [0, 1], {
+  const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
   });
 
-  const scale = interpolate(progress, [0, 1], [0.3, 1]);
+  const scale = interpolate(progress, [0, 1], [0.85, 1]);
 
   // Hand-drawn rotation
   const rotation = (seededRandom(seed) - 0.5) * 4; // -2 to 2 degrees
@@ -451,7 +451,7 @@ const SocialCard: React.FC<{
     frame: frame - appearFrame,
     fps,
     durationInFrames: 20,
-    config: {damping: 7, stiffness: 160, mass: 0.7},
+    config: {damping: 30, stiffness: 120, mass: 1},
   });
 
   const cx = interpolate(prog, [0, 1], [fromX, x]);
@@ -627,7 +627,7 @@ const KanbanColumn: React.FC<{
     frame: frame - appearFrame,
     fps,
     durationInFrames: 14,
-    config: {damping: 10, stiffness: 200, mass: 0.6},
+    config: {damping: 30, stiffness: 120, mass: 1},
   });
 
   const opacity = interpolate(frame - appearFrame, [0, 4], [0, 1], {
@@ -710,7 +710,7 @@ const MovingTaskCard: React.FC<{
     frame: frame - startFrame,
     fps,
     durationInFrames: 24,
-    config: {damping: 10, stiffness: 120, mass: 0.8},
+    config: {damping: 30, stiffness: 120, mass: 1},
   });
 
   const cx = interpolate(prog, [0, 1], [fromX, toX]);
@@ -752,7 +752,7 @@ const ZoomBadge: React.FC<{x: number; y: number; appearFrame: number}> = ({x, y,
     frame: frame - appearFrame,
     fps,
     durationInFrames: 16,
-    config: {damping: 6, stiffness: 200, mass: 0.5},
+    config: {damping: 30, stiffness: 120, mass: 1},
   });
 
   return (
@@ -849,7 +849,7 @@ const ClusterIcon: React.FC<{
     frame: frame - appearFrame,
     fps,
     durationInFrames: 14,
-    config: {damping: 8, stiffness: 180, mass: 0.6},
+    config: {damping: 30, stiffness: 120, mass: 1},
   });
 
   const wobble = (seededRandom(seed) - 0.5) * 2;
