@@ -241,40 +241,40 @@ const RemotionRoot: React.FC = () => {
         component={WorkflowAnthony}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
-        width={1080}
-        height={1920}
+        width={1440}
+        height={1080}
       />
       <Composition
         id="WorkflowStarry"
         component={WorkflowStarry}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
-        width={1080}
-        height={1920}
+        width={1440}
+        height={1080}
       />
       <Composition
         id="WorkflowRus"
         component={WorkflowRus}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
-        width={1080}
-        height={1920}
+        width={1440}
+        height={1080}
       />
       <Composition
         id="WorkflowMatan"
         component={WorkflowMatan}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
-        width={1080}
-        height={1920}
+        width={1440}
+        height={1080}
       />
       <Composition
         id="WorkflowDemi"
         component={WorkflowDemi}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
-        width={1080}
-        height={1920}
+        width={1440}
+        height={1080}
       />
     </>
   );

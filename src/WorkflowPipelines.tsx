@@ -33,9 +33,9 @@ const BG = '#111111';
 const NODE_SIZE = 120;
 const AI_GLOW = '#6366f1';
 const WORK_COLOR = '#888';
-const NODE_SPACING_Y = 300;
-const START_Y = 200;
-const CENTER_X = 540; // 1080/2
+const NODE_SPACING_Y = 220;
+const START_Y = 140;
+const CENTER_X = 720; // 1440/2 (4:3 @ 1440x1080)
 const FRAMES_PER_NODE = 24; // 1s per node appearance at 24fps
 const LINE_DRAW_FRAMES = 18;
 const PULSE_FRAMES = 12;
@@ -174,7 +174,7 @@ const Connector: React.FC<{
 
   return (
     <svg
-      style={{position: 'absolute', left: 0, top: 0, width: 1080, height: 1920, pointerEvents: 'none'}}
+      style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', pointerEvents: 'none'}}
     >
       <line
         x1={x1}
