@@ -24,6 +24,14 @@ import {PikaAISelfDemo} from './PikaAISelfDemo';
 import {NyxLockScreen} from './NyxLockScreen';
 import {LetiAISelvesVideo, LETI_VIDEO_DURATION} from './LetiAISelvesVideo';
 import {LetiShot03Theo, THEO_DURATION} from './LetiShot03Theo';
+import {
+  WorkflowAnthony,
+  WorkflowStarry,
+  WorkflowRus,
+  WorkflowMatan,
+  WorkflowDemi,
+  WORKFLOW_DURATION,
+} from './WorkflowPipelines';
 
 const RemotionRoot: React.FC = () => {
   return (
@@ -224,6 +232,46 @@ const RemotionRoot: React.FC = () => {
         id="LetiAISelvesVideo"
         component={LetiAISelvesVideo}
         durationInFrames={LETI_VIDEO_DURATION}
+        fps={24}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="WorkflowAnthony"
+        component={WorkflowAnthony}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="WorkflowStarry"
+        component={WorkflowStarry}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="WorkflowRus"
+        component={WorkflowRus}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="WorkflowMatan"
+        component={WorkflowMatan}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1080}
+        height={1920}
+      />
+      <Composition
+        id="WorkflowDemi"
+        component={WorkflowDemi}
+        durationInFrames={WORKFLOW_DURATION}
         fps={24}
         width={1080}
         height={1920}

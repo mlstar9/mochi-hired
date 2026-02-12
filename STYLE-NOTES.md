@@ -53,7 +53,7 @@ beige:   #FDF7EF  (warm backgrounds, cards)
 - Zoomed-in details with cursor
 
 ### Decorative Elements
-- Pika bunny logo (instead of Gemini sparkle)
+- Pika bunny logo
 - Subtle purple glow/accent lighting
 - Clean geometric shapes
 
