@@ -33,8 +33,9 @@ const BG = '#111111';
 const NODE_SIZE = 120;
 const AI_GLOW = '#6366f1';
 const WORK_COLOR = '#888';
-const NODE_SPACING_Y = 220;
-const START_Y = 140;
+const NODE_SPACING_X = 300;
+const START_X = 170;
+const CENTER_Y = 440; // vertical center for 1080h (slightly above center for labels)
 const CENTER_X = 720; // 1440/2 (4:3 @ 1440x1080)
 const FRAMES_PER_NODE = 24; // 1s per node appearance at 24fps
 const LINE_DRAW_FRAMES = 18;
@@ -197,8 +198,8 @@ const Connector: React.FC<{
 
 const LinearPipeline: React.FC<{nodes: NodeData[]}> = ({nodes}) => {
   const nodePositions = nodes.map((_, i) => ({
-    x: CENTER_X,
-    y: START_Y + i * NODE_SPACING_Y,
+    x: START_X + i * NODE_SPACING_X,
+    y: CENTER_Y,
   }));
 
   return (
@@ -210,10 +211,10 @@ const LinearPipeline: React.FC<{nodes: NodeData[]}> = ({nodes}) => {
         return (
           <Connector
             key={`line-${i}`}
-            x1={nodePositions[i - 1].x}
-            y1={nodePositions[i - 1].y + (nodes[i - 1].isWork ? 40 : NODE_SIZE / 2) + 20}
-            x2={nodePositions[i].x}
-            y2={nodePositions[i].y - (nodes[i].isWork ? 40 : NODE_SIZE / 2) - 20}
+            x1={nodePositions[i - 1].x + (nodes[i - 1].isWork ? 40 : NODE_SIZE / 2) + 20}
+            y1={nodePositions[i - 1].y}
+            x2={nodePositions[i].x - (nodes[i].isWork ? 40 : NODE_SIZE / 2) - 20}
+            y2={nodePositions[i].y}
             startFrame={startFrame}
           />
         );
@@ -239,19 +240,19 @@ const BranchingPipeline: React.FC<{
   topNodes: NodeData[];
   branchNodes: NodeData[];
 }> = ({topNodes, branchNodes}) => {
-  // Top nodes vertical
+  // Left nodes horizontal
   const topPositions = topNodes.map((_, i) => ({
-    x: CENTER_X,
-    y: START_Y + i * NODE_SPACING_Y,
+    x: 200 + i * NODE_SPACING_X,
+    y: 400,
   }));
 
-  // Branch nodes fan out horizontally
-  const branchY = START_Y + topNodes.length * NODE_SPACING_Y + 60;
-  const branchSpacing = 220;
-  const branchStartX = CENTER_X - ((branchNodes.length - 1) * branchSpacing) / 2;
+  // Branch nodes fan out vertically to the right
+  const branchX = 200 + topNodes.length * NODE_SPACING_X + 100;
+  const branchSpacing = 180;
+  const branchStartY = 400 - ((branchNodes.length - 1) * branchSpacing) / 2;
   const branchPositions = branchNodes.map((_, i) => ({
-    x: branchStartX + i * branchSpacing,
-    y: branchY,
+    x: branchX,
+    y: branchStartY + i * branchSpacing,
   }));
 
   const lastTopIdx = topNodes.length - 1;
@@ -259,16 +260,16 @@ const BranchingPipeline: React.FC<{
 
   return (
     <AbsoluteFill style={{backgroundColor: BG}}>
-      {/* Top connectors */}
+      {/* Left connectors */}
       {topNodes.map((_, i) => {
         if (i === 0) return null;
         return (
           <Connector
             key={`top-line-${i}`}
-            x1={topPositions[i - 1].x}
-            y1={topPositions[i - 1].y + NODE_SIZE / 2 + 20}
-            x2={topPositions[i].x}
-            y2={topPositions[i].y - NODE_SIZE / 2 - 20}
+            x1={topPositions[i - 1].x + NODE_SIZE / 2 + 20}
+            y1={topPositions[i - 1].y}
+            x2={topPositions[i].x - NODE_SIZE / 2 - 20}
+            y2={topPositions[i].y}
             startFrame={i * FRAMES_PER_NODE + 5}
           />
         );
@@ -278,15 +279,15 @@ const BranchingPipeline: React.FC<{
       {branchNodes.map((_, i) => (
         <Connector
           key={`branch-line-${i}`}
-          x1={topPositions[lastTopIdx].x}
-          y1={topPositions[lastTopIdx].y + NODE_SIZE / 2 + 20}
-          x2={branchPositions[i].x}
-          y2={branchPositions[i].y - NODE_SIZE / 2 - 20}
+          x1={topPositions[lastTopIdx].x + NODE_SIZE / 2 + 20}
+          y1={topPositions[lastTopIdx].y}
+          x2={branchPositions[i].x - NODE_SIZE / 2 - 20}
+          y2={branchPositions[i].y}
           startFrame={branchStartFrame + i * 8 + 5}
         />
       ))}
 
-      {/* Top nodes */}
+      {/* Left nodes */}
       {topNodes.map((node, i) => (
         <PipelineNode
           key={node.name}
