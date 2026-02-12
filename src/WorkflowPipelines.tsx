@@ -430,27 +430,394 @@ const BranchingPipeline: React.FC<{
 
 // ─── Compositions ────────────────────────────────────────────────────────────
 
-export const WorkflowAnthony: React.FC = () => (
-  <LinearPipeline
-    nodes={[
-      {name: 'Anthony', pfp: 'user-pfp.png', title: 'Head of Partnerships'},
-      {name: 'Partnerships', emoji: '📊', isWork: true},
-      {name: 'Theo', pfp: 'theo.png', title: 'AI Self', isAI: true},
-      {name: 'Brand Monitoring', emoji: '🔍', isWork: true},
-    ]}
-  />
-);
+// ─── Social Card Component ───────────────────────────────────────────────────
 
-export const WorkflowStarry: React.FC = () => (
-  <LinearPipeline
-    nodes={[
-      {name: 'Starry', placeholder: 'S', title: 'Product Manager'},
-      {name: 'Product', emoji: '📋', isWork: true},
-      {name: 'Momo', pfp: 'momo.jpg', title: 'AI Self', isAI: true},
-      {name: 'Linear Tasks / Zoom', emoji: '✅', isWork: true},
-    ]}
-  />
-);
+const SocialCard: React.FC<{
+  text: string;
+  x: number;
+  y: number;
+  fromX: number;
+  fromY: number;
+  appearFrame: number;
+  tilt: number;
+  seed: number;
+}> = ({text, x, y, fromX, fromY, appearFrame, tilt, seed}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+
+  if (frame < appearFrame) return null;
+
+  const prog = spring({
+    frame: frame - appearFrame,
+    fps,
+    durationInFrames: 20,
+    config: {damping: 7, stiffness: 160, mass: 0.7},
+  });
+
+  const cx = interpolate(prog, [0, 1], [fromX, x]);
+  const cy = interpolate(prog, [0, 1], [fromY, y]);
+  const opacity = interpolate(frame - appearFrame, [0, 5], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+  const scale = interpolate(prog, [0, 1], [0.4, 1]);
+  const wobble = (seededRandom(seed) - 0.5) * 2;
+
+  return (
+    <div
+      style={{
+        position: 'absolute',
+        left: cx - 100,
+        top: cy - 40,
+        width: 200,
+        height: 80,
+        borderRadius: 12,
+        background: '#1a1a2e',
+        border: '2px solid #C2BEFF60',
+        boxShadow: '0 2px 12px #C2BEFF20',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '8px 12px',
+        opacity,
+        transform: `scale(${scale}) rotate(${tilt + wobble}deg)`,
+        transformOrigin: 'center center',
+      }}
+    >
+      <span
+        style={{
+          color: '#C2BEFF',
+          fontSize: 15,
+          fontWeight: 600,
+          fontFamily: 'SF Pro Display, system-ui, sans-serif',
+          textAlign: 'center',
+          lineHeight: 1.3,
+        }}
+      >
+        {text}
+      </span>
+    </div>
+  );
+};
+
+// ─── Scrappy Arrow with Label ────────────────────────────────────────────────
+
+const LabeledArrow: React.FC<{
+  x1: number;
+  y1: number;
+  x2: number;
+  y2: number;
+  label: string;
+  startFrame: number;
+  seed: number;
+}> = ({x1, y1, x2, y2, label, startFrame, seed}) => {
+  const frame = useCurrentFrame();
+
+  if (frame < startFrame) return null;
+
+  const drawProgress = interpolate(frame - startFrame, [0, LINE_DRAW_FRAMES], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  const midX = (x1 + x2) / 2;
+  const midY = (y1 + y2) / 2;
+  const wobbleY = midY + (seededRandom(seed) - 0.5) * 25;
+  const pathD = `M ${x1} ${y1} Q ${midX} ${wobbleY}, ${x2} ${y2}`;
+  const approxLen = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) * 1.3;
+  const drawn = approxLen * drawProgress;
+
+  const angle = Math.atan2(y2 - wobbleY, x2 - midX);
+  const as = 10;
+  const ax1p = x2 - as * Math.cos(angle - 0.4);
+  const ay1p = y2 - as * Math.sin(angle - 0.4);
+  const ax2p = x2 - as * Math.cos(angle + 0.4);
+  const ay2p = y2 - as * Math.sin(angle + 0.4);
+
+  const labelTilt = (seededRandom(seed + 5) - 0.5) * 4;
+  const labelOpacity = interpolate(frame - startFrame, [LINE_DRAW_FRAMES - 2, LINE_DRAW_FRAMES + 4], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  return (
+    <>
+      <svg style={{position: 'absolute', left: 0, top: 0, width: '100%', height: '100%', pointerEvents: 'none'}}>
+        <path d={pathD} fill="none" stroke="#ddd" strokeWidth={2.5} strokeLinecap="round"
+          strokeDasharray={approxLen} strokeDashoffset={approxLen - drawn} style={{filter: 'url(#roughen)'}} />
+        {drawProgress >= 0.95 && (
+          <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill="#ddd" />
+        )}
+      </svg>
+      <div style={{
+        position: 'absolute',
+        left: midX - 80,
+        top: Math.min(y1, y2) + 60,
+        width: 160,
+        textAlign: 'center',
+        color: '#aaa',
+        fontSize: 16,
+        fontWeight: 500,
+        fontFamily: 'SF Pro Display, system-ui, sans-serif',
+        fontStyle: 'italic',
+        opacity: labelOpacity,
+        transform: `rotate(${labelTilt}deg)`,
+      }}>
+        {label}
+      </div>
+    </>
+  );
+};
+
+export const WorkflowAnthony: React.FC = () => {
+  const socialCards = [
+    {text: '@paboratories mention on TikTok', fromX: 720, fromY: -60, x: 560, y: 340, tilt: -3, delay: 24},
+    {text: 'Pika trending on X', fromX: 200, fromY: 540, x: 660, y: 460, tilt: 2, delay: 42},
+    {text: 'Brand collab request — IG', fromX: 1300, fromY: 300, x: 800, y: 340, tilt: -1.5, delay: 60},
+    {text: 'New creator partnership DM', fromX: 720, fromY: 700, x: 700, y: 560, tilt: 3, delay: 78},
+  ];
+
+  return (
+    <AbsoluteFill style={{backgroundColor: BG}}>
+      <RoughenFilter />
+
+      <PipelineNode
+        node={{name: 'Anthony', pfp: 'user-pfp.png', title: 'Head of Partnerships'}}
+        x={220} y={CENTER_Y} appearFrame={0} seed={1}
+      />
+
+      <PipelineNode
+        node={{name: 'Theo', pfp: 'theo.png', title: 'AI Self', isAI: true}}
+        x={1220} y={CENTER_Y} appearFrame={12} seed={2}
+      />
+
+      {socialCards.map((c, i) => (
+        <SocialCard key={i} text={c.text} x={c.x} y={c.y} fromX={c.fromX} fromY={c.fromY}
+          appearFrame={c.delay} tilt={c.tilt} seed={i * 10 + 50} />
+      ))}
+
+      <LabeledArrow x1={320} y1={CENTER_Y + 30} x2={1120} y2={CENTER_Y + 30}
+        label="evaluates 24/7" startFrame={18} seed={300} />
+
+      <FilmGrain />
+    </AbsoluteFill>
+  );
+};
+
+// ─── Kanban Column ───────────────────────────────────────────────────────────
+
+const KanbanColumn: React.FC<{
+  title: string;
+  x: number;
+  y: number;
+  cards: string[];
+  appearFrame: number;
+  seed: number;
+  // moving card info
+  movingCardIdx?: number;
+  moveStartFrame?: number;
+  moveToX?: number;
+}> = ({title, x, y, cards, appearFrame, seed}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+
+  if (frame < appearFrame) return null;
+
+  const prog = spring({
+    frame: frame - appearFrame,
+    fps,
+    durationInFrames: 14,
+    config: {damping: 10, stiffness: 200, mass: 0.6},
+  });
+
+  const opacity = interpolate(frame - appearFrame, [0, 4], [0, 1], {
+    extrapolateLeft: 'clamp',
+    extrapolateRight: 'clamp',
+  });
+
+  const headerTilt = (seededRandom(seed) - 0.5) * 5;
+
+  return (
+    <div style={{
+      position: 'absolute',
+      left: x,
+      top: y,
+      width: 180,
+      opacity,
+      transform: `scale(${interpolate(prog, [0, 1], [0.5, 1])})`,
+      transformOrigin: 'top center',
+    }}>
+      {/* Column header */}
+      <div style={{
+        color: '#C2BEFF',
+        fontSize: 18,
+        fontWeight: 700,
+        fontFamily: 'SF Pro Display, system-ui, sans-serif',
+        textAlign: 'center',
+        marginBottom: 12,
+        transform: `rotate(${headerTilt}deg)`,
+        borderBottom: '2px dashed #444',
+        paddingBottom: 8,
+      }}>
+        {title}
+      </div>
+      {/* Cards */}
+      {cards.map((card, i) => {
+        const cardTilt = (seededRandom(seed + i * 3 + 10) - 0.5) * 4;
+        const cardDelay = appearFrame + 6 + i * 5;
+        const cardOpacity = interpolate(frame, [cardDelay, cardDelay + 4], [0, 1], {
+          extrapolateLeft: 'clamp',
+          extrapolateRight: 'clamp',
+        });
+        return (
+          <div key={i} style={{
+            background: '#1e1e2e',
+            border: '1px solid #333',
+            borderRadius: 8,
+            padding: '8px 10px',
+            marginBottom: 8,
+            color: '#ccc',
+            fontSize: 13,
+            fontFamily: 'SF Pro Display, system-ui, sans-serif',
+            transform: `rotate(${cardTilt}deg)`,
+            opacity: cardOpacity,
+          }}>
+            {card}
+          </div>
+        );
+      })}
+    </div>
+  );
+};
+
+// ─── Moving Task Card ────────────────────────────────────────────────────────
+
+const MovingTaskCard: React.FC<{
+  text: string;
+  fromX: number;
+  fromY: number;
+  toX: number;
+  toY: number;
+  startFrame: number;
+  seed: number;
+}> = ({text, fromX, fromY, toX, toY, startFrame, seed}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+
+  if (frame < startFrame) return null;
+
+  const prog = spring({
+    frame: frame - startFrame,
+    fps,
+    durationInFrames: 24,
+    config: {damping: 10, stiffness: 120, mass: 0.8},
+  });
+
+  const cx = interpolate(prog, [0, 1], [fromX, toX]);
+  const cy = interpolate(prog, [0, 1], [fromY, toY]);
+  const tilt = (seededRandom(seed) - 0.5) * 4;
+
+  return (
+    <div style={{
+      position: 'absolute',
+      left: cx,
+      top: cy,
+      width: 170,
+      background: '#C2BEFF20',
+      border: '2px solid #C2BEFF80',
+      borderRadius: 8,
+      padding: '8px 10px',
+      color: '#C2BEFF',
+      fontSize: 13,
+      fontWeight: 600,
+      fontFamily: 'SF Pro Display, system-ui, sans-serif',
+      transform: `rotate(${tilt}deg)`,
+      boxShadow: '0 0 16px #C2BEFF30',
+      zIndex: 10,
+    }}>
+      {text}
+    </div>
+  );
+};
+
+// ─── Zoom Badge ──────────────────────────────────────────────────────────────
+
+const ZoomBadge: React.FC<{x: number; y: number; appearFrame: number}> = ({x, y, appearFrame}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+
+  if (frame < appearFrame) return null;
+
+  const prog = spring({
+    frame: frame - appearFrame,
+    fps,
+    durationInFrames: 16,
+    config: {damping: 6, stiffness: 200, mass: 0.5},
+  });
+
+  return (
+    <div style={{
+      position: 'absolute',
+      left: x,
+      top: y,
+      background: '#2D8CFF',
+      borderRadius: 20,
+      padding: '6px 14px',
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 700,
+      fontFamily: 'SF Pro Display, system-ui, sans-serif',
+      transform: `scale(${interpolate(prog, [0, 1], [0, 1])})`,
+      boxShadow: '0 2px 10px #2D8CFF60',
+    }}>
+      📹 Zoom
+    </div>
+  );
+};
+
+export const WorkflowStarry: React.FC = () => {
+  return (
+    <AbsoluteFill style={{backgroundColor: BG}}>
+      <RoughenFilter />
+
+      <PipelineNode
+        node={{name: 'Starry', placeholder: 'S', title: 'Product Manager'}}
+        x={140} y={CENTER_Y} appearFrame={0} seed={20}
+      />
+
+      <PipelineNode
+        node={{name: 'Momo', pfp: 'momo.jpg', title: 'AI Self', isAI: true}}
+        x={1300} y={CENTER_Y} appearFrame={12} seed={21}
+      />
+
+      {/* Kanban columns */}
+      <KanbanColumn title="To Do" x={370} y={280} appearFrame={20} seed={200}
+        cards={['Design review', 'API spec draft', 'User interviews']} />
+      <KanbanColumn title="In Progress" x={600} y={280} appearFrame={28} seed={210}
+        cards={['Sprint planning', 'Bug triage']} />
+      <KanbanColumn title="Done" x={830} y={280} appearFrame={36} seed={220}
+        cards={['Roadmap v2', 'Standup notes']} />
+
+      {/* Hand-drawn divider lines */}
+      <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
+        <line x1={565} y1={280} x2={568} y2={620} stroke="#444" strokeWidth={2}
+          strokeDasharray="6 4" style={{filter: 'url(#roughen)'}} />
+        <line x1={795} y1={280} x2={798} y2={620} stroke="#444" strokeWidth={2}
+          strokeDasharray="6 4" style={{filter: 'url(#roughen)'}} />
+      </svg>
+
+      {/* Moving task cards */}
+      <MovingTaskCard text="Sprint planning" fromX={405} fromY={390} toX={635} toY={390}
+        startFrame={60} seed={230} />
+      <MovingTaskCard text="Bug triage" fromX={635} fromY={430} toX={865} toY={430}
+        startFrame={84} seed={240} />
+
+      <ZoomBadge x={1240} y={CENTER_Y + 90} appearFrame={100} />
+
+      <FilmGrain />
+    </AbsoluteFill>
+  );
+};
 
 export const WorkflowRus: React.FC = () => (
   <LinearPipeline
@@ -463,16 +830,198 @@ export const WorkflowRus: React.FC = () => (
   />
 );
 
-export const WorkflowMatan: React.FC = () => (
-  <LinearPipeline
-    nodes={[
-      {name: 'Matan', pfp: 'matan-ai.png', title: 'Creative Director'},
-      {name: 'Creative', emoji: '🎬', isWork: true},
-      {name: 'Raccoon 2.0', pfp: 'raccoon2.png', title: 'AI Self', isAI: true},
-      {name: 'Research ↔ Creative', emoji: '🔬', isWork: true},
-    ]}
-  />
-);
+// ─── Cluster Icons ───────────────────────────────────────────────────────────
+
+const ClusterIcon: React.FC<{
+  emoji: string;
+  x: number;
+  y: number;
+  appearFrame: number;
+  tilt: number;
+  seed: number;
+}> = ({emoji, x, y, appearFrame, tilt, seed}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+
+  if (frame < appearFrame) return null;
+
+  const prog = spring({
+    frame: frame - appearFrame,
+    fps,
+    durationInFrames: 14,
+    config: {damping: 8, stiffness: 180, mass: 0.6},
+  });
+
+  const wobble = (seededRandom(seed) - 0.5) * 2;
+
+  return (
+    <div style={{
+      position: 'absolute',
+      left: x - 28,
+      top: y - 28,
+      width: 56,
+      height: 56,
+      borderRadius: 12,
+      background: '#1e1e2e',
+      border: '2px solid #444',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      fontSize: 28,
+      transform: `scale(${interpolate(prog, [0, 1], [0.3, 1])}) rotate(${tilt + wobble}deg)`,
+      opacity: interpolate(frame - appearFrame, [0, 4], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'}),
+    }}>
+      {emoji}
+    </div>
+  );
+};
+
+// ─── Bidirectional Arrows ────────────────────────────────────────────────────
+
+const BidirectionalArrows: React.FC<{
+  x1: number; y1: number; x2: number; y2: number;
+  startFrame: number; seed: number;
+}> = ({x1, y1, x2, y2, startFrame, seed}) => {
+  const frame = useCurrentFrame();
+
+  if (frame < startFrame) return null;
+
+  const draw1 = interpolate(frame - startFrame, [0, LINE_DRAW_FRAMES], [0, 1], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+  });
+  const draw2 = interpolate(frame - startFrame - 8, [0, LINE_DRAW_FRAMES], [0, 1], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+  });
+
+  const midX = (x1 + x2) / 2;
+  const w1 = (seededRandom(seed) - 0.5) * 30;
+  const w2 = (seededRandom(seed + 1) - 0.5) * 30;
+  const approxLen = Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2) * 1.3;
+
+  const pathFwd = `M ${x1} ${y1 - 8} Q ${midX} ${(y1 + y2) / 2 + w1 - 8}, ${x2} ${y2 - 8}`;
+  const pathBck = `M ${x2} ${y2 + 8} Q ${midX} ${(y1 + y2) / 2 + w2 + 8}, ${x1} ${y1 + 8}`;
+
+  const as = 9;
+  const angleFwd = Math.atan2(y2 - ((y1 + y2) / 2 + w1), x2 - midX);
+  const angleBck = Math.atan2(y1 - ((y1 + y2) / 2 + w2), x1 - midX);
+
+  return (
+    <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
+      {/* Forward arrow */}
+      <path d={pathFwd} fill="none" stroke="#C2BEFF" strokeWidth={2} strokeLinecap="round"
+        strokeDasharray={approxLen} strokeDashoffset={approxLen - approxLen * draw1}
+        style={{filter: 'url(#roughen)'}} />
+      {draw1 >= 0.95 && (
+        <polygon points={`${x2},${y2 - 8} ${x2 - as * Math.cos(angleFwd - 0.4)},${y2 - 8 - as * Math.sin(angleFwd - 0.4)} ${x2 - as * Math.cos(angleFwd + 0.4)},${y2 - 8 - as * Math.sin(angleFwd + 0.4)}`}
+          fill="#C2BEFF" />
+      )}
+      {/* Backward arrow */}
+      <path d={pathBck} fill="none" stroke="#aaa" strokeWidth={2} strokeLinecap="round"
+        strokeDasharray={approxLen} strokeDashoffset={approxLen - approxLen * Math.max(0, draw2)}
+        style={{filter: 'url(#roughen)'}} />
+      {draw2 >= 0.95 && (
+        <polygon points={`${x1},${y1 + 8} ${x1 - as * Math.cos(angleBck - 0.4)},${y1 + 8 - as * Math.sin(angleBck - 0.4)} ${x1 - as * Math.cos(angleBck + 0.4)},${y1 + 8 - as * Math.sin(angleBck + 0.4)}`}
+          fill="#aaa" />
+      )}
+    </svg>
+  );
+};
+
+// ─── Cluster Label ───────────────────────────────────────────────────────────
+
+const ClusterLabel: React.FC<{
+  text: string; x: number; y: number; appearFrame: number; seed: number;
+}> = ({text, x, y, appearFrame, seed}) => {
+  const frame = useCurrentFrame();
+  if (frame < appearFrame) return null;
+
+  const opacity = interpolate(frame - appearFrame, [0, 6], [0, 1], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+  });
+  const tilt = (seededRandom(seed) - 0.5) * 6;
+
+  return (
+    <div style={{
+      position: 'absolute',
+      left: x,
+      top: y,
+      color: '#888',
+      fontSize: 20,
+      fontWeight: 700,
+      fontFamily: 'SF Pro Display, system-ui, sans-serif',
+      transform: `rotate(${tilt}deg)`,
+      opacity,
+      textTransform: 'uppercase',
+      letterSpacing: 2,
+    }}>
+      {text}
+    </div>
+  );
+};
+
+export const WorkflowMatan: React.FC = () => {
+  // Research cluster icons (left side)
+  const researchIcons = [
+    {emoji: '📄', x: 450, y: 360, tilt: -3, delay: 30},
+    {emoji: '🔬', x: 520, y: 460, tilt: 2, delay: 36},
+    {emoji: '📊', x: 460, y: 540, tilt: -1, delay: 42},
+  ];
+
+  // Creative cluster icons (right side)
+  const creativeIcons = [
+    {emoji: '🎨', x: 980, y: 360, tilt: 2, delay: 30},
+    {emoji: '🎬', x: 1050, y: 460, tilt: -2, delay: 36},
+    {emoji: '✏️', x: 990, y: 540, tilt: 3, delay: 42},
+  ];
+
+  return (
+    <AbsoluteFill style={{backgroundColor: BG}}>
+      <RoughenFilter />
+
+      {/* Matan on far left */}
+      <PipelineNode
+        node={{name: 'Matan', pfp: 'matan-ai.png', title: 'Creative Director'}}
+        x={160} y={CENTER_Y} appearFrame={0} seed={30}
+      />
+
+      {/* Raccoon 2.0 in the CENTER (the bridge) */}
+      <PipelineNode
+        node={{name: 'Raccoon 2.0', pfp: 'raccoon2.png', title: 'AI Self', isAI: true}}
+        x={720} y={CENTER_Y} appearFrame={12} seed={31}
+      />
+
+      {/* Cluster labels */}
+      <ClusterLabel text="Research" x={440} y={280} appearFrame={24} seed={400} />
+      <ClusterLabel text="Creative" x={970} y={280} appearFrame={24} seed={410} />
+
+      {/* Research icons */}
+      {researchIcons.map((ic, i) => (
+        <ClusterIcon key={`r-${i}`} emoji={ic.emoji} x={ic.x} y={ic.y}
+          appearFrame={ic.delay} tilt={ic.tilt} seed={i * 10 + 300} />
+      ))}
+
+      {/* Creative icons */}
+      {creativeIcons.map((ic, i) => (
+        <ClusterIcon key={`c-${i}`} emoji={ic.emoji} x={ic.x} y={ic.y}
+          appearFrame={ic.delay} tilt={ic.tilt} seed={i * 10 + 350} />
+      ))}
+
+      {/* Bidirectional arrows: Raccoon ↔ Research cluster */}
+      <BidirectionalArrows x1={550} y1={CENTER_Y} x2={660} y2={CENTER_Y}
+        startFrame={50} seed={500} />
+
+      {/* Bidirectional arrows: Raccoon ↔ Creative cluster */}
+      <BidirectionalArrows x1={780} y1={CENTER_Y} x2={940} y2={CENTER_Y}
+        startFrame={50} seed={510} />
+
+      {/* Arrow from Matan to Raccoon */}
+      <Connector x1={260} y1={CENTER_Y} x2={620} y2={CENTER_Y}
+        startFrame={16} seed={520} />
+
+      <FilmGrain />
+    </AbsoluteFill>
+  );
+};
 
 export const WorkflowDemi: React.FC = () => (
   <BranchingPipeline
