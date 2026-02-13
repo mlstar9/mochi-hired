@@ -471,7 +471,7 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
 
 // ─── 3. WorkflowRus — Purple #8B5CF6 ────────────────────────────────────────
 
-export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
+export const WorkflowRus: React.FC<{gawxFilter?: boolean; transparent?: boolean}> = ({gawxFilter = true, transparent = false}) => {
   // Shifted ~80px right so the 4 nodes feel centered in 1440px frame
   // Node centers: Rus(250,470), Design(620,410), Russ(900,500), Feedback(1180,440)
   const rusX = 250;
@@ -484,7 +484,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
   const fbY = 440;
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111'}}>
+    <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
       {/* Arrows rendered first (behind nodes) — start overlapping source, end before target */}
       <DoodleArrow x1={rusX} y1={rusY} x2={designX - 80} y2={designY} startFrame={14} seed={800} strokeWidth={2.5} />
       <DoodleArrow x1={designX + 20} y1={designY + 30} x2={russX - 220} y2={russY} startFrame={38} seed={813} strokeWidth={2.5} />

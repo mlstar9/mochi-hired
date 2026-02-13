@@ -270,6 +270,14 @@ const RemotionRoot: React.FC = () => {
         height={1080}
       />
       <Composition
+        id="WorkflowRusTransparent"
+        component={() => <WorkflowRus transparent />}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1440}
+        height={1080}
+      />
+      <Composition
         id="WorkflowMatan"
         component={WorkflowMatan}
         durationInFrames={WORKFLOW_DURATION}
