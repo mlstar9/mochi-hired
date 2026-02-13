@@ -663,7 +663,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean
         <DoodleArrow key={`a-${i}`}
           x1={r.x} y1={rowY - 140}
           x2={demiX + (i - 1.5) * 30} y2={demiY + 200}
-          startFrame={12 + i * 2} seed={610 + i * 10} strokeWidth={2.5} />
+          startFrame={36 + i * 2} seed={610 + i * 10} strokeWidth={2.5} />
       ))}
 
       {/* Demi stamps in */}
