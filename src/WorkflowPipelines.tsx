@@ -493,12 +493,12 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP src="rus-pfp.jpg" name="Rus" subtitle="Head of Design"
+      <PFP src="rus-pfp.jpg" name="" subtitle=""
         x={SX + 100} y={470} size={360} appearFrame={0} seed={40} />
-      <NakedEmoji emoji="🎨" label="Design" x={540} y={410} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
-      <PFP src="russ-pfp.png" name="Russ" subtitle="AI Self" isAI
+      <NakedEmoji emoji="🎨" label="" x={540} y={410} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
+      <PFP src="russ-pfp.png" name="" subtitle="" isAI
         x={820} y={500} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
-      <NakedEmoji emoji="📝" label="Feedback" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
+      <NakedEmoji emoji="📝" label="" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
 
       {/* Thick crayon doodle arrow */}
       {frame >= drawStart && (
@@ -513,40 +513,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
         </svg>
       )}
 
-      {/* Big ITERATE stamp */}
-      {stampVisible && (
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-        }}>
-          <div style={{
-            transform: `scale(${stampScaleVal}) rotate(-4deg)`,
-            opacity: 0.85,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            border: '8px solid rgba(255,255,255,0.6)',
-            borderRadius: 8,
-            padding: '10px 50px',
-          }}>
-            <span style={{
-              color: '#fff',
-              fontSize: 220,
-              fontWeight: 900,
-              fontFamily: FONT,
-              textTransform: 'uppercase' as const,
-              letterSpacing: 12,
-              lineHeight: 1,
-            }}>
-              ITERATE
-            </span>
-          </div>
-        </div>
-      )}
+      {/* ITERATE stamp removed — no text per Leti */}
     </AbsoluteFill>
   );
 };
