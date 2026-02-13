@@ -530,16 +530,12 @@ const FloatingItem: React.FC<{
   const cycleT = t % duration;
   const progress = cycleT / duration; // 0→1
 
-  // 3D depth: items start far away (small, blurry) and drift toward camera (big, sharp)
-  const startX = 100 + sr(seed + 2) * 1240;
-  const startY = 80 + sr(seed + 3) * 920;
-  // Drift outward from center as they approach camera
-  const cx = 720; const cy = 540;
-  const fromCenterX = startX - cx;
-  const fromCenterY = startY - cy;
-  const spread = progress * 0.6; // items spread outward as they get closer
-  const x = startX + fromCenterX * spread;
-  const y = startY + fromCenterY * spread;
+  // 3D depth: items spawn from raccoon center and burst outward toward camera
+  const cx = 720; const cy = 500; // raccoon center
+  const angle = sr(seed + 2) * Math.PI * 2; // random direction
+  const dist = 200 + sr(seed + 3) * 500; // how far they travel
+  const x = cx + Math.cos(angle) * dist * progress + (sr(seed + 4) - 0.5) * 40;
+  const y = cy + Math.sin(angle) * dist * progress + (sr(seed + 5) - 0.5) * 30;
 
   // Z-depth: scale + blur
   const scale = 0.3 + progress * 1.8; // small → big
