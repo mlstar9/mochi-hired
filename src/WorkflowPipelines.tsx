@@ -275,32 +275,49 @@ const DoodleText: React.FC<{
 
 // ─── 1. WorkflowAnthony — Blue #2563EB ───────────────────────────────────────
 
-const SocialCard: React.FC<{
-  text: string; accent: string; x: number; y: number;
-  fromX: number; fromY: number; appearFrame: number; seed: number;
-}> = ({text, accent, x, y, fromX, fromY, appearFrame, seed}) => {
+const PaperStrip: React.FC<{
+  text: string; x: number; y: number;
+  appearFrame: number; seed: number; width?: number;
+}> = ({text, x, y, appearFrame, seed, width = 260}) => {
   const frame = useCurrentFrame();
   if (frame < appearFrame) return null;
 
-  const opacity = stampOpacity(frame, appearFrame);
-  const scale = stampScale(frame, appearFrame);
-  const tilt = messyRot(seed);
+  const UNCRUMPLE_FRAMES = 7;
+  const localFrame = frame - appearFrame;
+  const t = Math.min(localFrame / UNCRUMPLE_FRAMES, 1);
+  // Ease-out cubic
+  const ease = 1 - Math.pow(1 - t, 3);
+
+  const startRotation = messy(seed + 5, 15);
+  const endRotation = messy(seed + 6, 5) + 2 * (messy(seed, 1) > 0 ? 1 : -1);
+
+  const scaleX = 0.3 + 0.7 * ease;
+  const scaleY = 0.6 + 0.4 * ease;
+  const rotation = startRotation + (endRotation - startRotation) * ease;
+  const blur = 2 * (1 - ease);
+
+  // Pseudo-random paper texture via gradient noise
+  const gradAngle = Math.abs(messy(seed + 10, 180));
+  const shade1 = '#F5F0E8';
+  const shade2 = '#EDE8DC';
+  const shade3 = '#F2EBE0';
 
   return (
     <div style={{
       position: 'absolute',
-      left: x - 130 + messy(seed + 1, 40),
-      top: y - 40 + messy(seed + 2, 30),
-      width: 260,
-      padding: '14px 18px',
-      borderRadius: 10,
-      background: '#fff',
+      left: x + messy(seed + 1, 35),
+      top: y + messy(seed + 2, 30),
+      width,
+      padding: '12px 16px',
+      borderRadius: 0,
+      background: `linear-gradient(${gradAngle}deg, ${shade1} 0%, ${shade2} 40%, ${shade3} 70%, ${shade1} 100%)`,
       border: 'none',
-      boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-      opacity,
-      transform: `scale(${scale}) rotate(${tilt}deg)`,
+      boxShadow: '2px 3px 12px rgba(0,0,0,0.3)',
+      transform: `scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotation}deg)`,
+      filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
+      zIndex: seed,
     }}>
-      <span style={{color: '#1e293b', fontSize: 18, fontWeight: 600, fontFamily: FONT, lineHeight: 1.3}}>
+      <span style={{color: '#2a2420', fontSize: 17, fontWeight: 600, fontFamily: FONT, lineHeight: 1.3}}>
         {text}
       </span>
     </div>
@@ -309,10 +326,18 @@ const SocialCard: React.FC<{
 
 export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const cards = [
-    {text: '@paboratories mention on TikTok', accent: '#F97316', x: 580, y: 320, delay: 24 + stagger(700, 4)},
-    {text: 'Pika trending on X', accent: '#EC4899', x: 700, y: 470, delay: 38 + stagger(701, 4)},
-    {text: 'Brand collab request — IG', accent: '#8B5CF6', x: 820, y: 340, delay: 52 + stagger(702, 4)},
-    {text: 'New creator partnership DM', accent: '#0D9488', x: 680, y: 620, delay: 66 + stagger(703, 4)},
+    {text: '@paboratories mention on TikTok', x: 560, y: 280, delay: 24, width: 280},
+    {text: 'Pika trending on X', x: 620, y: 320, delay: 28, width: 230},
+    {text: 'Brand collab request — IG', x: 580, y: 360, delay: 33, width: 270},
+    {text: 'New creator partnership DM', x: 640, y: 300, delay: 37, width: 290},
+    {text: "YouTube review: 'Pika is insane'", x: 600, y: 400, delay: 41, width: 300},
+    {text: 'Reddit thread: AI video tools comparison', x: 550, y: 350, delay: 46, width: 320},
+    {text: 'Forbes: Top 10 AI startups', x: 660, y: 380, delay: 50, width: 260},
+    {text: 'Influencer inquiry — 2.3M followers', x: 580, y: 430, delay: 54, width: 300},
+    {text: 'Product Hunt launch day mentions', x: 620, y: 340, delay: 58, width: 290},
+    {text: 'Twitter Spaces invite — AI creators', x: 570, y: 460, delay: 63, width: 310},
+    {text: 'TikTok creator fund partnership', x: 640, y: 410, delay: 67, width: 280},
+    {text: 'LinkedIn post went viral — 50K views', x: 590, y: 490, delay: 71, width: 310},
   ];
 
   return (
@@ -323,8 +348,8 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
         x={1270 - 80} y={480} size={220} appearFrame={12 + stagger(710, 3)} seed={2} />
 
       {cards.map((c, i) => (
-        <SocialCard key={i} text={c.text} accent={c.accent} x={c.x} y={c.y}
-          fromX={c.x} fromY={c.y} appearFrame={c.delay} seed={i * 10 + 50} />
+        <PaperStrip key={i} text={c.text} x={c.x} y={c.y}
+          appearFrame={c.delay + stagger(700 + i, 4)} seed={i * 7 + 50} width={c.width} />
       ))}
 
       <DoodleArrow x1={390} y1={500} x2={1050} y2={490} startFrame={18} seed={300} />
