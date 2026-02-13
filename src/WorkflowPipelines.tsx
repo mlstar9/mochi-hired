@@ -295,24 +295,8 @@ const PaperStrip: React.FC<{
   const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
-  const UNCRUMPLE_FRAMES = 9;
-  const localFrame = frame - appearFrame;
-  const t = Math.min(localFrame / UNCRUMPLE_FRAMES, 1);
-  // Ease-out cubic
-  const ease = 1 - Math.pow(1 - t, 3);
-
-  const startRotation = messy(seed + 5, 20);
-  const endRotation = messy(seed + 6, 6) + 3 * (messy(seed, 1) > 0 ? 1 : -1);
-
-  // Crumple: asymmetric scale + skew for wrinkled paper feel
-  const startSkewX = messy(seed + 7, 8);
-  const startSkewY = messy(seed + 8, 5);
-  const scaleX = (0.85 + 0.15 * ease);
-  const scaleY = (0.75 + 0.25 * ease);
-  const skewX = startSkewX * (1 - ease);
-  const skewY = startSkewY * (1 - ease);
-  const rotation = startRotation + (endRotation - startRotation) * ease;
-  const blur = 1.5 * (1 - ease);
+  // Pure stamp — just appears with its final messy rotation, no animation
+  const rotation = messy(seed + 6, 6) + 3 * (messy(seed, 1) > 0 ? 1 : -1);
 
   // Pseudo-random paper texture via gradient noise
   const gradAngle = Math.abs(messy(seed + 10, 180));
@@ -331,8 +315,7 @@ const PaperStrip: React.FC<{
       background: `linear-gradient(${gradAngle}deg, ${shade1} 0%, ${shade2} 40%, ${shade3} 70%, ${shade1} 100%)`,
       border: 'none',
       boxShadow: '2px 3px 12px rgba(0,0,0,0.3)',
-      transform: `scaleX(${scaleX}) scaleY(${scaleY}) skewX(${skewX}deg) skewY(${skewY}deg) rotate(${rotation}deg)`,
-      filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
+      transform: `rotate(${rotation}deg)`,
       zIndex: seed,
     }}>
       <span style={{color: '#2a2420', fontSize: 17, fontWeight: 600, fontFamily: FONT, lineHeight: 1.3}}>
