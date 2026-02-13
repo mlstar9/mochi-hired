@@ -529,15 +529,15 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
 export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const researchBase = 28;
   const research = [
-    {emoji: '📄', label: 'Docs', x: 460, y: 320, delay: researchBase + 0 + stagger(950, 3)},
-    {emoji: '🔬', label: 'Analysis', x: 530, y: 500, delay: researchBase + 10 + stagger(951, 3)},
-    {emoji: '📊', label: 'Data', x: 430, y: 660, delay: researchBase + 22 + stagger(952, 3)},
+    {emoji: '📄', label: 'Docs', x: 420, y: 220, delay: researchBase + 0 + stagger(950, 3)},
+    {emoji: '🔬', label: 'Analysis', x: 500, y: 480, delay: researchBase + 10 + stagger(951, 3)},
+    {emoji: '📊', label: 'Data', x: 380, y: 740, delay: researchBase + 22 + stagger(952, 3)},
   ];
   const creativeBase = researchBase + 36; // starts after research cluster
   const creative = [
-    {emoji: '🎨', label: 'Design', x: 960, y: 310, delay: creativeBase + 0 + stagger(960, 3)},
-    {emoji: '🎬', label: 'Video', x: 1060, y: 490, delay: creativeBase + 10 + stagger(961, 3)},
-    {emoji: '✏️', label: 'Copy', x: 940, y: 660, delay: creativeBase + 22 + stagger(962, 3)},
+    {emoji: '🎨', label: 'Design', x: 1020, y: 220, delay: creativeBase + 0 + stagger(960, 3)},
+    {emoji: '🎬', label: 'Video', x: 1120, y: 480, delay: creativeBase + 10 + stagger(961, 3)},
+    {emoji: '✏️', label: 'Copy', x: 1000, y: 740, delay: creativeBase + 22 + stagger(962, 3)},
   ];
 
   return (
