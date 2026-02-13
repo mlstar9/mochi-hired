@@ -476,17 +476,18 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
+      {/* Arrows rendered first (behind nodes) — start overlapping source, end before target */}
+      <DoodleArrow x1={rusX} y1={rusY} x2={designX - 80} y2={designY} startFrame={14} seed={800} strokeWidth={2.5} />
+      <DoodleArrow x1={designX} y1={designY} x2={russX - 120} y2={russY} startFrame={38} seed={810} strokeWidth={2.5} />
+      <DoodleArrow x1={russX} y1={russY} x2={fbX - 80} y2={fbY} startFrame={62} seed={820} strokeWidth={2.5} />
+
+      {/* Nodes on top */}
       <PFP src="rus-pfp.jpg" name="" subtitle=""
         x={rusX} y={rusY} size={360} appearFrame={0} seed={40} />
       <NakedEmoji emoji="🎨" label="" x={designX} y={designY} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
       <PFP src="russ-pfp.png" name="" subtitle="" isAI
         x={russX} y={russY} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
       <NakedEmoji emoji="📝" label="" x={fbX} y={fbY} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
-
-      {/* Hand-drawn doodle arrows: Rus → Design → Russ → Feedback */}
-      <DoodleArrow x1={rusX + 100} y1={rusY} x2={designX - 40} y2={designY} startFrame={14} seed={800} strokeWidth={6} />
-      <DoodleArrow x1={designX + 40} y1={designY} x2={russX - 100} y2={russY} startFrame={38} seed={810} strokeWidth={6} />
-      <DoodleArrow x1={russX + 100} y1={russY} x2={fbX - 40} y2={fbY} startFrame={62} seed={820} strokeWidth={6} />
     </AbsoluteFill>
   );
 };
