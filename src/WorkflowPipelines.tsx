@@ -348,7 +348,7 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#2563EB', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP src="user-pfp.png" name="Anthony" subtitle="Head of Partnerships"
         x={200} y={480} appearFrame={0} seed={1} />
       <PFP src="theo.png" name="Theo" subtitle="AI Self" isAI
@@ -445,7 +445,7 @@ const MovingCard: React.FC<{
 
 export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   return (
-    <AbsoluteFill style={{backgroundColor: '#0D9488', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP placeholder="S" name="Starry" subtitle="Product Manager"
         x={130} y={480} appearFrame={0} seed={20} />
       <PFP src="momo.jpg" name="Momo" subtitle="AI Self" isAI
@@ -520,7 +520,7 @@ const WorkIcon: React.FC<{
 export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const CY = 480;
   return (
-    <AbsoluteFill style={{backgroundColor: '#8B5CF6', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP placeholder="R" name="Rus" subtitle="Head of Design"
         x={180} y={CY} appearFrame={0} seed={40} />
       <WorkIcon emoji="🎨" label="Design" x={500} y={CY} appearFrame={24} seed={41} />
@@ -592,7 +592,7 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tr
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#F97316', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP src="matan-ai.png" name="Matan" subtitle="Creative Director"
         x={160} y={CY} appearFrame={0} seed={30} />
       <PFP src="raccoon2.png" name="Raccoon 2.0" subtitle="AI Self (Bridge)" isAI
@@ -643,7 +643,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tru
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#EC4899', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP placeholder="D" name="Demi" subtitle="CEO"
         x={200} y={CY} appearFrame={0} seed={60} />
       <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
