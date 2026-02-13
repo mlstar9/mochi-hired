@@ -214,12 +214,19 @@ const DoodleArrow: React.FC<{
 
   return (
     <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'visible'}}>
-      <path d={pathD} fill="none" stroke={stroke} strokeWidth={strokeWidth}
-        strokeLinecap="round" strokeDasharray={`${approxLen}`} strokeDashoffset={`${approxLen - drawn}`}
-        opacity={0.85} />
-      {showHead && drawProgress >= 0.85 && (
-        <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill={stroke} opacity={0.85} />
-      )}
+      <defs>
+        <filter id={`arrow-shadow-${seed}`} x="-20%" y="-20%" width="140%" height="140%">
+          <feDropShadow dx={0} dy={2} stdDeviation={4} floodColor="#000" floodOpacity={0.5} />
+        </filter>
+      </defs>
+      <g filter={`url(#arrow-shadow-${seed})`}>
+        <path d={pathD} fill="none" stroke={stroke} strokeWidth={strokeWidth}
+          strokeLinecap="round" strokeDasharray={`${approxLen}`} strokeDashoffset={`${approxLen - drawn}`}
+          opacity={0.85} />
+        {showHead && drawProgress >= 0.85 && (
+          <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill={stroke} opacity={0.85} />
+        )}
+      </g>
     </svg>
   );
 };
@@ -478,7 +485,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       {/* Arrows rendered first (behind nodes) — start overlapping source, end before target */}
       <DoodleArrow x1={rusX} y1={rusY} x2={designX - 80} y2={designY} startFrame={14} seed={800} strokeWidth={2.5} />
-      <DoodleArrow x1={designX} y1={designY} x2={russX - 120} y2={russY} startFrame={38} seed={810} strokeWidth={2.5} />
+      <DoodleArrow x1={designX} y1={designY} x2={russX - 160} y2={russY} startFrame={38} seed={810} strokeWidth={2.5} />
       <DoodleArrow x1={russX} y1={russY} x2={fbX - 80} y2={fbY} startFrame={62} seed={820} strokeWidth={2.5} />
 
       {/* Nodes on top */}
