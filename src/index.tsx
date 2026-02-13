@@ -306,7 +306,7 @@ const RemotionRoot: React.FC = () => {
       <Composition
         id="WorkflowDemi"
         component={WorkflowDemi}
-        durationInFrames={WORKFLOW_DURATION}
+        durationInFrames={WORKFLOW_DURATION + 48}
         fps={24}
         width={1440}
         height={1080}
@@ -314,7 +314,7 @@ const RemotionRoot: React.FC = () => {
       <Composition
         id="WorkflowDemiTransparent"
         component={() => <WorkflowDemi transparent />}
-        durationInFrames={WORKFLOW_DURATION}
+        durationInFrames={WORKFLOW_DURATION + 48}
         fps={24}
         width={1440}
         height={1080}

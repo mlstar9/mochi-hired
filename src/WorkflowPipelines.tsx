@@ -638,10 +638,10 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean
   // Demi appears at true center top
   const demiX = 720;
   const demiY = 260;
-  const demiFrame = 24; // arrows start at 12, demi stamps after
+  const demiFrame = 48; // 2s into comp
 
-  // Glitch: Demi → Semi after 3s (72 frames at 24fps)
-  const glitchStart = demiFrame + 72;
+  // Glitch: Demi → Semi after 2s hold (48 frames at 24fps)
+  const glitchStart = demiFrame + 48;
   const glitchDuration = 6; // 6 frames of glitch
   const semiFrame = glitchStart + glitchDuration;
 
