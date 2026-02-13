@@ -295,7 +295,7 @@ const SocialCard: React.FC<{
       padding: '14px 18px',
       borderRadius: 10,
       background: '#fff',
-      borderLeft: `5px solid ${accent}`,
+      border: 'none',
       boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
       opacity,
       transform: `scale(${scale}) rotate(${tilt}deg)`,
