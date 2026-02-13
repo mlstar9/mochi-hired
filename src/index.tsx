@@ -30,6 +30,7 @@ import {
   WorkflowRus,
   WorkflowMatan,
   WorkflowDemi,
+  WorkflowAnthonyStrips,
   WORKFLOW_DURATION,
 } from './WorkflowPipelines';
 
@@ -239,6 +240,14 @@ const RemotionRoot: React.FC = () => {
       <Composition
         id="WorkflowAnthony"
         component={WorkflowAnthony}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1440}
+        height={1080}
+      />
+      <Composition
+        id="WorkflowAnthonyStrips"
+        component={WorkflowAnthonyStrips}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
         width={1440}

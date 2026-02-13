@@ -365,6 +365,35 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
   );
 };
 
+// ─── 1b. WorkflowAnthonyStrips — Paper strips only, no PFPs ─────────────────
+
+export const WorkflowAnthonyStrips: React.FC = () => {
+  const cx = 720, cy = 500;
+  const cards = [
+    {text: '@paboratories mention on TikTok', x: cx - 30, y: cy - 30, delay: 8, width: 280},
+    {text: 'Pika trending on X', x: cx + 40, y: cy + 20, delay: 12, width: 210},
+    {text: 'Brand collab request — IG', x: cx - 50, y: cy + 50, delay: 17, width: 270},
+    {text: 'New creator partnership DM', x: cx + 20, y: cy - 60, delay: 21, width: 290},
+    {text: "YouTube review: 'Pika is insane'", x: cx - 160, y: cy - 120, delay: 25, width: 320},
+    {text: 'Reddit thread: AI video tools comparison', x: cx + 140, y: cy - 140, delay: 30, width: 300},
+    {text: 'Forbes: Top 10 AI startups', x: cx + 160, y: cy + 130, delay: 34, width: 260},
+    {text: 'Influencer inquiry — 2.3M followers', x: cx - 170, y: cy + 150, delay: 38, width: 280},
+    {text: 'Product Hunt launch day mentions', x: cx - 50, y: cy - 270, delay: 42, width: 200},
+    {text: 'Twitter Spaces invite — AI creators', x: cx + 250, y: cy + 30, delay: 47, width: 280},
+    {text: 'TikTok creator fund partnership', x: cx - 230, y: cy + 10, delay: 51, width: 260},
+    {text: 'LinkedIn post went viral — 50K views', x: cx + 50, y: cy + 260, delay: 55, width: 300},
+  ];
+
+  return (
+    <AbsoluteFill style={{backgroundColor: '#111111'}}>
+      {cards.map((c, i) => (
+        <PaperStrip key={i} text={c.text} x={c.x} y={c.y}
+          appearFrame={c.delay + stagger(700 + i, 4)} seed={i * 7 + 50} width={c.width} />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
 // ─── 2. WorkflowStarry — Teal #0D9488 ───────────────────────────────────────
 
 const StickyNote: React.FC<{
