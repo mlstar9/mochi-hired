@@ -505,14 +505,14 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean; transparent?: boolean}
 // Raccoon 2.0 centered, research/creative symbols float toward camera
 
 const FLOAT_ITEMS = [
-  // Research keywords
-  'RESEARCH', 'ANALYSIS', 'DATA', 'INSIGHTS', 'METRICS', 'KPIs',
-  // Creative keywords
-  'CREATIVE', 'DESIGN', 'VIDEO', 'COPY', 'BRAND', 'STORY',
-  // Equations / symbols
-  'ROI = ?', '∑ ideas', 'Δ strategy', '∞ iterations', 'f(x) = content',
+  // Math equations (50%)
+  'ROI = ?', '∑ ideas', 'Δ strategy', '∞ loops', 'f(x) = content',
   'σ² = chaos', '∫ feedback dx', 'lim → deadline', 'π × budget',
-  // Emojis
+  'x² + y² = r²', 'e = mc²', 'a² + b²', '∂f/∂x', 'log(n)',
+  'P(A|B)', 'n! = ?', '√(ROI)', 'Σ tasks', 'μ = avg',
+  // Research/Creative keywords + icons (50%)
+  'RESEARCH', 'ANALYSIS', 'DATA', 'INSIGHTS', 'CREATIVE',
+  'DESIGN', 'VIDEO', 'COPY', 'BRAND', 'STRATEGY',
   '📄', '🔬', '📊', '🎨', '🎬', '✏️', '💡', '📈', '🧠', '⚡',
 ];
 
@@ -530,27 +530,33 @@ const FloatingItem: React.FC<{
   const cycleT = t % duration;
   const progress = cycleT / duration; // 0→1
 
-  // Start scattered around frame, drift toward camera (scale up + fade out)
+  // 3D depth: items start far away (small, blurry) and drift toward camera (big, sharp)
   const startX = 100 + sr(seed + 2) * 1240;
   const startY = 80 + sr(seed + 3) * 920;
-  const driftX = (sr(seed + 4) - 0.5) * 60;
-  const driftY = (sr(seed + 5) - 0.5) * 40;
+  // Drift outward from center as they approach camera
+  const cx = 720; const cy = 540;
+  const fromCenterX = startX - cx;
+  const fromCenterY = startY - cy;
+  const spread = progress * 0.6; // items spread outward as they get closer
+  const x = startX + fromCenterX * spread;
+  const y = startY + fromCenterY * spread;
 
-  const x = startX + driftX * progress;
-  const y = startY + driftY * progress;
-  const scale = 0.6 + progress * 1.2; // grow as it approaches
-  const opacity = progress < 0.1 ? progress / 0.1 : progress > 0.75 ? (1 - progress) / 0.25 : 0.7;
-  const rot = (sr(seed + 6) - 0.5) * 30;
+  // Z-depth: scale + blur
+  const scale = 0.3 + progress * 1.8; // small → big
+  const blur = Math.max(0, (1 - progress) * 3); // blurry → sharp
+  const opacity = progress < 0.08 ? progress / 0.08 : progress > 0.8 ? (1 - progress) / 0.2 : 0.75;
+  const rot = (sr(seed + 6) - 0.5) * 25;
+  const zTranslate = -500 + progress * 500; // move in Z space
 
   const isEmoji = text.length <= 2 && /\p{Emoji}/u.test(text);
-  const fontSize = isEmoji ? 50 + sr(seed + 7) * 30 : 18 + sr(seed + 7) * 16;
+  const fontSize = isEmoji ? 50 + sr(seed + 7) * 30 : 20 + sr(seed + 7) * 18;
 
   return (
     <div style={{
       position: 'absolute',
       left: x,
       top: y,
-      transform: `scale(${scale}) rotate(${rot}deg)`,
+      transform: `perspective(800px) translateZ(${zTranslate}px) scale(${scale}) rotate(${rot}deg)`,
       opacity,
       color: '#fff',
       fontSize,
@@ -559,6 +565,7 @@ const FloatingItem: React.FC<{
       letterSpacing: isEmoji ? 0 : 2,
       whiteSpace: 'nowrap',
       pointerEvents: 'none',
+      filter: blur > 0.3 ? `blur(${blur}px)` : 'none',
     }}>
       {text}
     </div>
@@ -600,11 +607,13 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolea
 
   return (
     <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
+      {/* Raccoon behind */}
+      <PFP src="raccoon2.png" name="" subtitle=""
+        x={720} y={500} size={380} appearFrame={0} seed={31} />
+      {/* Floating chaos overlays on top */}
       {floaters.map((f, i) => (
         <FloatingItem key={i} text={f.text} seed={f.seed} totalFrames={144} />
       ))}
-      <PFP src="raccoon2.png" name="" subtitle=""
-        x={720} y={500} size={380} appearFrame={0} seed={31} />
     </AbsoluteFill>
   );
 };
