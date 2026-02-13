@@ -201,7 +201,7 @@ const DoodleArrow: React.FC<{
   const cp2y = midY + wobble2;
 
   const pathD = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
-  const approxLen = Math.sqrt(dx * dx + dy * dy) * 1.4;
+  const approxLen = Math.sqrt(dx * dx + dy * dy) * 2.0;
   const drawn = approxLen * drawProgress;
 
   const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
@@ -483,9 +483,9 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
       <NakedEmoji emoji="📝" label="" x={fbX} y={fbY} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
 
       {/* Hand-drawn doodle arrows: Rus → Design → Russ → Feedback */}
-      <DoodleArrow x1={rusX + 100} y1={rusY} x2={designX - 40} y2={designY} startFrame={14} seed={800} />
-      <DoodleArrow x1={designX + 40} y1={designY} x2={russX - 100} y2={russY} startFrame={38} seed={810} />
-      <DoodleArrow x1={russX + 100} y1={russY} x2={fbX - 40} y2={fbY} startFrame={62} seed={820} />
+      <DoodleArrow x1={rusX + 100} y1={rusY} x2={designX - 40} y2={designY} startFrame={14} seed={800} strokeWidth={6} />
+      <DoodleArrow x1={designX + 40} y1={designY} x2={russX - 100} y2={russY} startFrame={38} seed={810} strokeWidth={6} />
+      <DoodleArrow x1={russX + 100} y1={russY} x2={fbX - 40} y2={fbY} startFrame={62} seed={820} strokeWidth={6} />
     </AbsoluteFill>
   );
 };
