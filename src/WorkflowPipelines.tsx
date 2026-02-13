@@ -71,20 +71,21 @@ const PFP: React.FC<{
   seed: number;
   textColor?: string;
   isAI?: boolean;
-}> = ({src, placeholder, name, subtitle, x, y, size = 350, appearFrame, seed, textColor = '#fff', isAI}) => {
+  noOffset?: boolean;
+}> = ({src, placeholder, name, subtitle, x, y, size = 350, appearFrame, seed, textColor = '#fff', isAI, noOffset}) => {
   const rawFrame = useCurrentFrame();
   const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const opacity = stampOpacity(frame, appearFrame);
   const scale = stampScale(frame, appearFrame);
-  const tilt = messyRot(seed + 77);
+  const tilt = noOffset ? 0 : messyRot(seed + 77);
 
   return (
     <div style={{
       position: 'absolute',
-      left: x - size / 2 + messy(seed + 10, 30),
-      top: y - size / 2 + messy(seed + 11, 25),
+      left: x - size / 2 + (noOffset ? 0 : messy(seed + 10, 30)),
+      top: y - size / 2 + (noOffset ? 0 : messy(seed + 11, 25)),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -682,7 +683,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean
           } : {}),
         }}>
           <PFP src="demi-pfp.jpg" name="" subtitle=""
-            x={190} y={190} size={380} appearFrame={0} seed={60} />
+            x={190} y={190} size={380} appearFrame={0} seed={60} noOffset />
         </div>
       )}
 
