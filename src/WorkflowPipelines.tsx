@@ -485,7 +485,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       {/* Arrows rendered first (behind nodes) — start overlapping source, end before target */}
       <DoodleArrow x1={rusX} y1={rusY} x2={designX - 80} y2={designY} startFrame={14} seed={800} strokeWidth={2.5} />
-      <DoodleArrow x1={designX} y1={designY} x2={russX - 160} y2={russY} startFrame={38} seed={810} strokeWidth={2.5} />
+      <DoodleArrow x1={designX} y1={designY} x2={russX - 220} y2={russY} startFrame={38} seed={810} strokeWidth={2.5} />
       <DoodleArrow x1={russX} y1={russY} x2={fbX - 80} y2={fbY} startFrame={62} seed={820} strokeWidth={2.5} />
 
       {/* Nodes on top */}
