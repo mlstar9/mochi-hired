@@ -182,11 +182,11 @@ const DoodleArrow: React.FC<{
   startFrame: number; seed: number;
   stroke?: string; strokeWidth?: number; showHead?: boolean;
 }> = ({x1, y1, x2, y2, startFrame, seed, stroke = '#fff', strokeWidth = 3, showHead = true}) => {
-  const rawFrame = useCurrentFrame();
-  const frame = stopMotionFrame(rawFrame);
+  // Use raw frame (not stop-motion) for smooth draw animation
+  const frame = useCurrentFrame();
   if (frame < startFrame) return null;
 
-  const drawProgress = interpolate(frame - startFrame, [0, 18], [0, 1], {
+  const drawProgress = interpolate(frame - startFrame, [0, 24], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
 
@@ -201,11 +201,9 @@ const DoodleArrow: React.FC<{
   const cp2y = midY + wobble2;
 
   const pathD = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
-
-  // Use clip-rect reveal instead of strokeDasharray (way more reliable)
-  const minX = Math.min(x1, cp1x, cp2x, x2) - 20;
-  const maxX = Math.max(x1, cp1x, cp2x, x2) + 20;
-  const clipX = minX + (maxX - minX) * drawProgress;
+  // Use a very generous length estimate to ensure full draw
+  const approxLen = Math.sqrt(dx * dx + dy * dy) * 3;
+  const drawn = approxLen * drawProgress;
 
   const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
   const as = 14;
@@ -215,19 +213,13 @@ const DoodleArrow: React.FC<{
   const ay2p = y2 - as * Math.sin(angle + 0.4);
 
   return (
-    <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
-      <defs>
-        <clipPath id={`arrow-clip-${seed}`}>
-          <rect x={0} y={0} width={clipX} height={1080} />
-        </clipPath>
-      </defs>
-      <g clipPath={`url(#arrow-clip-${seed})`}>
-        <path d={pathD} fill="none" stroke={stroke} strokeWidth={strokeWidth}
-          strokeLinecap="round" opacity={0.85} />
-        {showHead && drawProgress >= 0.9 && (
-          <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill={stroke} opacity={0.85} />
-        )}
-      </g>
+    <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none', overflow: 'visible'}}>
+      <path d={pathD} fill="none" stroke={stroke} strokeWidth={strokeWidth}
+        strokeLinecap="round" strokeDasharray={`${approxLen}`} strokeDashoffset={`${approxLen - drawn}`}
+        opacity={0.85} />
+      {showHead && drawProgress >= 0.85 && (
+        <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill={stroke} opacity={0.85} />
+      )}
     </svg>
   );
 };
