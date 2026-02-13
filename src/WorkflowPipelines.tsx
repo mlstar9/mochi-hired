@@ -326,24 +326,25 @@ const PaperStrip: React.FC<{
 };
 
 export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  // Cards pile from center first, then spread outward
-  // Safe zone for cards: x 480-1000 (center), spreading to 400-1080 (max ~20% pfp overlap)
+  // Cards pile center first, then spread outward in a circular pattern
+  // Center point: ~660, 440. Radius grows with each ring.
+  const cx = 660, cy = 440;
   const cards = [
-    // Center pile first
-    {text: '@paboratories mention on TikTok', x: 580, y: 380, delay: 24, width: 280},
-    {text: 'Pika trending on X', x: 620, y: 440, delay: 28, width: 210},
-    {text: 'Brand collab request — IG', x: 550, y: 330, delay: 33, width: 270},
-    {text: 'New creator partnership DM', x: 640, y: 500, delay: 37, width: 290},
-    // Starting to spread
-    {text: "YouTube review: 'Pika is insane'", x: 480, y: 250, delay: 41, width: 320},
-    {text: 'Reddit thread: AI video tools comparison', x: 700, y: 300, delay: 46, width: 300},
-    {text: 'Forbes: Top 10 AI startups', x: 520, y: 580, delay: 50, width: 260},
-    {text: 'Influencer inquiry — 2.3M followers', x: 740, y: 620, delay: 54, width: 280},
-    // Spreading a bit more but not covering pfps
-    {text: 'Product Hunt launch day mentions', x: 450, y: 150, delay: 58, width: 200},
-    {text: 'Twitter Spaces invite — AI creators', x: 820, y: 700, delay: 63, width: 280},
-    {text: 'TikTok creator fund partnership', x: 420, y: 720, delay: 67, width: 260},
-    {text: 'LinkedIn post went viral — 50K views', x: 780, y: 160, delay: 71, width: 300},
+    // Ring 1: tight center cluster (radius ~40)
+    {text: '@paboratories mention on TikTok', x: cx - 30, y: cy - 30, delay: 24, width: 280},
+    {text: 'Pika trending on X', x: cx + 40, y: cy + 20, delay: 28, width: 210},
+    {text: 'Brand collab request — IG', x: cx - 50, y: cy + 50, delay: 33, width: 270},
+    {text: 'New creator partnership DM', x: cx + 20, y: cy - 60, delay: 37, width: 290},
+    // Ring 2: spreading out (radius ~160)
+    {text: "YouTube review: 'Pika is insane'", x: cx - 160, y: cy - 120, delay: 41, width: 320},
+    {text: 'Reddit thread: AI video tools comparison', x: cx + 140, y: cy - 140, delay: 46, width: 300},
+    {text: 'Forbes: Top 10 AI startups', x: cx + 160, y: cy + 130, delay: 50, width: 260},
+    {text: 'Influencer inquiry — 2.3M followers', x: cx - 170, y: cy + 150, delay: 54, width: 280},
+    // Ring 3: outer ring (radius ~280)
+    {text: 'Product Hunt launch day mentions', x: cx - 50, y: cy - 270, delay: 58, width: 200},
+    {text: 'Twitter Spaces invite — AI creators', x: cx + 250, y: cy + 30, delay: 63, width: 280},
+    {text: 'TikTok creator fund partnership', x: cx - 230, y: cy + 10, delay: 67, width: 260},
+    {text: 'LinkedIn post went viral — 50K views', x: cx + 50, y: cy + 260, delay: 71, width: 300},
   ];
 
   return (
