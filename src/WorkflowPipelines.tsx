@@ -624,17 +624,18 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean
   const frame = stopMotionFrame(rawFrame);
 
   // Bottom row: 4 AI selves appear first (pacing 2x faster = half the frames)
+  // 4 pfps centered in 1440: total span ~1080, start at 180
   const row = [
-    {src: 'theo.png', x: 220, seed: 70},
-    {src: 'momo.jpg', x: 490, seed: 71},
-    {placeholder: 'Russ', src: 'russ-pfp.png', x: 760, seed: 72},
-    {src: 'raccoon2.png', x: 1030, seed: 73},
+    {src: 'theo.png', x: 270, seed: 70},
+    {src: 'momo.jpg', x: 540, seed: 71},
+    {placeholder: 'Russ', src: 'russ-pfp.png', x: 810, seed: 72},
+    {src: 'raccoon2.png', x: 1080, seed: 73},
   ];
-  const rowY = 780;
-  const rowSize = 280;
+  const rowY = 760;
+  const rowSize = 260;
 
-  // Demi appears at top center after arrows
-  const demiX = 620;
+  // Demi appears at true center top
+  const demiX = 720;
   const demiY = 260;
   const demiFrame = 24; // arrows start at 12, demi stamps after
 
