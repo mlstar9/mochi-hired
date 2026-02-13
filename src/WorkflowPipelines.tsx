@@ -348,7 +348,7 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="user-pfp.png" name="Anthony" subtitle="Head of Partnerships"
         x={200} y={480} appearFrame={0} seed={1} />
       <PFP src="theo.png" name="Theo" subtitle="AI Self" isAI
@@ -363,7 +363,7 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
       <DoodleText text="24/7" x={680} y={680} appearFrame={90} seed={310} fontSize={42} />
       <DoodleCircle cx={720} cy={700} r={50} appearFrame={95} seed={320} />
 
-      <GawxFilter enabled={gawxFilter} />
+      { /* gawx filter removed */ }
     </AbsoluteFill>
   );
 };
@@ -445,7 +445,7 @@ const MovingCard: React.FC<{
 
 export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="S" name="Starry" subtitle="Product Manager"
         x={130} y={480} appearFrame={0} seed={20} />
       <PFP src="momo.jpg" name="Momo" subtitle="AI Self" isAI
@@ -473,7 +473,7 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
       <DoodleCheck x={1040} y={330} appearFrame={100} seed={250} />
       <DoodleCheck x={1040} y={378} appearFrame={108} seed={251} />
 
-      <GawxFilter enabled={gawxFilter} />
+      { /* gawx filter removed */ }
     </AbsoluteFill>
   );
 };
@@ -520,7 +520,7 @@ const WorkIcon: React.FC<{
 export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const CY = 480;
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="R" name="Rus" subtitle="Head of Design"
         x={180} y={CY} appearFrame={0} seed={40} />
       <WorkIcon emoji="🎨" label="Design" x={500} y={CY} appearFrame={24} seed={41} />
@@ -534,7 +534,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
 
       <DoodleCheck x={1210} y={CY - 60} appearFrame={100} seed={430} />
 
-      <GawxFilter enabled={gawxFilter} />
+      { /* gawx filter removed */ }
     </AbsoluteFill>
   );
 };
@@ -592,7 +592,7 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tr
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="matan-ai.png" name="Matan" subtitle="Creative Director"
         x={160} y={CY} appearFrame={0} seed={30} />
       <PFP src="raccoon2.png" name="Raccoon 2.0" subtitle="AI Self (Bridge)" isAI
@@ -626,7 +626,7 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tr
 
       <DoodleCircle cx={720} cy={CY} r={90} appearFrame={80} seed={530} />
 
-      <GawxFilter enabled={gawxFilter} />
+      { /* gawx filter removed */ }
     </AbsoluteFill>
   );
 };
@@ -643,7 +643,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tru
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
+    <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="D" name="Demi" subtitle="CEO"
         x={200} y={CY} appearFrame={0} seed={60} />
       <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
@@ -663,7 +663,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tru
           startFrame={42 + i * 10} seed={610 + i * 10} strokeWidth={2.5} />
       ))}
 
-      <GawxFilter enabled={gawxFilter} />
+      { /* gawx filter removed */ }
     </AbsoluteFill>
   );
 };
