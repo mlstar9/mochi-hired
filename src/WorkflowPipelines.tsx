@@ -88,12 +88,10 @@ const PFP: React.FC<{
         height: size,
         borderRadius: 0,
         overflow: 'hidden',
-        background: '#fff',
-        boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
+        background: 'transparent',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        border: isAI ? '3px solid rgba(255,255,255,0.6)' : 'none',
       }}>
         {src ? (
           <Img src={staticFile(`images/${src}`)} style={{width: size, height: size, objectFit: 'cover'}} />
