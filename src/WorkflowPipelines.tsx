@@ -501,48 +501,90 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean; transparent?: boolean}
   );
 };
 
-// ─── 4. WorkflowMatan — Coral #F97316 ───────────────────────────────────────
-// Research cluster appears one by one, THEN creative cluster one by one
-// Each element staggered 10 frames apart with ±3 random variation
+// ─── 4. WorkflowMatan — "Confused math" meme style ──────────────────────────
+// Raccoon 2.0 centered, research/creative symbols float toward camera
 
-export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const researchBase = 28;
-  const research = [
-    {emoji: '📄', label: 'Docs', x: 420, y: 220, delay: researchBase + 0 + stagger(950, 3)},
-    {emoji: '🔬', label: 'Analysis', x: 500, y: 480, delay: researchBase + 10 + stagger(951, 3)},
-    {emoji: '📊', label: 'Data', x: 380, y: 740, delay: researchBase + 22 + stagger(952, 3)},
-  ];
-  const creativeBase = researchBase + 36; // starts after research cluster
-  const creative = [
-    {emoji: '🎨', label: 'Design', x: 1020, y: 220, delay: creativeBase + 0 + stagger(960, 3)},
-    {emoji: '🎬', label: 'Video', x: 1120, y: 480, delay: creativeBase + 10 + stagger(961, 3)},
-    {emoji: '✏️', label: 'Copy', x: 1000, y: 740, delay: creativeBase + 22 + stagger(962, 3)},
-  ];
+const FLOAT_ITEMS = [
+  // Research keywords
+  'RESEARCH', 'ANALYSIS', 'DATA', 'INSIGHTS', 'METRICS', 'KPIs',
+  // Creative keywords
+  'CREATIVE', 'DESIGN', 'VIDEO', 'COPY', 'BRAND', 'STORY',
+  // Equations / symbols
+  'ROI = ?', '∑ ideas', 'Δ strategy', '∞ iterations', 'f(x) = content',
+  'σ² = chaos', '∫ feedback dx', 'lim → deadline', 'π × budget',
+  // Emojis
+  '📄', '🔬', '📊', '🎨', '🎬', '✏️', '💡', '📈', '🧠', '⚡',
+];
+
+const FloatingItem: React.FC<{
+  text: string; seed: number; totalFrames: number;
+}> = ({text, seed, totalFrames}) => {
+  const frame = useCurrentFrame();
+
+  // Each item starts at a random time, loops continuously
+  const startDelay = Math.floor(sr(seed) * 60);
+  const duration = 50 + Math.floor(sr(seed + 1) * 40); // 50-90 frames to drift
+  const t = frame - startDelay;
+  if (t < 0) return null;
+
+  const cycleT = t % duration;
+  const progress = cycleT / duration; // 0→1
+
+  // Start scattered around frame, drift toward camera (scale up + fade out)
+  const startX = 100 + sr(seed + 2) * 1240;
+  const startY = 80 + sr(seed + 3) * 920;
+  const driftX = (sr(seed + 4) - 0.5) * 60;
+  const driftY = (sr(seed + 5) - 0.5) * 40;
+
+  const x = startX + driftX * progress;
+  const y = startY + driftY * progress;
+  const scale = 0.6 + progress * 1.2; // grow as it approaches
+  const opacity = progress < 0.1 ? progress / 0.1 : progress > 0.75 ? (1 - progress) / 0.25 : 0.7;
+  const rot = (sr(seed + 6) - 0.5) * 30;
+
+  const isEmoji = text.length <= 2 && /\p{Emoji}/u.test(text);
+  const fontSize = isEmoji ? 50 + sr(seed + 7) * 30 : 18 + sr(seed + 7) * 16;
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP src="matan-ai.png" name="Matan" subtitle="Creative Director"
-        x={SX + 80} y={500} size={360} appearFrame={0} seed={30} />
-      <PFP src="raccoon2.png" name="Raccoon 2.0" subtitle="AI Self (Bridge)" isAI
-        x={720} y={480} size={340} appearFrame={12 + stagger(970, 3)} seed={31} />
+    <div style={{
+      position: 'absolute',
+      left: x,
+      top: y,
+      transform: `scale(${scale}) rotate(${rot}deg)`,
+      opacity,
+      color: '#fff',
+      fontSize,
+      fontFamily: isEmoji ? 'inherit' : FONT,
+      fontWeight: isEmoji ? 400 : 700,
+      letterSpacing: isEmoji ? 0 : 2,
+      whiteSpace: 'nowrap',
+      pointerEvents: 'none',
+    }}>
+      {text}
+    </div>
+  );
+};
 
-      <DoodleText text="RESEARCH" x={420} y={220} appearFrame={24 + stagger(971, 3)} seed={400} fontSize={36} />
-      <DoodleText text="CREATIVE" x={930} y={210} appearFrame={creativeBase - 4 + stagger(972, 3)} seed={410} fontSize={36} />
+export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolean}> = ({gawxFilter = true, transparent = false}) => {
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
 
-      {research.map((ic, i) => (
-        <NakedEmoji key={`r-${i}`} emoji={ic.emoji} label={ic.label}
-          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 300} emojiSize={130} labelSize={40} />
+  // Generate ~30 floating items from the pool
+  const floaters = Array.from({length: 30}, (_, i) => {
+    const itemIdx = Math.floor(sr(i * 7 + 100) * FLOAT_ITEMS.length);
+    return {text: FLOAT_ITEMS[itemIdx], seed: i * 13 + 200};
+  });
+
+  return (
+    <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
+      {/* Floating research/creative chaos behind raccoon */}
+      {floaters.map((f, i) => (
+        <FloatingItem key={i} text={f.text} seed={f.seed} totalFrames={144} />
       ))}
-      {creative.map((ic, i) => (
-        <NakedEmoji key={`c-${i}`} emoji={ic.emoji} label={ic.label}
-          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 350} emojiSize={130} labelSize={40} />
-      ))}
 
-      <DoodleArrow x1={360} y1={500} x2={600} y2={490} startFrame={16} seed={500} />
-      <DoodleArrow x1={620} y1={440} x2={530} y2={400} startFrame={50} seed={510} strokeWidth={2.5} />
-      <DoodleArrow x1={540} y1={540} x2={620} y2={510} startFrame={58} seed={515} strokeWidth={2.5} />
-      <DoodleArrow x1={840} y1={440} x2={940} y2={380} startFrame={creativeBase + 4} seed={520} strokeWidth={2.5} />
-      <DoodleArrow x1={960} y1={540} x2={850} y2={510} startFrame={creativeBase + 12} seed={525} strokeWidth={2.5} />
+      {/* Raccoon 2.0 centered on top of the chaos */}
+      <PFP src="raccoon2.png" name="" subtitle=""
+        x={720} y={500} size={380} appearFrame={0} seed={31} />
     </AbsoluteFill>
   );
 };
