@@ -513,10 +513,10 @@ const FLOAT_ITEMS = [
   'if (idea) {', 'return roi;', 'async run()', 'import ai',
   'const x = plan;', '// TODO:', 'while(true)', 'try { }',
   'git push', 'npm run build', '<div/>', '=> output',
-  // Creative keywords + icons (40%)
-  'RESEARCH', 'CREATIVE', 'DESIGN', 'VIDEO', 'COPY',
-  'BRAND', 'STRATEGY', 'STORY', 'INSIGHT',
+  // Creative — mostly emojis (40%)
+  'CREATIVE', 'DESIGN', 'BRAND',
   '📄', '🔬', '📊', '🎨', '🎬', '✏️', '💡', '📈', '🧠', '⚡',
+  '🎯', '🔥', '✨', '🚀', '💎', '🎪', '🎭', '📐', '🖌️', '💭',
 ];
 
 const FloatingItem: React.FC<{
