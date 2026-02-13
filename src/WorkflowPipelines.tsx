@@ -425,6 +425,34 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
 // ─── 3. WorkflowRus — Purple #8B5CF6 ────────────────────────────────────────
 
 export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
+  const frame = useCurrentFrame();
+
+  // Crayon arrow path: Rus → Design → Russ → Feedback
+  // Node centers (approx): Rus(270,470), Design(540,410), Russ(820,500), Feedback(1100,440)
+  const crayonPath = 'M 340 480 C 380 380, 460 360, 540 410 C 620 460, 700 540, 820 500 C 940 460, 1000 390, 1100 440';
+  const crayonLen = 900; // approximate path length
+
+  const drawStart = 20;
+  const drawEnd = 80;
+  const drawProgress = interpolate(frame, [drawStart, drawEnd], [0, 1], {
+    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
+  });
+  const drawn = crayonLen * drawProgress;
+
+  // Arrowhead at end pointing to Feedback
+  const arrowAngle = Math.atan2(440 - 390, 1100 - 1000); // approx tangent at end
+  const aLen = 18;
+  const ax1 = 1100 - aLen * Math.cos(arrowAngle - 0.4);
+  const ay1 = 440 - aLen * Math.sin(arrowAngle - 0.4);
+  const ax2 = 1100 - aLen * Math.cos(arrowAngle + 0.4);
+  const ay2 = 440 - aLen * Math.sin(arrowAngle + 0.4);
+
+  // ITERATE stamp timing
+  const stampFrame = 93;
+  const stampVisible = frame >= stampFrame;
+  const stampT = frame - stampFrame;
+  const stampScaleVal = stampT >= 3 ? 1.0 : stampT >= 0 ? 1.3 - 0.3 * (stampT / 3) : 0;
+
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="R" name="Rus" subtitle="Head of Design"
@@ -434,12 +462,53 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
         x={820} y={500} size={220} appearFrame={48 + stagger(901, 4)} seed={42} />
       <NakedEmoji emoji="📝" label="Feedback" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={95} labelSize={34} />
 
-      <DoodleArrow x1={380} y1={480} x2={490} y2={440} startFrame={18} seed={400} />
-      <DoodleArrow x1={640} y1={440} x2={710} y2={490} startFrame={42} seed={410} />
-      <DoodleArrow x1={960} y1={510} x2={1050} y2={470} startFrame={66} seed={420} />
+      {/* Thick crayon doodle arrow */}
+      {frame >= drawStart && (
+        <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
+          <path d={crayonPath} fill="none" stroke="#fff" strokeWidth={9}
+            strokeLinecap="round" strokeLinejoin="round"
+            strokeDasharray={crayonLen} strokeDashoffset={crayonLen - drawn}
+            opacity={0.85} />
+          {drawProgress >= 0.92 && (
+            <polygon points={`${1100},${440} ${ax1},${ay1} ${ax2},${ay2}`} fill="#fff" opacity={0.85} />
+          )}
+        </svg>
+      )}
 
-      <DoodleCheck x={1200} y={400} appearFrame={100 + stagger(910, 3)} seed={430} />
-      <DoodleText text="ITERATE" x={600} y={680} appearFrame={90 + stagger(911, 3)} seed={440} fontSize={40} />
+      {/* Big ITERATE stamp */}
+      {stampVisible && (
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          pointerEvents: 'none',
+        }}>
+          <div style={{
+            transform: `scale(${stampScaleVal}) rotate(-4deg)`,
+            opacity: 0.85,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            border: '8px solid rgba(255,255,255,0.6)',
+            borderRadius: 8,
+            padding: '10px 50px',
+          }}>
+            <span style={{
+              color: '#fff',
+              fontSize: 220,
+              fontWeight: 900,
+              fontFamily: FONT,
+              textTransform: 'uppercase' as const,
+              letterSpacing: 12,
+              lineHeight: 1,
+            }}>
+              ITERATE
+            </span>
+          </div>
+        </div>
+      )}
     </AbsoluteFill>
   );
 };
