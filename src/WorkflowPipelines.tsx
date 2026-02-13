@@ -201,24 +201,33 @@ const DoodleArrow: React.FC<{
   const cp2y = midY + wobble2;
 
   const pathD = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
-  const approxLen = Math.sqrt(dx * dx + dy * dy) * 2.0;
-  const drawn = approxLen * drawProgress;
+
+  // Use clip-rect reveal instead of strokeDasharray (way more reliable)
+  const minX = Math.min(x1, cp1x, cp2x, x2) - 20;
+  const maxX = Math.max(x1, cp1x, cp2x, x2) + 20;
+  const clipX = minX + (maxX - minX) * drawProgress;
 
   const angle = Math.atan2(y2 - cp2y, x2 - cp2x);
-  const as = 12;
-  const ax1p = x2 - as * Math.cos(angle - 0.35);
-  const ay1p = y2 - as * Math.sin(angle - 0.35);
-  const ax2p = x2 - as * Math.cos(angle + 0.35);
-  const ay2p = y2 - as * Math.sin(angle + 0.35);
+  const as = 14;
+  const ax1p = x2 - as * Math.cos(angle - 0.4);
+  const ay1p = y2 - as * Math.sin(angle - 0.4);
+  const ax2p = x2 - as * Math.cos(angle + 0.4);
+  const ay2p = y2 - as * Math.sin(angle + 0.4);
 
   return (
     <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
-      <path d={pathD} fill="none" stroke={stroke} strokeWidth={strokeWidth}
-        strokeLinecap="round" strokeDasharray={approxLen} strokeDashoffset={approxLen - drawn}
-        opacity={0.85} />
-      {showHead && drawProgress >= 0.9 && (
-        <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill={stroke} opacity={0.85} />
-      )}
+      <defs>
+        <clipPath id={`arrow-clip-${seed}`}>
+          <rect x={0} y={0} width={clipX} height={1080} />
+        </clipPath>
+      </defs>
+      <g clipPath={`url(#arrow-clip-${seed})`}>
+        <path d={pathD} fill="none" stroke={stroke} strokeWidth={strokeWidth}
+          strokeLinecap="round" opacity={0.85} />
+        {showHead && drawProgress >= 0.9 && (
+          <polygon points={`${x2},${y2} ${ax1p},${ay1p} ${ax2p},${ay2p}`} fill={stroke} opacity={0.85} />
+        )}
+      </g>
     </svg>
   );
 };
