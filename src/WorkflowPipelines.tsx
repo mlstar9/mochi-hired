@@ -349,7 +349,7 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP src="user-pfp.png" name="Anthony" subtitle="Head of Partnerships"
+      <PFP src="anthony-pfp.png" name="Anthony" subtitle="Head of Partnerships"
         x={SX + 80} y={500} size={360} appearFrame={0} seed={1} />
       <PFP src="theo.png" name="Theo" subtitle="AI Self" isAI
         x={1270 - 80} y={480} size={340} appearFrame={12 + stagger(710, 3)} seed={2} />
@@ -399,7 +399,7 @@ const StickyNote: React.FC<{
 export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP placeholder="S" name="Starry" subtitle="Product Manager"
+      <PFP src="starry-pfp.jpg" name="Starry" subtitle="Product Manager"
         x={SX + 70} y={490} size={340} appearFrame={0} seed={20} />
       <PFP src="momo.jpg" name="Momo" subtitle="AI Self" isAI
         x={1270 - 60} y={520} size={330} appearFrame={12 + stagger(800, 3)} seed={21} />
@@ -464,10 +464,10 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP placeholder="R" name="Rus" subtitle="Head of Design"
+      <PFP src="rus-pfp.jpg" name="Rus" subtitle="Head of Design"
         x={SX + 100} y={470} size={360} appearFrame={0} seed={40} />
       <NakedEmoji emoji="🎨" label="Design" x={540} y={410} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
-      <PFP placeholder="Russ" name="Russ" subtitle="AI Self" isAI
+      <PFP src="russ-pfp.png" name="Russ" subtitle="AI Self" isAI
         x={820} y={500} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
       <NakedEmoji emoji="📝" label="Feedback" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
 
@@ -580,7 +580,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tru
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP placeholder="D" name="Demi" subtitle="CEO"
+      <PFP src="demi-pfp.jpg" name="Demi" subtitle="CEO"
         x={SX + 80} y={500} size={370} appearFrame={0} seed={60} />
       <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
         x={620} y={480} size={360} appearFrame={18 + stagger(1000, 3)} seed={61} />
