@@ -29,6 +29,8 @@ import {
   WorkflowStarry,
   WorkflowRus,
   WorkflowMatan,
+  WorkflowMatanFloat,
+  WorkflowMatanPFP,
   WorkflowDemi,
   WorkflowAnthonyStrips,
   WORKFLOW_DURATION,
@@ -280,6 +282,22 @@ const RemotionRoot: React.FC = () => {
       <Composition
         id="WorkflowMatan"
         component={WorkflowMatan}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1440}
+        height={1080}
+      />
+      <Composition
+        id="WorkflowMatanFloat"
+        component={WorkflowMatanFloat}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1440}
+        height={1080}
+      />
+      <Composition
+        id="WorkflowMatanPFP"
+        component={WorkflowMatanPFP}
         durationInFrames={WORKFLOW_DURATION}
         fps={24}
         width={1440}

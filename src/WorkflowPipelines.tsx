@@ -565,11 +565,34 @@ const FloatingItem: React.FC<{
   );
 };
 
-export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolean}> = ({gawxFilter = true, transparent = false}) => {
-  const rawFrame = useCurrentFrame();
-  const frame = stopMotionFrame(rawFrame);
+// Floating chaos layer only (transparent)
+export const WorkflowMatanFloat: React.FC = () => {
+  const floaters = Array.from({length: 30}, (_, i) => {
+    const itemIdx = Math.floor(sr(i * 7 + 100) * FLOAT_ITEMS.length);
+    return {text: FLOAT_ITEMS[itemIdx], seed: i * 13 + 200};
+  });
 
-  // Generate ~30 floating items from the pool
+  return (
+    <AbsoluteFill style={{backgroundColor: 'transparent'}}>
+      {floaters.map((f, i) => (
+        <FloatingItem key={i} text={f.text} seed={f.seed} totalFrames={144} />
+      ))}
+    </AbsoluteFill>
+  );
+};
+
+// Raccoon PFP layer only (transparent)
+export const WorkflowMatanPFP: React.FC = () => {
+  return (
+    <AbsoluteFill style={{backgroundColor: 'transparent'}}>
+      <PFP src="raccoon2.png" name="" subtitle=""
+        x={720} y={500} size={380} appearFrame={0} seed={31} />
+    </AbsoluteFill>
+  );
+};
+
+// Combined preview
+export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolean}> = ({gawxFilter = true, transparent = false}) => {
   const floaters = Array.from({length: 30}, (_, i) => {
     const itemIdx = Math.floor(sr(i * 7 + 100) * FLOAT_ITEMS.length);
     return {text: FLOAT_ITEMS[itemIdx], seed: i * 13 + 200};
@@ -577,12 +600,9 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolea
 
   return (
     <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
-      {/* Floating research/creative chaos behind raccoon */}
       {floaters.map((f, i) => (
         <FloatingItem key={i} text={f.text} seed={f.seed} totalFrames={144} />
       ))}
-
-      {/* Raccoon 2.0 centered on top of the chaos */}
       <PFP src="raccoon2.png" name="" subtitle=""
         x={720} y={500} size={380} appearFrame={0} seed={31} />
     </AbsoluteFill>
