@@ -505,14 +505,17 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean; transparent?: boolean}
 // Raccoon 2.0 centered, research/creative symbols float toward camera
 
 const FLOAT_ITEMS = [
-  // Math equations (50%)
+  // Math + equations + code (60%)
   'ROI = ?', '∑ ideas', 'Δ strategy', '∞ loops', 'f(x) = content',
   'σ² = chaos', '∫ feedback dx', 'lim → deadline', 'π × budget',
-  'x² + y² = r²', 'e = mc²', 'a² + b²', '∂f/∂x', 'log(n)',
-  'P(A|B)', 'n! = ?', '√(ROI)', 'Σ tasks', 'μ = avg',
-  // Research/Creative keywords + icons (50%)
-  'RESEARCH', 'ANALYSIS', 'DATA', 'INSIGHTS', 'CREATIVE',
-  'DESIGN', 'VIDEO', 'COPY', 'BRAND', 'STRATEGY',
+  'x² + y² = r²', 'e = mc²', '∂f/∂x', 'log(n)', 'P(A|B)',
+  'n! = ?', '√(ROI)', 'Σ tasks', 'μ = avg', 'λ = 0.01',
+  'if (idea) {', 'return roi;', 'async run()', 'import ai',
+  'const x = plan;', '// TODO:', 'while(true)', 'try { }',
+  'git push', 'npm run build', '<div/>', '=> output',
+  // Creative keywords + icons (40%)
+  'RESEARCH', 'CREATIVE', 'DESIGN', 'VIDEO', 'COPY',
+  'BRAND', 'STRATEGY', 'STORY', 'INSIGHT',
   '📄', '🔬', '📊', '🎨', '🎬', '✏️', '💡', '📈', '🧠', '⚡',
 ];
 
