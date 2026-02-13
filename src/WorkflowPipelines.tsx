@@ -462,58 +462,30 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
 // ─── 3. WorkflowRus — Purple #8B5CF6 ────────────────────────────────────────
 
 export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const rawFrame = useCurrentFrame();
-  const frame = stopMotionFrame(rawFrame);
-
-  // Crayon arrow path: Rus → Design → Russ → Feedback
-  // Node centers (approx): Rus(270,470), Design(540,410), Russ(820,500), Feedback(1100,440)
-  const crayonPath = 'M 340 480 C 380 380, 460 360, 540 410 C 620 460, 700 540, 820 500 C 940 460, 1000 390, 1100 440';
-  const crayonLen = 900; // approximate path length
-
-  const drawStart = 20;
-  const drawEnd = 80;
-  const drawProgress = interpolate(frame, [drawStart, drawEnd], [0, 1], {
-    extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
-  });
-  const drawn = crayonLen * drawProgress;
-
-  // Arrowhead at end pointing to Feedback
-  const arrowAngle = Math.atan2(440 - 390, 1100 - 1000); // approx tangent at end
-  const aLen = 18;
-  const ax1 = 1100 - aLen * Math.cos(arrowAngle - 0.4);
-  const ay1 = 440 - aLen * Math.sin(arrowAngle - 0.4);
-  const ax2 = 1100 - aLen * Math.cos(arrowAngle + 0.4);
-  const ay2 = 440 - aLen * Math.sin(arrowAngle + 0.4);
-
-  // ITERATE stamp timing
-  const stampFrame = 93;
-  const stampVisible = frame >= stampFrame;
-  const stampT = frame - stampFrame;
-  const stampScaleVal = stampT >= 3 ? 1.0 : stampT >= 0 ? 1.3 - 0.3 * (stampT / 3) : 0;
+  // Shifted ~80px right so the 4 nodes feel centered in 1440px frame
+  // Node centers: Rus(250,470), Design(620,410), Russ(900,500), Feedback(1180,440)
+  const rusX = 250;
+  const designX = 620;
+  const russX = 900;
+  const fbX = 1180;
+  const rusY = 470;
+  const designY = 410;
+  const russY = 500;
+  const fbY = 440;
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="rus-pfp.jpg" name="" subtitle=""
-        x={SX + 100} y={470} size={360} appearFrame={0} seed={40} />
-      <NakedEmoji emoji="🎨" label="" x={540} y={410} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
+        x={rusX} y={rusY} size={360} appearFrame={0} seed={40} />
+      <NakedEmoji emoji="🎨" label="" x={designX} y={designY} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
       <PFP src="russ-pfp.png" name="" subtitle="" isAI
-        x={820} y={500} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
-      <NakedEmoji emoji="📝" label="" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
+        x={russX} y={russY} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
+      <NakedEmoji emoji="📝" label="" x={fbX} y={fbY} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
 
-      {/* Thick crayon doodle arrow */}
-      {frame >= drawStart && (
-        <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
-          <path d={crayonPath} fill="none" stroke="#fff" strokeWidth={9}
-            strokeLinecap="round" strokeLinejoin="round"
-            strokeDasharray={crayonLen} strokeDashoffset={crayonLen - drawn}
-            opacity={0.85} />
-          {drawProgress >= 0.92 && (
-            <polygon points={`${1100},${440} ${ax1},${ay1} ${ax2},${ay2}`} fill="#fff" opacity={0.85} />
-          )}
-        </svg>
-      )}
-
-      {/* ITERATE stamp removed — no text per Leti */}
+      {/* Hand-drawn doodle arrows: Rus → Design → Russ → Feedback */}
+      <DoodleArrow x1={rusX + 100} y1={rusY} x2={designX - 40} y2={designY} startFrame={14} seed={800} />
+      <DoodleArrow x1={designX + 40} y1={designY} x2={russX - 100} y2={russY} startFrame={38} seed={810} />
+      <DoodleArrow x1={russX + 100} y1={russY} x2={fbX - 40} y2={fbY} startFrame={62} seed={820} />
     </AbsoluteFill>
   );
 };
