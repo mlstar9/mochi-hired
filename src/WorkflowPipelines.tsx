@@ -192,12 +192,14 @@ const DoodleArrow: React.FC<{
 
   const dx = x2 - x1;
   const dy = y2 - y1;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const wobbleScale = Math.min(1, dist / 300); // gentler curves for short arrows
   const midY = (y1 + y2) / 2;
-  const wobble1 = (sr(seed) - 0.5) * 40;
-  const wobble2 = (sr(seed + 1) - 0.5) * 30;
-  const cp1x = x1 + dx * 0.3 + (sr(seed + 2) - 0.5) * 20;
+  const wobble1 = (sr(seed) - 0.5) * 40 * wobbleScale;
+  const wobble2 = (sr(seed + 1) - 0.5) * 30 * wobbleScale;
+  const cp1x = x1 + dx * 0.3 + (sr(seed + 2) - 0.5) * 20 * wobbleScale;
   const cp1y = midY + wobble1;
-  const cp2x = x1 + dx * 0.7 + (sr(seed + 3) - 0.5) * 20;
+  const cp2x = x1 + dx * 0.7 + (sr(seed + 3) - 0.5) * 20 * wobbleScale;
   const cp2y = midY + wobble2;
 
   const pathD = `M ${x1} ${y1} C ${cp1x} ${cp1y}, ${cp2x} ${cp2y}, ${x2} ${y2}`;
@@ -485,7 +487,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       {/* Arrows rendered first (behind nodes) — start overlapping source, end before target */}
       <DoodleArrow x1={rusX} y1={rusY} x2={designX - 80} y2={designY} startFrame={14} seed={800} strokeWidth={2.5} />
-      <DoodleArrow x1={designX} y1={designY} x2={russX - 220} y2={russY} startFrame={38} seed={810} strokeWidth={2.5} />
+      <DoodleArrow x1={designX + 20} y1={designY + 30} x2={russX - 220} y2={russY} startFrame={38} seed={813} strokeWidth={2.5} />
       <DoodleArrow x1={russX} y1={russY} x2={fbX - 80} y2={fbY} startFrame={62} seed={820} strokeWidth={2.5} />
 
       {/* Nodes on top */}
