@@ -120,7 +120,7 @@ const PFP: React.FC<{
       <div style={{
         width: size,
         height: size,
-        borderRadius: 12,
+        borderRadius: 0,
         overflow: 'hidden',
         background: '#fff',
         boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
@@ -499,7 +499,7 @@ const WorkIcon: React.FC<{
       opacity, transform: `scale(${scale})`,
     }}>
       <div style={{
-        width: 90, height: 90, borderRadius: 12,
+        width: 90, height: 90, borderRadius: 0,
         background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)',
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         fontSize: 42, boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
