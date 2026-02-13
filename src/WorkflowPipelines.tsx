@@ -282,19 +282,24 @@ const PaperStrip: React.FC<{
   const frame = useCurrentFrame();
   if (frame < appearFrame) return null;
 
-  const UNCRUMPLE_FRAMES = 7;
+  const UNCRUMPLE_FRAMES = 9;
   const localFrame = frame - appearFrame;
   const t = Math.min(localFrame / UNCRUMPLE_FRAMES, 1);
   // Ease-out cubic
   const ease = 1 - Math.pow(1 - t, 3);
 
-  const startRotation = messy(seed + 5, 15);
-  const endRotation = messy(seed + 6, 5) + 2 * (messy(seed, 1) > 0 ? 1 : -1);
+  const startRotation = messy(seed + 5, 20);
+  const endRotation = messy(seed + 6, 6) + 3 * (messy(seed, 1) > 0 ? 1 : -1);
 
-  const scaleX = 0.3 + 0.7 * ease;
-  const scaleY = 0.6 + 0.4 * ease;
+  // Crumple: asymmetric scale + skew for wrinkled paper feel
+  const startSkewX = messy(seed + 7, 8);
+  const startSkewY = messy(seed + 8, 5);
+  const scaleX = (0.85 + 0.15 * ease);
+  const scaleY = (0.75 + 0.25 * ease);
+  const skewX = startSkewX * (1 - ease);
+  const skewY = startSkewY * (1 - ease);
   const rotation = startRotation + (endRotation - startRotation) * ease;
-  const blur = 2 * (1 - ease);
+  const blur = 1.5 * (1 - ease);
 
   // Pseudo-random paper texture via gradient noise
   const gradAngle = Math.abs(messy(seed + 10, 180));
@@ -313,7 +318,7 @@ const PaperStrip: React.FC<{
       background: `linear-gradient(${gradAngle}deg, ${shade1} 0%, ${shade2} 40%, ${shade3} 70%, ${shade1} 100%)`,
       border: 'none',
       boxShadow: '2px 3px 12px rgba(0,0,0,0.3)',
-      transform: `scaleX(${scaleX}) scaleY(${scaleY}) rotate(${rotation}deg)`,
+      transform: `scaleX(${scaleX}) scaleY(${scaleY}) skewX(${skewX}deg) skewY(${skewY}deg) rotate(${rotation}deg)`,
       filter: blur > 0.05 ? `blur(${blur}px)` : undefined,
       zIndex: seed,
     }}>
@@ -326,18 +331,18 @@ const PaperStrip: React.FC<{
 
 export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const cards = [
-    {text: '@paboratories mention on TikTok', x: 560, y: 280, delay: 24, width: 280},
-    {text: 'Pika trending on X', x: 620, y: 320, delay: 28, width: 230},
-    {text: 'Brand collab request — IG', x: 580, y: 360, delay: 33, width: 270},
-    {text: 'New creator partnership DM', x: 640, y: 300, delay: 37, width: 290},
-    {text: "YouTube review: 'Pika is insane'", x: 600, y: 400, delay: 41, width: 300},
-    {text: 'Reddit thread: AI video tools comparison', x: 550, y: 350, delay: 46, width: 320},
-    {text: 'Forbes: Top 10 AI startups', x: 660, y: 380, delay: 50, width: 260},
-    {text: 'Influencer inquiry — 2.3M followers', x: 580, y: 430, delay: 54, width: 300},
-    {text: 'Product Hunt launch day mentions', x: 620, y: 340, delay: 58, width: 290},
-    {text: 'Twitter Spaces invite — AI creators', x: 570, y: 460, delay: 63, width: 310},
-    {text: 'TikTok creator fund partnership', x: 640, y: 410, delay: 67, width: 280},
-    {text: 'LinkedIn post went viral — 50K views', x: 590, y: 490, delay: 71, width: 310},
+    {text: '@paboratories mention on TikTok', x: 80, y: 70, delay: 24, width: 280},
+    {text: 'Pika trending on X', x: 420, y: 140, delay: 28, width: 210},
+    {text: 'Brand collab request — IG', x: 900, y: 60, delay: 33, width: 270},
+    {text: 'New creator partnership DM', x: 1100, y: 200, delay: 37, width: 290},
+    {text: "YouTube review: 'Pika is insane'", x: 200, y: 380, delay: 41, width: 350},
+    {text: 'Reddit thread: AI video tools comparison', x: 700, y: 320, delay: 46, width: 320},
+    {text: 'Forbes: Top 10 AI startups', x: 1050, y: 450, delay: 50, width: 260},
+    {text: 'Influencer inquiry — 2.3M followers', x: 100, y: 650, delay: 54, width: 300},
+    {text: 'Product Hunt launch day mentions', x: 500, y: 550, delay: 58, width: 200},
+    {text: 'Twitter Spaces invite — AI creators', x: 850, y: 700, delay: 63, width: 310},
+    {text: 'TikTok creator fund partnership', x: 1100, y: 750, delay: 67, width: 280},
+    {text: 'LinkedIn post went viral — 50K views', x: 300, y: 850, delay: 71, width: 340},
   ];
 
   return (
