@@ -311,6 +311,14 @@ const RemotionRoot: React.FC = () => {
         width={1440}
         height={1080}
       />
+      <Composition
+        id="WorkflowDemiTransparent"
+        component={() => <WorkflowDemi transparent />}
+        durationInFrames={WORKFLOW_DURATION}
+        fps={24}
+        width={1440}
+        height={1080}
+      />
     </>
   );
 };
