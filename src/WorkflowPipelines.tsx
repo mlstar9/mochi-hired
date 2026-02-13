@@ -385,7 +385,7 @@ export const WorkflowAnthonyStrips: React.FC = () => {
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111'}}>
+    <AbsoluteFill style={{backgroundColor: 'transparent'}}>
       {cards.map((c, i) => (
         <PaperStrip key={i} text={c.text} x={c.x} y={c.y}
           appearFrame={c.delay + stagger(700 + i, 4)} seed={i * 7 + 50} width={c.width} />
