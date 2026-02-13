@@ -8,6 +8,13 @@ import {
   useVideoConfig,
 } from 'remotion';
 
+// ─── Stop-motion quantization ────────────────────────────────────────────────
+// Quantize frame to simulate stop-motion at targetFps within 24fps comp
+const stopMotionFrame = (frame: number, targetFps: number = 8) => {
+  const ratio = 24 / targetFps; // 24/8 = 3, hold each frame for 3 actual frames
+  return Math.floor(frame / ratio) * ratio;
+};
+
 // ─── Constants ───────────────────────────────────────────────────────────────
 
 export const WORKFLOW_DURATION = 144; // 6s at 24fps
@@ -65,7 +72,8 @@ const PFP: React.FC<{
   textColor?: string;
   isAI?: boolean;
 }> = ({src, placeholder, name, subtitle, x, y, size = 220, appearFrame, seed, textColor = '#fff', isAI}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const opacity = stampOpacity(frame, appearFrame);
@@ -137,7 +145,8 @@ const NakedEmoji: React.FC<{
   emoji: string; label: string; x: number; y: number; appearFrame: number; seed: number;
   emojiSize?: number; labelSize?: number;
 }> = ({emoji, label, x, y, appearFrame, seed, emojiSize = 90, labelSize = 32}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const opacity = stampOpacity(frame, appearFrame);
@@ -173,7 +182,8 @@ const DoodleArrow: React.FC<{
   startFrame: number; seed: number;
   stroke?: string; strokeWidth?: number; showHead?: boolean;
 }> = ({x1, y1, x2, y2, startFrame, seed, stroke = '#fff', strokeWidth = 3, showHead = true}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < startFrame) return null;
 
   const drawProgress = interpolate(frame - startFrame, [0, 18], [0, 1], {
@@ -218,7 +228,8 @@ const DoodleArrow: React.FC<{
 const DoodleCheck: React.FC<{x: number; y: number; appearFrame: number; seed: number; color?: string}> = ({
   x, y, appearFrame, seed, color = '#fff',
 }) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const prog = interpolate(frame - appearFrame, [0, 10], [0, 1], {
@@ -243,7 +254,8 @@ const DoodleText: React.FC<{
   text: string; x: number; y: number; appearFrame: number; seed: number;
   color?: string; fontSize?: number;
 }> = ({text, x, y, appearFrame, seed, color = '#fff', fontSize = 36}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const opacity = stampOpacity(frame, appearFrame);
@@ -279,7 +291,8 @@ const PaperStrip: React.FC<{
   text: string; x: number; y: number;
   appearFrame: number; seed: number; width?: number;
 }> = ({text, x, y, appearFrame, seed, width = 260}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const UNCRUMPLE_FRAMES = 9;
@@ -369,7 +382,8 @@ const StickyNote: React.FC<{
   text: string; x: number; y: number; color: string;
   appearFrame: number; seed: number; done?: boolean;
 }> = ({text, x, y, color, appearFrame, seed, done}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
 
   const opacity = stampOpacity(frame, appearFrame);
@@ -430,7 +444,8 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
 // ─── 3. WorkflowRus — Purple #8B5CF6 ────────────────────────────────────────
 
 export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const frame = useCurrentFrame();
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
 
   // Crayon arrow path: Rus → Design → Russ → Feedback
   // Node centers (approx): Rus(270,470), Design(540,410), Russ(820,500), Feedback(1100,440)
