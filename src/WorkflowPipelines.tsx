@@ -71,7 +71,7 @@ const PFP: React.FC<{
   seed: number;
   textColor?: string;
   isAI?: boolean;
-}> = ({src, placeholder, name, subtitle, x, y, size = 220, appearFrame, seed, textColor = '#fff', isAI}) => {
+}> = ({src, placeholder, name, subtitle, x, y, size = 350, appearFrame, seed, textColor = '#fff', isAI}) => {
   const rawFrame = useCurrentFrame();
   const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
@@ -112,7 +112,7 @@ const PFP: React.FC<{
       <div style={{
         marginTop: 14,
         color: textColor,
-        fontSize: 34,
+        fontSize: 44,
         fontWeight: 800,
         fontFamily: FONT,
         textTransform: 'uppercase' as const,
@@ -144,7 +144,7 @@ const PFP: React.FC<{
 const NakedEmoji: React.FC<{
   emoji: string; label: string; x: number; y: number; appearFrame: number; seed: number;
   emojiSize?: number; labelSize?: number;
-}> = ({emoji, label, x, y, appearFrame, seed, emojiSize = 90, labelSize = 32}) => {
+}> = ({emoji, label, x, y, appearFrame, seed, emojiSize = 130, labelSize = 42}) => {
   const rawFrame = useCurrentFrame();
   const frame = stopMotionFrame(rawFrame);
   if (frame < appearFrame) return null;
@@ -365,9 +365,9 @@ export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="user-pfp.png" name="Anthony" subtitle="Head of Partnerships"
-        x={SX + 80} y={500} size={230} appearFrame={0} seed={1} />
+        x={SX + 80} y={500} size={360} appearFrame={0} seed={1} />
       <PFP src="theo.png" name="Theo" subtitle="AI Self" isAI
-        x={1270 - 80} y={480} size={220} appearFrame={12 + stagger(710, 3)} seed={2} />
+        x={1270 - 80} y={480} size={340} appearFrame={12 + stagger(710, 3)} seed={2} />
 
       {cards.map((c, i) => (
         <PaperStrip key={i} text={c.text} x={c.x} y={c.y}
@@ -415,9 +415,9 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="S" name="Starry" subtitle="Product Manager"
-        x={SX + 70} y={490} size={220} appearFrame={0} seed={20} />
+        x={SX + 70} y={490} size={340} appearFrame={0} seed={20} />
       <PFP src="momo.jpg" name="Momo" subtitle="AI Self" isAI
-        x={1270 - 60} y={520} size={210} appearFrame={12 + stagger(800, 3)} seed={21} />
+        x={1270 - 60} y={520} size={330} appearFrame={12 + stagger(800, 3)} seed={21} />
 
       {/* Column headers — messy */}
       <DoodleText text="TO DO" x={400} y={210} appearFrame={18 + stagger(801, 3)} seed={200} fontSize={34} />
@@ -480,11 +480,11 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="R" name="Rus" subtitle="Head of Design"
-        x={SX + 100} y={470} size={230} appearFrame={0} seed={40} />
-      <NakedEmoji emoji="🎨" label="Design" x={540} y={410} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={95} labelSize={34} />
+        x={SX + 100} y={470} size={360} appearFrame={0} seed={40} />
+      <NakedEmoji emoji="🎨" label="Design" x={540} y={410} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
       <PFP placeholder="Russ" name="Russ" subtitle="AI Self" isAI
-        x={820} y={500} size={220} appearFrame={48 + stagger(901, 4)} seed={42} />
-      <NakedEmoji emoji="📝" label="Feedback" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={95} labelSize={34} />
+        x={820} y={500} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
+      <NakedEmoji emoji="📝" label="Feedback" x={1100} y={440} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
 
       {/* Thick crayon doodle arrow */}
       {frame >= drawStart && (
@@ -558,20 +558,20 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tr
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="matan-ai.png" name="Matan" subtitle="Creative Director"
-        x={SX + 80} y={500} size={230} appearFrame={0} seed={30} />
+        x={SX + 80} y={500} size={360} appearFrame={0} seed={30} />
       <PFP src="raccoon2.png" name="Raccoon 2.0" subtitle="AI Self (Bridge)" isAI
-        x={720} y={480} size={220} appearFrame={12 + stagger(970, 3)} seed={31} />
+        x={720} y={480} size={340} appearFrame={12 + stagger(970, 3)} seed={31} />
 
       <DoodleText text="RESEARCH" x={420} y={220} appearFrame={24 + stagger(971, 3)} seed={400} fontSize={36} />
       <DoodleText text="CREATIVE" x={930} y={210} appearFrame={creativeBase - 4 + stagger(972, 3)} seed={410} fontSize={36} />
 
       {research.map((ic, i) => (
         <NakedEmoji key={`r-${i}`} emoji={ic.emoji} label={ic.label}
-          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 300} emojiSize={85} labelSize={30} />
+          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 300} emojiSize={130} labelSize={40} />
       ))}
       {creative.map((ic, i) => (
         <NakedEmoji key={`c-${i}`} emoji={ic.emoji} label={ic.label}
-          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 350} emojiSize={85} labelSize={30} />
+          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 350} emojiSize={130} labelSize={40} />
       ))}
 
       <DoodleArrow x1={360} y1={500} x2={600} y2={490} startFrame={16} seed={500} />
@@ -596,13 +596,13 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tru
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="D" name="Demi" subtitle="CEO"
-        x={SX + 80} y={500} size={240} appearFrame={0} seed={60} />
+        x={SX + 80} y={500} size={370} appearFrame={0} seed={60} />
       <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
-        x={620} y={480} size={230} appearFrame={18 + stagger(1000, 3)} seed={61} />
+        x={620} y={480} size={360} appearFrame={18 + stagger(1000, 3)} seed={61} />
 
       {branches.map((b, i) => (
         <PFP key={b.name} src={b.src} placeholder={b.placeholder} name={b.name} isAI
-          x={1100} y={b.y} size={160} appearFrame={48 + i * 12 + stagger(1010 + i, 4)} seed={70 + i} />
+          x={1100} y={b.y} size={260} appearFrame={48 + i * 12 + stagger(1010 + i, 4)} seed={70 + i} />
       ))}
 
       <DoodleArrow x1={400} y1={500} x2={500} y2={490} startFrame={12} seed={600} />
