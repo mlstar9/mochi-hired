@@ -617,34 +617,79 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolea
   );
 };
 
-// ─── 5. WorkflowDemi — Pink #EC4899 ─────────────────────────────────────────
+// ─── 5. WorkflowDemi — Bottom row → arrows up → Demi stamps → glitch to Semi ─
 
-export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const branches = [
-    {name: 'Theo', src: 'theo.png', y: 240},
-    {name: 'Momo', src: 'momo.jpg', y: 420},
-    {name: 'Russ', placeholder: 'Russ', y: 600},
-    {name: 'Raccoon 2.0', src: 'raccoon2.png', y: 780},
+export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean}> = ({gawxFilter = true, transparent = false}) => {
+  const rawFrame = useCurrentFrame();
+  const frame = stopMotionFrame(rawFrame);
+
+  // Bottom row: 4 AI selves appear first (pacing 2x faster = half the frames)
+  const row = [
+    {src: 'theo.png', x: 220, seed: 70},
+    {src: 'momo.jpg', x: 490, seed: 71},
+    {placeholder: 'Russ', src: 'russ-pfp.png', x: 760, seed: 72},
+    {src: 'raccoon2.png', x: 1030, seed: 73},
   ];
+  const rowY = 780;
+  const rowSize = 280;
+
+  // Demi appears at top center after arrows
+  const demiX = 620;
+  const demiY = 260;
+  const demiFrame = 24; // arrows start at 12, demi stamps after
+
+  // Glitch: Demi → Semi after ~1s (24 frames at 24fps)
+  const glitchStart = demiFrame + 24;
+  const glitchDuration = 6; // 6 frames of glitch
+  const semiFrame = glitchStart + glitchDuration;
+
+  // Glitch effect
+  const isGlitching = frame >= glitchStart && frame < semiFrame;
+  const showDemi = frame >= demiFrame && frame < semiFrame;
+  const showSemi = frame >= semiFrame;
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#111111'}}>
-      <PFP src="demi-pfp.jpg" name="Demi" subtitle="CEO"
-        x={SX + 80} y={500} size={370} appearFrame={0} seed={60} />
-      <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
-        x={620} y={480} size={360} appearFrame={18 + stagger(1000, 3)} seed={61} />
-
-      {branches.map((b, i) => (
-        <PFP key={b.name} src={b.src} placeholder={b.placeholder} name={b.name} isAI
-          x={1100} y={b.y} size={260} appearFrame={48 + i * 12 + stagger(1010 + i, 4)} seed={70 + i} />
+    <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
+      {/* Bottom row: 4 AI selves stamp in fast */}
+      {row.map((r, i) => (
+        <PFP key={i} src={r.src} placeholder={r.placeholder} name="" subtitle=""
+          x={r.x} y={rowY} size={rowSize} appearFrame={i * 3} seed={r.seed} />
       ))}
 
-      <DoodleArrow x1={400} y1={500} x2={500} y2={490} startFrame={12} seed={600} />
-
-      {branches.map((b, i) => (
-        <DoodleArrow key={`br-${i}`} x1={770} y1={490} x2={990} y2={b.y}
-          startFrame={42 + i * 12 + stagger(1020 + i, 4)} seed={610 + i * 10} strokeWidth={2.5} />
+      {/* Arrows pointing up from each pfp to Demi */}
+      {row.map((r, i) => (
+        <DoodleArrow key={`a-${i}`}
+          x1={r.x} y1={rowY - 140}
+          x2={demiX + (i - 1.5) * 30} y2={demiY + 200}
+          startFrame={12 + i * 2} seed={610 + i * 10} strokeWidth={2.5} />
       ))}
+
+      {/* Demi stamps in */}
+      {showDemi && (
+        <div style={{
+          position: 'absolute',
+          left: demiX - 190,
+          top: demiY - 190,
+          width: 380,
+          height: 380,
+          overflow: 'hidden',
+          // Glitch: horizontal slices offset
+          ...(isGlitching ? {
+            filter: `hue-rotate(${(frame - glitchStart) * 60}deg)`,
+            clipPath: `inset(${(frame - glitchStart) % 3 * 20}% 0 ${(frame - glitchStart) % 2 * 15}% 0)`,
+            transform: `translateX(${((frame - glitchStart) % 2 === 0 ? 8 : -8)}px)`,
+          } : {}),
+        }}>
+          <PFP src="demi-pfp.jpg" name="" subtitle=""
+            x={190} y={190} size={380} appearFrame={0} seed={60} />
+        </div>
+      )}
+
+      {/* Semi stamps in after glitch */}
+      {showSemi && (
+        <PFP src="semi.webp" name="" subtitle=""
+          x={demiX} y={demiY} size={380} appearFrame={semiFrame} seed={61} />
+      )}
     </AbsoluteFill>
   );
 };
