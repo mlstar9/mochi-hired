@@ -22,25 +22,63 @@ const sr = (seed: number) => {
   return x - Math.floor(x);
 };
 
-// ─── Film Grain (4% opacity) ─────────────────────────────────────────────────
+// ─── Gawx Film Filter ────────────────────────────────────────────────────────
+// Stacked: grain, lifted blacks, vignette, warm shift, chromatic aberration, halation
 
-const FilmGrain: React.FC = () => {
+const GawxFilter: React.FC<{enabled?: boolean}> = ({enabled = true}) => {
   const frame = useCurrentFrame();
-  const ox = (frame * 37) % 200;
-  const oy = (frame * 53) % 200;
+  if (!enabled) return null;
+
+  const gox = (frame * 37) % 200;
+  const goy = (frame * 53) % 200;
+
   return (
-    <div
-      style={{
-        position: 'absolute',
-        inset: 0,
-        pointerEvents: 'none',
-        opacity: 0.04,
+    <>
+      {/* 1. Film grain — 6% opacity, overlay blend */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 100,
+        opacity: 0.06, mixBlendMode: 'overlay' as const,
         backgroundImage:
           'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'4\' height=\'4\'%3E%3Crect width=\'1\' height=\'1\' fill=\'white\' x=\'0\' y=\'0\' opacity=\'0.5\'/%3E%3Crect width=\'1\' height=\'1\' fill=\'white\' x=\'2\' y=\'3\' opacity=\'0.3\'/%3E%3Crect width=\'1\' height=\'1\' fill=\'white\' x=\'3\' y=\'1\' opacity=\'0.7\'/%3E%3C/svg%3E")',
-        backgroundPosition: `${ox}px ${oy}px`,
-        mixBlendMode: 'overlay',
-      }}
-    />
+        backgroundPosition: `${gox}px ${goy}px`,
+      }} />
+
+      {/* 2. Lifted blacks — milky faded shadows */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 101,
+        background: 'rgba(40, 35, 30, 0.08)',
+        mixBlendMode: 'lighten' as const,
+      }} />
+
+      {/* 3. Vignette — radial gradient darkening edges */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 102,
+        background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)',
+      }} />
+
+      {/* 4. Warm color shift — subtle warm tint */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 103,
+        background: 'rgba(255, 200, 120, 0.04)',
+        mixBlendMode: 'color' as const,
+      }} />
+
+      {/* 5. Chromatic aberration — offset red-tinted layer */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 104,
+        background: 'rgba(255, 80, 60, 0.025)',
+        mixBlendMode: 'screen' as const,
+        transform: 'translate(1.5px, -0.5px)',
+      }} />
+
+      {/* 6. Halation — soft glow bloom */}
+      <div style={{
+        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 105,
+        background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%)',
+        filter: 'blur(20px)',
+        mixBlendMode: 'screen' as const,
+      }} />
+    </>
   );
 };
 
@@ -301,7 +339,7 @@ const SocialCard: React.FC<{
   );
 };
 
-export const WorkflowAnthony: React.FC = () => {
+export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const cards = [
     {text: '@paboratories mention on TikTok', accent: '#F97316', fromX: 720, fromY: -60, x: 540, y: 340, delay: 24},
     {text: 'Pika trending on X', accent: '#EC4899', fromX: 200, fromY: 600, x: 660, y: 480, delay: 42},
@@ -310,7 +348,7 @@ export const WorkflowAnthony: React.FC = () => {
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#2563EB'}}>
+    <AbsoluteFill style={{backgroundColor: '#2563EB', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP src="user-pfp.png" name="Anthony" subtitle="Head of Partnerships"
         x={200} y={480} appearFrame={0} seed={1} />
       <PFP src="theo.png" name="Theo" subtitle="AI Self" isAI
@@ -325,7 +363,7 @@ export const WorkflowAnthony: React.FC = () => {
       <DoodleText text="24/7" x={680} y={680} appearFrame={90} seed={310} fontSize={42} />
       <DoodleCircle cx={720} cy={700} r={50} appearFrame={95} seed={320} />
 
-      <FilmGrain />
+      <GawxFilter enabled={gawxFilter} />
     </AbsoluteFill>
   );
 };
@@ -405,9 +443,9 @@ const MovingCard: React.FC<{
   );
 };
 
-export const WorkflowStarry: React.FC = () => {
+export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   return (
-    <AbsoluteFill style={{backgroundColor: '#0D9488'}}>
+    <AbsoluteFill style={{backgroundColor: '#0D9488', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP placeholder="S" name="Starry" subtitle="Product Manager"
         x={130} y={480} appearFrame={0} seed={20} />
       <PFP src="momo.jpg" name="Momo" subtitle="AI Self" isAI
@@ -435,7 +473,7 @@ export const WorkflowStarry: React.FC = () => {
       <DoodleCheck x={1040} y={330} appearFrame={100} seed={250} />
       <DoodleCheck x={1040} y={378} appearFrame={108} seed={251} />
 
-      <FilmGrain />
+      <GawxFilter enabled={gawxFilter} />
     </AbsoluteFill>
   );
 };
@@ -479,10 +517,10 @@ const WorkIcon: React.FC<{
   );
 };
 
-export const WorkflowRus: React.FC = () => {
+export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const CY = 480;
   return (
-    <AbsoluteFill style={{backgroundColor: '#8B5CF6'}}>
+    <AbsoluteFill style={{backgroundColor: '#8B5CF6', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP placeholder="R" name="Rus" subtitle="Head of Design"
         x={180} y={CY} appearFrame={0} seed={40} />
       <WorkIcon emoji="🎨" label="Design" x={500} y={CY} appearFrame={24} seed={41} />
@@ -496,7 +534,7 @@ export const WorkflowRus: React.FC = () => {
 
       <DoodleCheck x={1210} y={CY - 60} appearFrame={100} seed={430} />
 
-      <FilmGrain />
+      <GawxFilter enabled={gawxFilter} />
     </AbsoluteFill>
   );
 };
@@ -539,7 +577,7 @@ const ClusterBubble: React.FC<{
   );
 };
 
-export const WorkflowMatan: React.FC = () => {
+export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const CY = 480;
 
   const research = [
@@ -554,7 +592,7 @@ export const WorkflowMatan: React.FC = () => {
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#F97316'}}>
+    <AbsoluteFill style={{backgroundColor: '#F97316', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP src="matan-ai.png" name="Matan" subtitle="Creative Director"
         x={160} y={CY} appearFrame={0} seed={30} />
       <PFP src="raccoon2.png" name="Raccoon 2.0" subtitle="AI Self (Bridge)" isAI
@@ -588,14 +626,14 @@ export const WorkflowMatan: React.FC = () => {
 
       <DoodleCircle cx={720} cy={CY} r={90} appearFrame={80} seed={530} />
 
-      <FilmGrain />
+      <GawxFilter enabled={gawxFilter} />
     </AbsoluteFill>
   );
 };
 
 // ─── 5. WorkflowDemi — Pink #EC4899 ─────────────────────────────────────────
 
-export const WorkflowDemi: React.FC = () => {
+export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const CY = 480;
   const branches = [
     {name: 'Theo', src: 'theo.png', y: 240},
@@ -605,7 +643,7 @@ export const WorkflowDemi: React.FC = () => {
   ];
 
   return (
-    <AbsoluteFill style={{backgroundColor: '#EC4899'}}>
+    <AbsoluteFill style={{backgroundColor: '#EC4899', filter: 'sepia(0.08) saturate(1.1) brightness(1.05) contrast(0.95)'}}>
       <PFP placeholder="D" name="Demi" subtitle="CEO"
         x={200} y={CY} appearFrame={0} seed={60} />
       <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
@@ -625,7 +663,7 @@ export const WorkflowDemi: React.FC = () => {
           startFrame={42 + i * 10} seed={610 + i * 10} strokeWidth={2.5} />
       ))}
 
-      <FilmGrain />
+      <GawxFilter enabled={gawxFilter} />
     </AbsoluteFill>
   );
 };
