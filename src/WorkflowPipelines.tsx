@@ -22,67 +22,12 @@ const sr = (seed: number) => {
   return x - Math.floor(x);
 };
 
-// ─── Gawx Film Filter ────────────────────────────────────────────────────────
-// Stacked: grain, lifted blacks, vignette, warm shift, chromatic aberration, halation
+// Messy offset helper: returns random offset in range [-mag, +mag]
+const messy = (seed: number, mag: number) => (sr(seed) - 0.5) * 2 * mag;
+// Messy rotation: ±3-8°
+const messyRot = (seed: number) => (sr(seed) - 0.5) * 14;
 
-const GawxFilter: React.FC<{enabled?: boolean}> = ({enabled = true}) => {
-  const frame = useCurrentFrame();
-  if (!enabled) return null;
-
-  const gox = (frame * 37) % 200;
-  const goy = (frame * 53) % 200;
-
-  return (
-    <>
-      {/* 1. Film grain — 6% opacity, overlay blend */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 100,
-        opacity: 0.06, mixBlendMode: 'overlay' as const,
-        backgroundImage:
-          'url("data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' width=\'4\' height=\'4\'%3E%3Crect width=\'1\' height=\'1\' fill=\'white\' x=\'0\' y=\'0\' opacity=\'0.5\'/%3E%3Crect width=\'1\' height=\'1\' fill=\'white\' x=\'2\' y=\'3\' opacity=\'0.3\'/%3E%3Crect width=\'1\' height=\'1\' fill=\'white\' x=\'3\' y=\'1\' opacity=\'0.7\'/%3E%3C/svg%3E")',
-        backgroundPosition: `${gox}px ${goy}px`,
-      }} />
-
-      {/* 2. Lifted blacks — milky faded shadows */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 101,
-        background: 'rgba(40, 35, 30, 0.08)',
-        mixBlendMode: 'lighten' as const,
-      }} />
-
-      {/* 3. Vignette — radial gradient darkening edges */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 102,
-        background: 'radial-gradient(ellipse at center, transparent 50%, rgba(0,0,0,0.3) 100%)',
-      }} />
-
-      {/* 4. Warm color shift — subtle warm tint */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 103,
-        background: 'rgba(255, 200, 120, 0.04)',
-        mixBlendMode: 'color' as const,
-      }} />
-
-      {/* 5. Chromatic aberration — offset red-tinted layer */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 104,
-        background: 'rgba(255, 80, 60, 0.025)',
-        mixBlendMode: 'screen' as const,
-        transform: 'translate(1.5px, -0.5px)',
-      }} />
-
-      {/* 6. Halation — soft glow bloom */}
-      <div style={{
-        position: 'absolute', inset: 0, pointerEvents: 'none', zIndex: 105,
-        background: 'radial-gradient(ellipse at center, rgba(255,255,255,0.06) 0%, transparent 70%)',
-        filter: 'blur(20px)',
-        mixBlendMode: 'screen' as const,
-      }} />
-    </>
-  );
-};
-
-// ─── PFP Node (square, rounded corners, drop shadow) ─────────────────────────
+// ─── PFP Node (square, big, slightly tilted) ────────────────────────────────
 
 const PFP: React.FC<{
   src?: string;
@@ -96,7 +41,7 @@ const PFP: React.FC<{
   seed: number;
   textColor?: string;
   isAI?: boolean;
-}> = ({src, placeholder, name, subtitle, x, y, size = 120, appearFrame, seed, textColor = '#fff', isAI}) => {
+}> = ({src, placeholder, name, subtitle, x, y, size = 220, appearFrame, seed, textColor = '#fff', isAI}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   if (frame < appearFrame) return null;
@@ -105,17 +50,18 @@ const PFP: React.FC<{
   const slideX = interpolate(prog, [0, 1], [35, 0]);
   const opacity = interpolate(frame - appearFrame, [0, 10], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const scale = interpolate(prog, [0, 1], [0.92, 1]);
+  const tilt = messyRot(seed + 77);
 
   return (
     <div style={{
       position: 'absolute',
-      left: x - size / 2 + slideX,
-      top: y - size / 2,
+      left: x - size / 2 + slideX + messy(seed + 10, 30),
+      top: y - size / 2 + messy(seed + 11, 25),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
       opacity,
-      transform: `scale(${scale})`,
+      transform: `scale(${scale}) rotate(${tilt}deg)`,
     }}>
       <div style={{
         width: size,
@@ -123,7 +69,7 @@ const PFP: React.FC<{
         borderRadius: 0,
         overflow: 'hidden',
         background: '#fff',
-        boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
+        boxShadow: '0 8px 30px rgba(0,0,0,0.4)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -140,7 +86,7 @@ const PFP: React.FC<{
       <div style={{
         marginTop: 14,
         color: textColor,
-        fontSize: 22,
+        fontSize: 34,
         fontWeight: 800,
         fontFamily: FONT,
         textTransform: 'uppercase' as const,
@@ -155,7 +101,7 @@ const PFP: React.FC<{
           marginTop: 4,
           color: textColor,
           opacity: 0.75,
-          fontSize: 16,
+          fontSize: 20,
           fontWeight: 600,
           fontFamily: FONT,
           textAlign: 'center',
@@ -163,6 +109,44 @@ const PFP: React.FC<{
           {subtitle}
         </div>
       )}
+    </div>
+  );
+};
+
+// ─── Naked Emoji (no container, just big emoji with rotation) ────────────────
+
+const NakedEmoji: React.FC<{
+  emoji: string; label: string; x: number; y: number; appearFrame: number; seed: number;
+  emojiSize?: number; labelSize?: number;
+}> = ({emoji, label, x, y, appearFrame, seed, emojiSize = 90, labelSize = 32}) => {
+  const frame = useCurrentFrame();
+  const {fps} = useVideoConfig();
+  if (frame < appearFrame) return null;
+
+  const prog = spring({frame: frame - appearFrame, fps, durationInFrames: 18, config: SPRING_CONFIG});
+  const slideX = interpolate(prog, [0, 1], [30, 0]);
+  const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
+  const scale = interpolate(prog, [0, 1], [0.9, 1]);
+  const tilt = messyRot(seed + 33);
+
+  return (
+    <div style={{
+      position: 'absolute',
+      left: x - 50 + slideX + messy(seed + 5, 40),
+      top: y - 50 + messy(seed + 6, 30),
+      display: 'flex', flexDirection: 'column', alignItems: 'center',
+      opacity, transform: `scale(${scale}) rotate(${tilt}deg)`,
+    }}>
+      <span style={{fontSize: emojiSize, lineHeight: 1}}>
+        {emoji}
+      </span>
+      <div style={{
+        marginTop: 8, color: '#fff', fontSize: labelSize, fontWeight: 800,
+        fontFamily: FONT, textTransform: 'uppercase' as const, letterSpacing: 1,
+        textShadow: '0 2px 8px rgba(0,0,0,0.3)',
+      }}>
+        {label}
+      </div>
     </div>
   );
 };
@@ -183,7 +167,6 @@ const DoodleArrow: React.FC<{
 
   const dx = x2 - x1;
   const dy = y2 - y1;
-  const midX = (x1 + x2) / 2;
   const midY = (y1 + y2) / 2;
   const wobble1 = (sr(seed) - 0.5) * 40;
   const wobble2 = (sr(seed + 1) - 0.5) * 30;
@@ -270,20 +253,20 @@ const DoodleCircle: React.FC<{
 const DoodleText: React.FC<{
   text: string; x: number; y: number; appearFrame: number; seed: number;
   color?: string; fontSize?: number;
-}> = ({text, x, y, appearFrame, seed, color = '#fff', fontSize = 28}) => {
+}> = ({text, x, y, appearFrame, seed, color = '#fff', fontSize = 36}) => {
   const frame = useCurrentFrame();
   if (frame < appearFrame) return null;
 
   const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {
     extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
   });
-  const tilt = (sr(seed) - 0.5) * 8;
+  const tilt = messyRot(seed);
 
   return (
     <div style={{
       position: 'absolute',
-      left: x,
-      top: y,
+      left: x + messy(seed + 1, 30),
+      top: y + messy(seed + 2, 20),
       color,
       fontSize,
       fontWeight: 800,
@@ -312,19 +295,19 @@ const SocialCard: React.FC<{
   if (frame < appearFrame) return null;
 
   const prog = spring({frame: frame - appearFrame, fps, durationInFrames: 20, config: SPRING_CONFIG});
-  const cx = interpolate(prog, [0, 1], [fromX, x]);
-  const cy = interpolate(prog, [0, 1], [fromY, y]);
+  const cx = interpolate(prog, [0, 1], [fromX, x + messy(seed + 1, 40)]);
+  const cy = interpolate(prog, [0, 1], [fromY, y + messy(seed + 2, 30)]);
   const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
   const scale = interpolate(prog, [0, 1], [0.85, 1]);
-  const tilt = (sr(seed) - 0.5) * 3;
+  const tilt = messyRot(seed);
 
   return (
     <div style={{
       position: 'absolute',
-      left: cx - 110,
-      top: cy - 36,
-      width: 220,
-      padding: '12px 16px',
+      left: cx - 130,
+      top: cy - 40,
+      width: 260,
+      padding: '14px 18px',
       borderRadius: 10,
       background: '#fff',
       borderLeft: `5px solid ${accent}`,
@@ -332,7 +315,7 @@ const SocialCard: React.FC<{
       opacity,
       transform: `scale(${scale}) rotate(${tilt}deg)`,
     }}>
-      <span style={{color: '#1e293b', fontSize: 15, fontWeight: 600, fontFamily: FONT, lineHeight: 1.3}}>
+      <span style={{color: '#1e293b', fontSize: 18, fontWeight: 600, fontFamily: FONT, lineHeight: 1.3}}>
         {text}
       </span>
     </div>
@@ -341,104 +324,59 @@ const SocialCard: React.FC<{
 
 export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   const cards = [
-    {text: '@paboratories mention on TikTok', accent: '#F97316', fromX: 720, fromY: -60, x: 540, y: 340, delay: 24},
-    {text: 'Pika trending on X', accent: '#EC4899', fromX: 200, fromY: 600, x: 660, y: 480, delay: 42},
-    {text: 'Brand collab request — IG', accent: '#8B5CF6', fromX: 1300, fromY: 300, x: 800, y: 360, delay: 60},
-    {text: 'New creator partnership DM', accent: '#0D9488', fromX: 720, fromY: 800, x: 700, y: 580, delay: 78},
+    {text: '@paboratories mention on TikTok', accent: '#F97316', fromX: 720, fromY: -60, x: 560, y: 280, delay: 24},
+    {text: 'Pika trending on X', accent: '#EC4899', fromX: 200, fromY: 600, x: 700, y: 440, delay: 42},
+    {text: 'Brand collab request — IG', accent: '#8B5CF6', fromX: 1300, fromY: 300, x: 840, y: 310, delay: 60},
+    {text: 'New creator partnership DM', accent: '#0D9488', fromX: 720, fromY: 800, x: 680, y: 600, delay: 78},
   ];
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="user-pfp.png" name="Anthony" subtitle="Head of Partnerships"
-        x={200} y={480} appearFrame={0} seed={1} />
+        x={180} y={480} size={230} appearFrame={0} seed={1} />
       <PFP src="theo.png" name="Theo" subtitle="AI Self" isAI
-        x={1240} y={480} appearFrame={12} seed={2} />
+        x={1260} y={460} size={220} appearFrame={12} seed={2} />
 
       {cards.map((c, i) => (
         <SocialCard key={i} text={c.text} accent={c.accent} x={c.x} y={c.y}
           fromX={c.fromX} fromY={c.fromY} appearFrame={c.delay} seed={i * 10 + 50} />
       ))}
 
-      <DoodleArrow x1={310} y1={500} x2={1130} y2={500} startFrame={18} seed={300} />
-      <DoodleText text="24/7" x={680} y={680} appearFrame={90} seed={310} fontSize={42} />
-      <DoodleCircle cx={720} cy={700} r={50} appearFrame={95} seed={320} />
-
-      { /* gawx filter removed */ }
+      <DoodleArrow x1={340} y1={500} x2={1100} y2={480} startFrame={18} seed={300} />
+      <DoodleText text="24/7" x={660} y={720} appearFrame={90} seed={310} fontSize={52} />
+      <DoodleCircle cx={700} cy={740} r={55} appearFrame={95} seed={320} />
     </AbsoluteFill>
   );
 };
 
 // ─── 2. WorkflowStarry — Teal #0D9488 ───────────────────────────────────────
 
-const KanbanColumn: React.FC<{
-  title: string; x: number; y: number; cards: string[];
-  appearFrame: number; seed: number; doneCol?: boolean;
-}> = ({title, x, y, cards, appearFrame, seed, doneCol}) => {
+const StickyNote: React.FC<{
+  text: string; x: number; y: number; color: string;
+  appearFrame: number; seed: number; done?: boolean;
+}> = ({text, x, y, color, appearFrame, seed, done}) => {
   const frame = useCurrentFrame();
   const {fps} = useVideoConfig();
   if (frame < appearFrame) return null;
 
   const prog = spring({frame: frame - appearFrame, fps, durationInFrames: 16, config: SPRING_CONFIG});
   const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const scale = interpolate(prog, [0, 1], [0.9, 1]);
+  const scale = interpolate(prog, [0, 1], [0.85, 1]);
+  const tilt = messyRot(seed);
 
   return (
     <div style={{
-      position: 'absolute', left: x, top: y, width: 200,
-      opacity, transform: `scale(${scale})`, transformOrigin: 'top center',
+      position: 'absolute',
+      left: x + messy(seed + 1, 35),
+      top: y + messy(seed + 2, 25),
+      width: 180, padding: '16px 14px',
+      background: color,
+      boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      opacity, transform: `scale(${scale}) rotate(${tilt}deg)`,
     }}>
-      <div style={{
-        color: '#fff', fontSize: 18, fontWeight: 800, fontFamily: FONT, textTransform: 'uppercase' as const,
-        textAlign: 'center', marginBottom: 14, letterSpacing: 2,
-        borderBottom: '3px solid rgba(255,255,255,0.3)', paddingBottom: 10,
-      }}>
-        {title}
-      </div>
-      {cards.map((card, i) => {
-        const cardDelay = appearFrame + 8 + i * 5;
-        const cardOpacity = interpolate(frame, [cardDelay, cardDelay + 6], [0, 1], {
-          extrapolateLeft: 'clamp', extrapolateRight: 'clamp',
-        });
-        return (
-          <div key={i} style={{
-            background: 'rgba(255,255,255,0.95)', borderRadius: 8,
-            padding: '10px 14px', marginBottom: 10,
-            color: '#1e293b', fontSize: 14, fontWeight: 600, fontFamily: FONT,
-            boxShadow: '0 2px 10px rgba(0,0,0,0.1)', opacity: cardOpacity,
-          }}>
-            {card}
-            {doneCol && frame > cardDelay + 10 && (
-              <span style={{marginLeft: 8}}>✓</span>
-            )}
-          </div>
-        );
-      })}
-    </div>
-  );
-};
-
-const MovingCard: React.FC<{
-  text: string; fromX: number; fromY: number; toX: number; toY: number;
-  startFrame: number; seed: number;
-}> = ({text, fromX, fromY, toX, toY, startFrame, seed}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < startFrame) return null;
-
-  const prog = spring({frame: frame - startFrame, fps, durationInFrames: 24, config: SPRING_CONFIG});
-  const cx = interpolate(prog, [0, 1], [fromX, toX]);
-  const cy = interpolate(prog, [0, 1], [fromY, toY]);
-  const tilt = (sr(seed) - 0.5) * 3;
-
-  return (
-    <div style={{
-      position: 'absolute', left: cx, top: cy, width: 190, zIndex: 10,
-      background: '#fff', border: '2px solid rgba(255,255,255,0.6)',
-      borderRadius: 8, padding: '10px 14px',
-      color: '#1e293b', fontSize: 14, fontWeight: 700, fontFamily: FONT,
-      transform: `rotate(${tilt}deg)`, boxShadow: '0 6px 24px rgba(0,0,0,0.2)',
-    }}>
-      {text}
+      <span style={{color: '#1e293b', fontSize: 17, fontWeight: 700, fontFamily: FONT, lineHeight: 1.3}}>
+        {text}{done ? ' ✓' : ''}
+      </span>
     </div>
   );
 };
@@ -447,186 +385,99 @@ export const WorkflowStarry: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = t
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="S" name="Starry" subtitle="Product Manager"
-        x={130} y={480} appearFrame={0} seed={20} />
+        x={130} y={460} size={220} appearFrame={0} seed={20} />
       <PFP src="momo.jpg" name="Momo" subtitle="AI Self" isAI
-        x={1310} y={480} appearFrame={12} seed={21} />
+        x={1310} y={500} size={210} appearFrame={12} seed={21} />
 
-      <KanbanColumn title="To Do" x={330} y={280} appearFrame={20} seed={200}
-        cards={['Design review', 'API spec draft', 'User interviews']} />
-      <KanbanColumn title="In Progress" x={580} y={280} appearFrame={28} seed={210}
-        cards={['Sprint planning', 'Bug triage']} />
-      <KanbanColumn title="Done" x={830} y={280} appearFrame={36} seed={220}
-        cards={['Roadmap v2', 'Standup notes']} doneCol />
+      {/* Column headers — messy */}
+      <DoodleText text="TO DO" x={380} y={180} appearFrame={18} seed={200} fontSize={34} />
+      <DoodleText text="IN PROGRESS" x={620} y={170} appearFrame={24} seed={201} fontSize={34} />
+      <DoodleText text="DONE" x={920} y={185} appearFrame={30} seed={202} fontSize={34} />
 
-      {/* Divider lines */}
-      <svg style={{position: 'absolute', inset: 0, pointerEvents: 'none'}}>
-        <line x1={555} y1={280} x2={558} y2={650} stroke="rgba(255,255,255,0.25)" strokeWidth={2} strokeDasharray="8 5" />
-        <line x1={805} y1={280} x2={808} y2={650} stroke="rgba(255,255,255,0.25)" strokeWidth={2} strokeDasharray="8 5" />
-      </svg>
+      {/* Sticky notes scattered */}
+      <StickyNote text="Design review" x={360} y={260} color="#FEF08A" appearFrame={22} seed={210} />
+      <StickyNote text="API spec draft" x={380} y={420} color="#FDE68A" appearFrame={28} seed={211} />
+      <StickyNote text="User interviews" x={350} y={570} color="#FCD34D" appearFrame={34} seed={212} />
 
-      <MovingCard text="Sprint planning" fromX={370} fromY={385} toX={620} toY={385}
-        startFrame={60} seed={230} />
-      <MovingCard text="Bug triage" fromX={620} fromY={430} toX={870} toY={430}
-        startFrame={84} seed={240} />
+      <StickyNote text="Sprint planning" x={620} y={280} color="#BAE6FD" appearFrame={36} seed={220} />
+      <StickyNote text="Bug triage" x={640} y={440} color="#A5F3FC" appearFrame={42} seed={221} />
 
-      {/* Doodle checkmarks on Done cards */}
-      <DoodleCheck x={1040} y={330} appearFrame={100} seed={250} />
-      <DoodleCheck x={1040} y={378} appearFrame={108} seed={251} />
+      <StickyNote text="Roadmap v2" x={890} y={290} color="#BBF7D0" appearFrame={48} seed={230} done />
+      <StickyNote text="Standup notes" x={910} y={450} color="#D9F99D" appearFrame={54} seed={231} done />
 
-      { /* gawx filter removed */ }
+      {/* Arrows: Starry → board, board → Momo */}
+      <DoodleArrow x1={300} y1={480} x2={370} y2={400} startFrame={20} seed={250} />
+      <DoodleArrow x1={1080} y1={400} x2={1160} y2={480} startFrame={60} seed={260} />
+
+      <DoodleCheck x={1090} y={320} appearFrame={100} seed={270} />
+      <DoodleCheck x={1090} y={480} appearFrame={108} seed={271} />
     </AbsoluteFill>
   );
 };
 
 // ─── 3. WorkflowRus — Purple #8B5CF6 ────────────────────────────────────────
 
-const WorkIcon: React.FC<{
-  emoji: string; label: string; x: number; y: number; appearFrame: number; seed: number;
-}> = ({emoji, label, x, y, appearFrame, seed}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < appearFrame) return null;
-
-  const prog = spring({frame: frame - appearFrame, fps, durationInFrames: 18, config: SPRING_CONFIG});
-  const slideX = interpolate(prog, [0, 1], [30, 0]);
-  const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const scale = interpolate(prog, [0, 1], [0.9, 1]);
-
-  return (
-    <div style={{
-      position: 'absolute', left: x - 50 + slideX, top: y - 50,
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      opacity, transform: `scale(${scale})`,
-    }}>
-      <div style={{
-        width: 90, height: 90, borderRadius: 0,
-        background: 'rgba(255,255,255,0.15)', backdropFilter: 'blur(10px)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 42, boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
-      }}>
-        {emoji}
-      </div>
-      <div style={{
-        marginTop: 10, color: '#fff', fontSize: 16, fontWeight: 700,
-        fontFamily: FONT, textTransform: 'uppercase' as const, letterSpacing: 1,
-        opacity: 0.85,
-      }}>
-        {label}
-      </div>
-    </div>
-  );
-};
-
 export const WorkflowRus: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const CY = 480;
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="R" name="Rus" subtitle="Head of Design"
-        x={180} y={CY} appearFrame={0} seed={40} />
-      <WorkIcon emoji="🎨" label="Design" x={500} y={CY} appearFrame={24} seed={41} />
+        x={160} y={440} size={230} appearFrame={0} seed={40} />
+      <NakedEmoji emoji="🎨" label="Design" x={520} y={380} appearFrame={24} seed={41} emojiSize={95} labelSize={34} />
       <PFP placeholder="Russ" name="Russ" subtitle="AI Self" isAI
-        x={820} y={CY} appearFrame={48} seed={42} />
-      <WorkIcon emoji="📝" label="Feedback" x={1140} y={CY} appearFrame={72} seed={43} />
+        x={860} y={500} size={220} appearFrame={48} seed={42} />
+      <NakedEmoji emoji="📝" label="Feedback" x={1180} y={420} appearFrame={72} seed={43} emojiSize={95} labelSize={34} />
 
-      <DoodleArrow x1={280} y1={CY} x2={440} y2={CY} startFrame={18} seed={400} />
-      <DoodleArrow x1={560} y1={CY} x2={710} y2={CY} startFrame={42} seed={410} />
-      <DoodleArrow x1={920} y1={CY} x2={1080} y2={CY} startFrame={66} seed={420} />
+      <DoodleArrow x1={320} y1={460} x2={460} y2={410} startFrame={18} seed={400} />
+      <DoodleArrow x1={620} y1={420} x2={740} y2={480} startFrame={42} seed={410} />
+      <DoodleArrow x1={1000} y1={500} x2={1120} y2={450} startFrame={66} seed={420} />
 
-      <DoodleCheck x={1210} y={CY - 60} appearFrame={100} seed={430} />
-
-      { /* gawx filter removed */ }
+      <DoodleCheck x={1300} y={380} appearFrame={100} seed={430} />
+      <DoodleText text="ITERATE" x={600} y={650} appearFrame={90} seed={440} fontSize={40} />
+      <DoodleCircle cx={680} cy={670} r={60} appearFrame={95} seed={450} />
     </AbsoluteFill>
   );
 };
 
 // ─── 4. WorkflowMatan — Coral #F97316 ───────────────────────────────────────
 
-const ClusterBubble: React.FC<{
-  emoji: string; label: string; x: number; y: number; appearFrame: number; seed: number;
-}> = ({emoji, label, x, y, appearFrame, seed}) => {
-  const frame = useCurrentFrame();
-  const {fps} = useVideoConfig();
-  if (frame < appearFrame) return null;
-
-  const prog = spring({frame: frame - appearFrame, fps, durationInFrames: 16, config: SPRING_CONFIG});
-  const opacity = interpolate(frame - appearFrame, [0, 8], [0, 1], {extrapolateLeft: 'clamp', extrapolateRight: 'clamp'});
-  const scale = interpolate(prog, [0, 1], [0.85, 1]);
-  const tilt = (sr(seed) - 0.5) * 4;
-
-  return (
-    <div style={{
-      position: 'absolute', left: x - 35, top: y - 35,
-      display: 'flex', flexDirection: 'column', alignItems: 'center',
-      opacity, transform: `scale(${scale}) rotate(${tilt}deg)`,
-    }}>
-      <div style={{
-        width: 64, height: 64, borderRadius: 14,
-        background: 'rgba(255,255,255,0.2)',
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        fontSize: 30, boxShadow: '0 2px 12px rgba(0,0,0,0.1)',
-      }}>
-        {emoji}
-      </div>
-      <div style={{
-        marginTop: 6, color: '#fff', fontSize: 12, fontWeight: 700,
-        fontFamily: FONT, textTransform: 'uppercase' as const, opacity: 0.8,
-      }}>
-        {label}
-      </div>
-    </div>
-  );
-};
-
 export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const CY = 480;
-
   const research = [
-    {emoji: '📄', label: 'Docs', x: 430, y: 370, delay: 30},
-    {emoji: '🔬', label: 'Analysis', x: 500, y: 490, delay: 36},
-    {emoji: '📊', label: 'Data', x: 430, y: 590, delay: 42},
+    {emoji: '📄', label: 'Docs', x: 440, y: 300, delay: 30},
+    {emoji: '🔬', label: 'Analysis', x: 520, y: 500, delay: 36},
+    {emoji: '📊', label: 'Data', x: 400, y: 660, delay: 42},
   ];
   const creative = [
-    {emoji: '🎨', label: 'Design', x: 1010, y: 370, delay: 30},
-    {emoji: '🎬', label: 'Video', x: 1080, y: 490, delay: 36},
-    {emoji: '✏️', label: 'Copy', x: 1010, y: 590, delay: 42},
+    {emoji: '🎨', label: 'Design', x: 1020, y: 280, delay: 30},
+    {emoji: '🎬', label: 'Video', x: 1120, y: 480, delay: 36},
+    {emoji: '✏️', label: 'Copy', x: 1000, y: 650, delay: 42},
   ];
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP src="matan-ai.png" name="Matan" subtitle="Creative Director"
-        x={160} y={CY} appearFrame={0} seed={30} />
+        x={150} y={480} size={230} appearFrame={0} seed={30} />
       <PFP src="raccoon2.png" name="Raccoon 2.0" subtitle="AI Self (Bridge)" isAI
-        x={720} y={CY} appearFrame={12} seed={31} />
+        x={720} y={460} size={220} appearFrame={12} seed={31} />
 
-      {/* Cluster labels */}
-      <DoodleText text="RESEARCH" x={410} y={260} appearFrame={24} seed={400} fontSize={22} />
-      <DoodleText text="CREATIVE" x={990} y={260} appearFrame={24} seed={410} fontSize={22} />
+      <DoodleText text="RESEARCH" x={390} y={190} appearFrame={24} seed={400} fontSize={36} />
+      <DoodleText text="CREATIVE" x={980} y={180} appearFrame={24} seed={410} fontSize={36} />
 
       {research.map((ic, i) => (
-        <ClusterBubble key={`r-${i}`} emoji={ic.emoji} label={ic.label}
-          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 300} />
+        <NakedEmoji key={`r-${i}`} emoji={ic.emoji} label={ic.label}
+          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 300} emojiSize={85} labelSize={30} />
       ))}
       {creative.map((ic, i) => (
-        <ClusterBubble key={`c-${i}`} emoji={ic.emoji} label={ic.label}
-          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 350} />
+        <NakedEmoji key={`c-${i}`} emoji={ic.emoji} label={ic.label}
+          x={ic.x} y={ic.y} appearFrame={ic.delay} seed={i * 10 + 350} emojiSize={85} labelSize={30} />
       ))}
 
-      {/* Matan → Raccoon */}
-      <DoodleArrow x1={270} y1={CY} x2={610} y2={CY} startFrame={16} seed={500} />
+      <DoodleArrow x1={310} y1={480} x2={600} y2={470} startFrame={16} seed={500} />
+      <DoodleArrow x1={620} y1={420} x2={520} y2={380} startFrame={50} seed={510} strokeWidth={2.5} />
+      <DoodleArrow x1={520} y1={540} x2={620} y2={500} startFrame={58} seed={515} strokeWidth={2.5} />
+      <DoodleArrow x1={850} y1={420} x2={980} y2={360} startFrame={50} seed={520} strokeWidth={2.5} />
+      <DoodleArrow x1={1000} y1={540} x2={860} y2={500} startFrame={58} seed={525} strokeWidth={2.5} />
 
-      {/* Bidirectional: Raccoon ↔ Research */}
-      <DoodleArrow x1={610} y1={CY - 12} x2={540} y2={CY - 12} startFrame={50} seed={510}
-        strokeWidth={2.5} />
-      <DoodleArrow x1={540} y1={CY + 12} x2={610} y2={CY + 12} startFrame={58} seed={515}
-        strokeWidth={2.5} />
-
-      {/* Bidirectional: Raccoon ↔ Creative */}
-      <DoodleArrow x1={830} y1={CY - 12} x2={970} y2={CY - 12} startFrame={50} seed={520} strokeWidth={2.5} />
-      <DoodleArrow x1={970} y1={CY + 12} x2={830} y2={CY + 12} startFrame={58} seed={525} strokeWidth={2.5} />
-
-      <DoodleCircle cx={720} cy={CY} r={90} appearFrame={80} seed={530} />
-
-      { /* gawx filter removed */ }
+      <DoodleCircle cx={720} cy={470} r={100} appearFrame={80} seed={530} />
     </AbsoluteFill>
   );
 };
@@ -634,36 +485,31 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = tr
 // ─── 5. WorkflowDemi — Pink #EC4899 ─────────────────────────────────────────
 
 export const WorkflowDemi: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
-  const CY = 480;
   const branches = [
-    {name: 'Theo', src: 'theo.png', y: 240},
-    {name: 'Momo', src: 'momo.jpg', y: 410},
-    {name: 'Russ', placeholder: 'Russ', y: 580},
-    {name: 'Raccoon 2.0', src: 'raccoon2.png', y: 750},
+    {name: 'Theo', src: 'theo.png', y: 200},
+    {name: 'Momo', src: 'momo.jpg', y: 400},
+    {name: 'Russ', placeholder: 'Russ', y: 600},
+    {name: 'Raccoon 2.0', src: 'raccoon2.png', y: 800},
   ];
 
   return (
     <AbsoluteFill style={{backgroundColor: '#111111'}}>
       <PFP placeholder="D" name="Demi" subtitle="CEO"
-        x={200} y={CY} appearFrame={0} seed={60} />
+        x={180} y={480} size={240} appearFrame={0} seed={60} />
       <PFP src="semi.webp" name="Semi" subtitle="AI Self" isAI
-        x={620} y={CY} appearFrame={18} seed={61} />
+        x={620} y={460} size={230} appearFrame={18} seed={61} />
 
       {branches.map((b, i) => (
         <PFP key={b.name} src={b.src} placeholder={b.placeholder} name={b.name} isAI
-          x={1150} y={b.y} size={90} appearFrame={48 + i * 10} seed={70 + i} />
+          x={1150} y={b.y} size={160} appearFrame={48 + i * 10} seed={70 + i} />
       ))}
 
-      {/* Demi → Semi */}
-      <DoodleArrow x1={310} y1={CY} x2={510} y2={CY} startFrame={12} seed={600} />
+      <DoodleArrow x1={350} y1={490} x2={480} y2={470} startFrame={12} seed={600} />
 
-      {/* Semi → branches (fan out) */}
       {branches.map((b, i) => (
-        <DoodleArrow key={`br-${i}`} x1={730} y1={CY} x2={1040} y2={b.y}
+        <DoodleArrow key={`br-${i}`} x1={780} y1={470} x2={1030} y2={b.y}
           startFrame={42 + i * 10} seed={610 + i * 10} strokeWidth={2.5} />
       ))}
-
-      { /* gawx filter removed */ }
     </AbsoluteFill>
   );
 };
