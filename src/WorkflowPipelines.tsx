@@ -327,22 +327,23 @@ const PaperStrip: React.FC<{
 
 export const WorkflowAnthony: React.FC<{gawxFilter?: boolean}> = ({gawxFilter = true}) => {
   // Cards pile from center first, then spread outward
+  // Safe zone for cards: x 480-1000 (center), spreading to 400-1080 (max ~20% pfp overlap)
   const cards = [
     // Center pile first
-    {text: '@paboratories mention on TikTok', x: 580, y: 420, delay: 24, width: 280},
-    {text: 'Pika trending on X', x: 620, y: 460, delay: 28, width: 210},
-    {text: 'Brand collab request — IG', x: 550, y: 380, delay: 33, width: 270},
+    {text: '@paboratories mention on TikTok', x: 580, y: 380, delay: 24, width: 280},
+    {text: 'Pika trending on X', x: 620, y: 440, delay: 28, width: 210},
+    {text: 'Brand collab request — IG', x: 550, y: 330, delay: 33, width: 270},
     {text: 'New creator partnership DM', x: 640, y: 500, delay: 37, width: 290},
     // Starting to spread
-    {text: "YouTube review: 'Pika is insane'", x: 450, y: 320, delay: 41, width: 350},
-    {text: 'Reddit thread: AI video tools comparison', x: 740, y: 340, delay: 46, width: 320},
-    {text: 'Forbes: Top 10 AI startups', x: 500, y: 580, delay: 50, width: 260},
-    {text: 'Influencer inquiry — 2.3M followers', x: 780, y: 600, delay: 54, width: 300},
-    // Spreading to edges
-    {text: 'Product Hunt launch day mentions', x: 300, y: 200, delay: 58, width: 200},
-    {text: 'Twitter Spaces invite — AI creators', x: 900, y: 700, delay: 63, width: 310},
-    {text: 'TikTok creator fund partnership', x: 180, y: 680, delay: 67, width: 280},
-    {text: 'LinkedIn post went viral — 50K views', x: 950, y: 180, delay: 71, width: 340},
+    {text: "YouTube review: 'Pika is insane'", x: 480, y: 250, delay: 41, width: 320},
+    {text: 'Reddit thread: AI video tools comparison', x: 700, y: 300, delay: 46, width: 300},
+    {text: 'Forbes: Top 10 AI startups', x: 520, y: 580, delay: 50, width: 260},
+    {text: 'Influencer inquiry — 2.3M followers', x: 740, y: 620, delay: 54, width: 280},
+    // Spreading a bit more but not covering pfps
+    {text: 'Product Hunt launch day mentions', x: 450, y: 150, delay: 58, width: 200},
+    {text: 'Twitter Spaces invite — AI creators', x: 820, y: 700, delay: 63, width: 280},
+    {text: 'TikTok creator fund partnership', x: 420, y: 720, delay: 67, width: 260},
+    {text: 'LinkedIn post went viral — 50K views', x: 780, y: 160, delay: 71, width: 300},
   ];
 
   return (
