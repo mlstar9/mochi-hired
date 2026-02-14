@@ -52,14 +52,14 @@ export const AlertFlash: React.FC = () => {
       }}>
         {/* Alert triangle */}
         <div style={{
-          width: 200,
-          height: 200,
+          width: 600,
+          height: 600,
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           filter: `drop-shadow(0 0 ${glowIntensity}px rgba(255, 214, 10, 0.8))`,
         }}>
-          <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
+          <svg width="600" height="600" viewBox="0 0 200 200" fill="none">
             {/* Triangle */}
             <path
               d="M100 20 L185 170 L15 170 Z"
