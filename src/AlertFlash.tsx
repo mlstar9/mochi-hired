@@ -63,14 +63,14 @@ export const AlertFlash: React.FC = () => {
             {/* Triangle */}
             <path
               d="M100 20 L185 170 L15 170 Z"
-              fill="none"
+              fill="#FFD60A"
               stroke="#FFD60A"
-              strokeWidth="8"
+              strokeWidth="4"
               strokeLinejoin="round"
             />
             {/* Exclamation mark */}
-            <line x1="100" y1="70" x2="100" y2="120" stroke="#FFD60A" strokeWidth="10" strokeLinecap="round" />
-            <circle cx="100" cy="145" r="7" fill="#FFD60A" />
+            <line x1="100" y1="70" x2="100" y2="120" stroke="#000000" strokeWidth="10" strokeLinecap="round" />
+            <circle cx="100" cy="145" r="7" fill="#000000" />
           </svg>
         </div>
       </div>
