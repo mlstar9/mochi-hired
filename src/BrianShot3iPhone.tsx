@@ -81,7 +81,7 @@ const SlackMessage: React.FC<{
         overflow: 'hidden',
         flexShrink: 0,
       }}>
-        <Img src={staticFile('images/girlbrian-pfp.png')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
+        <Img src={staticFile('images/brian-pfp.png')} style={{width: '100%', height: '100%', objectFit: 'cover'}} />
       </div>
       <div style={{flex: 1, minWidth: 0}}>
         <div style={{display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2}}>
