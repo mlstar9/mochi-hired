@@ -34,16 +34,16 @@ const SlackMessage: React.FC<{
   return (
     <div style={{
       display: 'flex',
-      gap: 10,
-      padding: '8px 16px',
+      gap: 14,
+      padding: '12px 20px',
       opacity,
       transform: `translateY(${slideY}px)`,
       backgroundColor: highlight ? 'rgba(194, 190, 255, 0.05)' : 'transparent',
     }}>
       <div style={{
-        width: 36,
-        height: 36,
-        borderRadius: 6,
+        width: 56,
+        height: 56,
+        borderRadius: 10,
         overflow: 'hidden',
         flexShrink: 0,
       }}>
@@ -55,28 +55,28 @@ const SlackMessage: React.FC<{
             color: '#D1D2D3',
             fontFamily: 'SF Pro Display, -apple-system, sans-serif',
             fontWeight: 700,
-            fontSize: 14,
+            fontSize: 20,
           }}>{name}</span>
           {badge && (
             <span style={{
               backgroundColor: '#4A154B',
               color: '#D1D2D3',
-              fontSize: 9,
-              padding: '1px 5px',
-              borderRadius: 3,
+              fontSize: 13,
+              padding: '2px 7px',
+              borderRadius: 4,
               fontWeight: 600,
               fontFamily: 'SF Pro Display, -apple-system, sans-serif',
             }}>{badge}</span>
           )}
           <span style={{
             color: '#616061',
-            fontSize: 11,
+            fontSize: 15,
             fontFamily: 'SF Pro Display, -apple-system, sans-serif',
           }}>{time}</span>
         </div>
         <div style={{
           color: '#D1D2D3',
-          fontSize: 13,
+          fontSize: 18,
           fontFamily: 'SF Pro Display, -apple-system, sans-serif',
           lineHeight: 1.4,
         }}>{text}</div>
@@ -103,7 +103,7 @@ const SlackScreen: React.FC = () => {
         alignItems: 'center',
         gap: 8,
       }}>
-        <span style={{color: '#D1D2D3', fontWeight: 700, fontSize: 16}}># eng-alerts</span>
+        <span style={{color: '#D1D2D3', fontWeight: 700, fontSize: 22}}># eng-alerts</span>
       </div>
 
       {/* Messages */}
@@ -116,7 +116,7 @@ const SlackScreen: React.FC = () => {
           gap: 12,
         }}>
           <div style={{flex: 1, height: 1, backgroundColor: '#383838'}} />
-          <span style={{color: '#616061', fontSize: 11, fontWeight: 600}}>Today</span>
+          <span style={{color: '#616061', fontSize: 15, fontWeight: 600}}>Today</span>
           <div style={{flex: 1, height: 1, backgroundColor: '#383838'}} />
         </div>
 
