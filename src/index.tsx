@@ -25,6 +25,7 @@ import {NyxLockScreen} from './NyxLockScreen';
 import {LetiAISelvesVideo, LETI_VIDEO_DURATION} from './LetiAISelvesVideo';
 import {LetiShot03Theo, THEO_DURATION} from './LetiShot03Theo';
 import {BrianShot3iPhone} from './BrianShot3iPhone';
+import {AlertFlash} from './AlertFlash';
 import {
   WorkflowAnthony,
   WorkflowStarry,
@@ -244,6 +245,14 @@ const RemotionRoot: React.FC = () => {
         id="BrianShot3iPhone"
         component={BrianShot3iPhone}
         durationInFrames={120} // 5s at 24fps
+        fps={24}
+        width={1440}
+        height={1080}
+      />
+      <Composition
+        id="AlertFlash"
+        component={AlertFlash}
+        durationInFrames={48}
         fps={24}
         width={1440}
         height={1080}
