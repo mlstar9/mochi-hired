@@ -68,9 +68,9 @@ export const AlertFlash: React.FC = () => {
               strokeWidth="4"
               strokeLinejoin="round"
             />
-            {/* Exclamation mark */}
-            <line x1="100" y1="70" x2="100" y2="120" stroke="#000000" strokeWidth="10" strokeLinecap="round" />
-            <circle cx="100" cy="145" r="7" fill="#000000" />
+            {/* Exclamation mark — sharp sans-serif */}
+            <rect x="94" y="65" width="12" height="55" fill="#000000" />
+            <rect x="94" y="135" width="12" height="12" fill="#000000" />
           </svg>
         </div>
       </div>
