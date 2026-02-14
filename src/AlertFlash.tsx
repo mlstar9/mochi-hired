@@ -57,20 +57,20 @@ export const AlertFlash: React.FC = () => {
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
-          filter: `drop-shadow(0 0 ${glowIntensity}px rgba(255, 59, 48, 0.8))`,
+          filter: `drop-shadow(0 0 ${glowIntensity}px rgba(255, 214, 10, 0.8))`,
         }}>
           <svg width="200" height="200" viewBox="0 0 200 200" fill="none">
             {/* Triangle */}
             <path
               d="M100 20 L185 170 L15 170 Z"
               fill="none"
-              stroke="#FF3B30"
+              stroke="#FFD60A"
               strokeWidth="8"
               strokeLinejoin="round"
             />
             {/* Exclamation mark */}
-            <line x1="100" y1="70" x2="100" y2="120" stroke="#FF3B30" strokeWidth="10" strokeLinecap="round" />
-            <circle cx="100" cy="145" r="7" fill="#FF3B30" />
+            <line x1="100" y1="70" x2="100" y2="120" stroke="#FFD60A" strokeWidth="10" strokeLinecap="round" />
+            <circle cx="100" cy="145" r="7" fill="#FFD60A" />
           </svg>
         </div>
       </div>
