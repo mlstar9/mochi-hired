@@ -24,6 +24,7 @@ import {PikaAISelfDemo} from './PikaAISelfDemo';
 import {NyxLockScreen} from './NyxLockScreen';
 import {LetiAISelvesVideo, LETI_VIDEO_DURATION} from './LetiAISelvesVideo';
 import {LetiShot03Theo, THEO_DURATION} from './LetiShot03Theo';
+import {BrianShot3iPhone} from './BrianShot3iPhone';
 import {
   WorkflowAnthony,
   WorkflowStarry,
@@ -238,6 +239,14 @@ const RemotionRoot: React.FC = () => {
         fps={24}
         width={1080}
         height={1920}
+      />
+      <Composition
+        id="BrianShot3iPhone"
+        component={BrianShot3iPhone}
+        durationInFrames={120} // 5s at 24fps
+        fps={24}
+        width={1920}
+        height={1080}
       />
       <Composition
         id="WorkflowAnthony"
