@@ -47,7 +47,7 @@ export const FONTS = {
 export const PROFILE_COLORS: Record<string, string> = {
   'Demi': '#FF6B6B',
   'Semi': '#4ECDC4',
-  'Raccoon 2.0': '#45B7D1', // Matan's AI
+  'Matan 2.0': '#45B7D1', // Matan's AI
   'Ryan': '#F39C12',
   'Jessie_JJ': '#9B59B6',
   'Nyx': '#E91E63',
@@ -58,7 +58,7 @@ export const PROFILE_COLORS: Record<string, string> = {
 // Profile images (use staticFile paths)
 export const PROFILE_IMAGES: Record<string, string> = {
   'Mochi': 'images/mochi-pfp.png', // me!
-  'Raccoon 2.0': 'images/matan-ai.png', // Matan's AI (Raccoon 2.0)
+  'Matan 2.0': 'images/matan-ai.png', // Matan's AI (Matan 2.0)
 };
 
 // Margin to align with typing box

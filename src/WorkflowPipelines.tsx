@@ -503,7 +503,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean; transparent?: boolean}
 };
 
 // ─── 4. WorkflowMatan — "Confused math" meme style ──────────────────────────
-// Raccoon 2.0 centered, research/creative symbols float toward camera
+// Matan 2.0 centered, research/creative symbols float toward camera
 
 const FLOAT_ITEMS = [
   // Math + equations + code (60%)
@@ -534,8 +534,8 @@ const FloatingItem: React.FC<{
   const cycleT = t % duration;
   const progress = cycleT / duration; // 0→1
 
-  // 3D depth: items spawn from wider ring around raccoon and burst outward
-  const cx = 720; const cy = 500; // raccoon center
+  // 3D depth: items spawn from wider ring around matan and burst outward
+  const cx = 720; const cy = 500; // matan center
   const angle = sr(seed + 2) * Math.PI * 2; // random direction
   const startRadius = 180 + sr(seed + 8) * 120; // start 180-300px from center (wider ring)
   const dist = startRadius + (200 + sr(seed + 3) * 500) * progress; // travel outward from ring
@@ -589,11 +589,11 @@ export const WorkflowMatanFloat: React.FC = () => {
   );
 };
 
-// Raccoon PFP layer only (transparent)
+// Matan PFP layer only (transparent)
 export const WorkflowMatanPFP: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: 'transparent'}}>
-      <PFP src="raccoon-pfp.png" name="" subtitle=""
+      <PFP src="matan-pfp.png" name="" subtitle=""
         x={720} y={500} size={380} appearFrame={0} seed={31} />
     </AbsoluteFill>
   );
@@ -608,8 +608,8 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolea
 
   return (
     <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
-      {/* Raccoon behind */}
-      <PFP src="raccoon-pfp.png" name="" subtitle=""
+      {/* Matan behind */}
+      <PFP src="matan-pfp.png" name="" subtitle=""
         x={720} y={500} size={380} appearFrame={0} seed={31} />
       {/* Floating chaos overlays on top */}
       {floaters.map((f, i) => (
@@ -631,7 +631,7 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean
     {src: 'theo.png', x: 270, seed: 70},
     {src: 'momo.jpg', x: 540, seed: 71},
     {placeholder: 'girlbrian', src: 'girlbrian-pfp.png', x: 810, seed: 72},
-    {src: 'raccoon-pfp.png', x: 1080, seed: 73},
+    {src: 'matan-pfp.png', x: 1080, seed: 73},
   ];
   const rowY = 760;
   const rowSize = 260;

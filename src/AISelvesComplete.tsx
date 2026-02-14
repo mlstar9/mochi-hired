@@ -15,7 +15,7 @@ import {AISelvesShot9} from './AISelvesShot9';
 // Shot durations (in frames at 24fps)
 const SHOTS = [
   { component: AISelvesShot1, duration: 248 },  // Shot 1: Task drops ~10s
-  { component: AISelvesShot2, duration: 192 },  // Shot 2: Raccoon 2.0's pitch ~8s
+  { component: AISelvesShot2, duration: 192 },  // Shot 2: Matan 2.0's pitch ~8s
   { component: AISelvesShot3, duration: 288 },  // Shot 3: Ryan + Jessie ~12s
   { component: AISelvesShot4, duration: 168 },  // Shot 4: Nyx selfie ~7s
   { component: AISelvesShot5, duration: 48 },   // Shot 5: Overnight ~2s

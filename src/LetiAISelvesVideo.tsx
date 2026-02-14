@@ -123,12 +123,12 @@ const SECTIONS: Section[] = [
     ],
   },
   {
-    id: 'raccoon-reveal',
+    id: 'matan-reveal',
     label: 'RACCOON 2.0 — Avatar reveal + ding SFX',
     durationSec: 5,
-    note: '[Avatar: Raccoon 2.0] [SFX: ding] [(his AI Self)]',
+    note: '[Avatar: Matan 2.0] [SFX: ding] [(his AI Self)]',
     subtitles: [
-      { text: "His Raccoon 2.0 —", startSec: 0, durationSec: 1.5 },
+      { text: "His Matan 2.0 —", startSec: 0, durationSec: 1.5 },
       { text: "(his AI Self)", startSec: 0, durationSec: 1.5, style: 'aiself' },
       { text: "helps Matan bridge the gap between", startSec: 1.5, durationSec: 1.5 },
       { text: "our researchers and our Creative team.", startSec: 3, durationSec: 2 },
