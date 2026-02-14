@@ -155,9 +155,9 @@ const SlackScreen: React.FC = () => {
 export const BrianShot3iPhone: React.FC = () => {
   const frame = useCurrentFrame();
 
-  // iPhone dimensions (relative to container)
-  const phoneW = 340;
-  const phoneH = 700;
+  // iPhone dimensions — scaled to fill 100% of frame height
+  const phoneH = 1080;
+  const phoneW = Math.round(phoneH * 0.486); // iPhone aspect ratio ~9:19.5
 
   // 3D tilt animation — starts angled, smoothly tilts towards camera
   const rotateY = interpolate(frame, [0, 90], [35, -5], {

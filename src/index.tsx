@@ -245,7 +245,7 @@ const RemotionRoot: React.FC = () => {
         component={BrianShot3iPhone}
         durationInFrames={120} // 5s at 24fps
         fps={24}
-        width={1920}
+        width={1440}
         height={1080}
       />
       <Composition
