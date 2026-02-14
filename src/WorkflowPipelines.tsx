@@ -534,12 +534,13 @@ const FloatingItem: React.FC<{
   const cycleT = t % duration;
   const progress = cycleT / duration; // 0→1
 
-  // 3D depth: items spawn from raccoon center and burst outward toward camera
+  // 3D depth: items spawn from wider ring around raccoon and burst outward
   const cx = 720; const cy = 500; // raccoon center
   const angle = sr(seed + 2) * Math.PI * 2; // random direction
-  const dist = 200 + sr(seed + 3) * 500; // how far they travel
-  const x = cx + Math.cos(angle) * dist * progress + (sr(seed + 4) - 0.5) * 40;
-  const y = cy + Math.sin(angle) * dist * progress + (sr(seed + 5) - 0.5) * 30;
+  const startRadius = 180 + sr(seed + 8) * 120; // start 180-300px from center (wider ring)
+  const dist = startRadius + (200 + sr(seed + 3) * 500) * progress; // travel outward from ring
+  const x = cx + Math.cos(angle) * dist + (sr(seed + 4) - 0.5) * 60;
+  const y = cy + Math.sin(angle) * dist + (sr(seed + 5) - 0.5) * 50;
 
   // Z-depth: scale + blur
   const scale = 0.3 + progress * 1.8; // small → big
