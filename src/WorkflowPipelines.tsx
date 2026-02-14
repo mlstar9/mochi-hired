@@ -495,7 +495,7 @@ export const WorkflowRus: React.FC<{gawxFilter?: boolean; transparent?: boolean}
       <PFP src="rus-pfp.jpg" name="" subtitle=""
         x={rusX} y={rusY} size={360} appearFrame={0} seed={40} />
       <NakedEmoji emoji="🎨" label="" x={designX} y={designY} appearFrame={24 + stagger(900, 4)} seed={41} emojiSize={140} labelSize={44} />
-      <PFP src="russ-pfp.png" name="" subtitle="" isAI
+      <PFP src="girlbrian-pfp.png" name="" subtitle="" isAI
         x={russX} y={russY} size={340} appearFrame={48 + stagger(901, 4)} seed={42} />
       <NakedEmoji emoji="📝" label="" x={fbX} y={fbY} appearFrame={72 + stagger(902, 4)} seed={43} emojiSize={140} labelSize={44} />
     </AbsoluteFill>
@@ -592,7 +592,7 @@ export const WorkflowMatanFloat: React.FC = () => {
 export const WorkflowMatanPFP: React.FC = () => {
   return (
     <AbsoluteFill style={{backgroundColor: 'transparent'}}>
-      <PFP src="raccoon2.png" name="" subtitle=""
+      <PFP src="raccoon-pfp.png" name="" subtitle=""
         x={720} y={500} size={380} appearFrame={0} seed={31} />
     </AbsoluteFill>
   );
@@ -608,7 +608,7 @@ export const WorkflowMatan: React.FC<{gawxFilter?: boolean; transparent?: boolea
   return (
     <AbsoluteFill style={{backgroundColor: transparent ? 'transparent' : '#111111'}}>
       {/* Raccoon behind */}
-      <PFP src="raccoon2.png" name="" subtitle=""
+      <PFP src="raccoon-pfp.png" name="" subtitle=""
         x={720} y={500} size={380} appearFrame={0} seed={31} />
       {/* Floating chaos overlays on top */}
       {floaters.map((f, i) => (
@@ -629,8 +629,8 @@ export const WorkflowDemi: React.FC<{gawxFilter?: boolean; transparent?: boolean
   const row = [
     {src: 'theo.png', x: 270, seed: 70},
     {src: 'momo.jpg', x: 540, seed: 71},
-    {placeholder: 'Russ', src: 'russ-pfp.png', x: 810, seed: 72},
-    {src: 'raccoon2.png', x: 1080, seed: 73},
+    {placeholder: 'girlbrian', src: 'girlbrian-pfp.png', x: 810, seed: 72},
+    {src: 'raccoon-pfp.png', x: 1080, seed: 73},
   ];
   const rowY = 760;
   const rowSize = 260;
