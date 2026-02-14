@@ -201,13 +201,13 @@ export const BrianShot3iPhone: React.FC = () => {
   const phoneW = Math.round(phoneH * 0.486);
 
   // 3D tilt animation
-  const rotateY = interpolate(frame, [0, 90], [35, -5], {
+  const rotateY = interpolate(frame, [0, 120], [35, -5], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.out(Easing.cubic),
   });
 
-  const rotateX = interpolate(frame, [0, 90], [8, 2], {
+  const rotateX = interpolate(frame, [0, 120], [8, 2], {
     extrapolateLeft: 'clamp',
     extrapolateRight: 'clamp',
     easing: Easing.out(Easing.cubic),
